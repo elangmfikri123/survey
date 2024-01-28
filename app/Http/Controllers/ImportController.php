@@ -19,5 +19,13 @@ class ImportController extends Controller
         Excel::import(new CustomersImport, $request->file('file'));
         return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
     }
+    // public function importhc(Request $request)
+    // {
+    //     $request->validate([
+    //         'file' => 'required|mimes:xlsx,csv',
+    //     ]);
+    //     Excel::import(new CustomersImport, $request->file('file'));
+    //     return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+    // }
 }
 

@@ -20,6 +20,7 @@ class FormKonsumenController extends Controller
         if ($existingForm) {                                                // Formulir sudah ada, tidak perlu membuat baru, cukup perbarui jawaban
             $existingForm->update([
                 'jawaban_1' => request('jawaban_1'),
+                'jawaban_1a' => request('jawaban_1a'),
                 'jawaban_2' => request('jawaban_2'),
                 'jawaban_3' => request('jawaban_3'),
                 'jawaban_4' => implode(',', request('jawaban_4')),
@@ -37,6 +38,7 @@ class FormKonsumenController extends Controller
             Form::create([                                                      // Formulir belum ada, buat formulir baru
                 'customer_id' => $customer->id,
                 'jawaban_1' => request('jawaban_1'),
+                'jawaban_1a' => request('jawaban_1a'),
                 'jawaban_2' => request('jawaban_2'),
                 'jawaban_3' => request('jawaban_3'),
                 'jawaban_4' => implode(',', request('jawaban_4')),

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained('customers')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->string('jawaban_1')->nullable();
+            $table->string('jawaban_1a')->nullable();
             $table->string('jawaban_2')->nullable();
             $table->string('jawaban_3')->nullable();
             $table->string('jawaban_4')->nullable();

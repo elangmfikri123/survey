@@ -75,6 +75,11 @@
                           <td>{{ $form->jawaban_1 }}</td>
                         </tr>
                         <tr>
+                          <td>1.A</td>
+                          <td>Jawaban Lainnya</td>
+                          <td>{{ $form->jawaban_1a }}</td>
+                        </tr>
+                        <tr>
                           <td>2</td>
                           <td>Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ? </td>
                           <td>{{ $form->jawaban_2 }}</td>
@@ -93,6 +98,11 @@
                           <td>5</td>
                           <td>Dari mana anda mengetahui layanan contact center ?</td>
                           <td>{{ $form->jawaban_5 }}</td>
+                        </tr>
+                        <tr>
+                          <td>5.A</td>
+                          <td>Jawaban Lainnya</td>
+                          <td>{{ $form->jawaban_5a }}</td>
                         </tr>
                         <tr>
                           <td>6</td>

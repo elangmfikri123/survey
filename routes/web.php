@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExportController;
-use App\Http\Controllers\FormKonsumenController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\FormKonsumenController;
+use App\Http\Controllers\AwarenessHondaCareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard']);
+
+    //ROUTE ADMIN SURVEY AWARENESS CONTACT CENTER
     Route::get('/survey-awareness', [AdminController::class, 'index']);
     Route::get('/survey-awareness/data', [AdminController::class, 'surveytable']);
     Route::get('/survey-awareness/data/{id}', [AdminController::class, 'detaildata']); 
@@ -33,6 +36,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/export-url', [ExportController::class, 'exportExcel']);
     Route::get('/export-awarenesscc', [ExportController::class, 'exportcc']);
     Route::post('/import', [ImportController::class, 'import']);
+
+    //ROUTE ADMIN SURVEY AWARENESS HONDA CARE
+    Route::get('/survey-awarenesshc', [AwarenessHondaCareController::class, 'indexhc']);
 });
 
 

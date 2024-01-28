@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Honda &mdash; Survey</title>
-
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
-
-  <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ asset('assets/modules/jquery-selectric/selectric.css') }}">
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
-
-<body>
+@extends('template')
+@section('title', 'Awareness Survey')
+@section('content')
   <div id="app">
     <section class="section">
       <div class="container mt-5">
@@ -58,20 +32,20 @@
                       <option value="Upload sosmed pribadi">Upload sosmed pribadi</option>
                       <option value="Lembaga perlindungan konsumen">Lembaga perlindungan konsumen</option>
                       <option value="Tidak disampaikan">Tidak disampaikan</option>
-                      <option value="Tidak disampaikan">Other</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
 
                   <div id="pertanyaan_1" style="display: none;">
                   <div class="form-group">
-                    <label for="jawaban_1">Jawaban Lainnya</label>
-                    <input id="jawaban_1" type="text" class="form-control" name="jawaban_1">
+                    <label for="jawaban_1a">Jawaban Lainnya</label>
+                    <input id="jawaban_1a" type="text" class="form-control" name="jawaban_1a">
                     <div class="invalid-feedback">
                     </div>
                   </div>
                   </div>
 
-                  <div id="pertanyaan_2_3" style="display: none;">
+                  <div id="pertanyaan_2" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_2">2. Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ?</label>
                     <select name="jawaban_2" id="jawaban_2" class="form-control selectric" required>
@@ -80,7 +54,9 @@
                       <option value="Tidak">Tidak</option>
                     </select>
                   </div>
+                </div>
 
+                <div id="pertanyaan_3" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_3">3. Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?</label>
                     <select name="jawaban_3" id="jawaban_3" class="form-control selectric" required>
@@ -91,11 +67,11 @@
                   </div>
                   </div>
 
+                  <div id="pertanyaan_4" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_4">4. Layanan Contact Center Astra Honda Motor yang Anda ketahui ? (Bisa pilih lebih dari 1)</label>
                     <select name="jawaban_4[]" id="jawaban_4" class="form-control selectric" multiple>
                       <option disabled selected>-- Pilih --</option>
-                      <option value="Tidak Tahu">Tidak Tahu</option>
                       <option value="Call 1500-989">Call 1500-989</option>
                       <option value="IG @astrahondacare_id">IG @astrahondacare_id</option>
                       <option value="FB Astra Honda Care">FB Astra Honda Care</option>
@@ -106,7 +82,9 @@
                       <option value="Web Astra-Honda.com">Web Astra-Honda.com</option>
                     </select>
                   </div>
+                  </div>
 
+                  <div id="pertanyaan_5" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_5">5. Dari mana anda mengetahui layanan contact center ?</label>
                     <select name="jawaban_5" id="jawaban_5" class="form-control selectric">
@@ -115,12 +93,20 @@
                       <option value="Social Media">Social Media</option>
                       <option value="Buku Servis dan Garansi">Buku Servis dan Garansi</option>
                       <option value="Teman / Keluarga">Teman / Keluarga</option>
-                      <option value="Lainnya, sebutkan">Lainnya, sebutkan ….</option>
+                      <option value="Lainnya, sebutkan">Lainnya, sebutkan...</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label for="jawaban_6">Promosi mengenai contact center</label>
                   </div>
+
+                  <div id="pertanyaan_5a" style="display: none;">
+                    <div class="form-group">
+                      <label for="jawaban_6">Jawaban Lainnya</label>
+                      <input id="jawaban_6" type="text" class="form-control" name="jawaban_6">
+                      <div class="invalid-feedback">
+                      </div>
+                    </div>
+                    </div>
+
                   <div class="form-group">
                     <label for="jawaban_7">7. Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?</label>
                     <select name="jawaban_7" id="jawaban_7" class="form-control selectric">
@@ -129,14 +115,6 @@
                       <option value="Tidak">Tidak</option>
                     </select>
                   </div>
-
-                  {{-- <div class="form-group">
-                    <label for="jawaban_1">Jawaban Lainnya</label>
-                    <input id="jawaban_1" type="text" class="form-control" name="jawaban_1">
-                    <div class="invalid-feedback">
-                    </div>
-                  </div> --}}
-
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="agree" class="custom-control-input" id="agree">
@@ -166,75 +144,115 @@
     // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
     function handleJawaban1Change() {
       var value = $('#jawaban_1').val();
-      var pertanyaan2_3Div = $('#pertanyaan_2_3');
-
-      // Adjust the condition to show pertanyaan_2_3Div when the value is not "Contact Center Astra Honda Motor"
-      if (value !== "Contact Center Astra Honda Motor") {
-        pertanyaan2_3Div.show();
+      var pertanyaan1Div = $('#pertanyaan_1');
+      var pertanyaan2Div = $('#pertanyaan_2');
+      var pertanyaan3Div = $('#pertanyaan_3');
+      var pertanyaan4Div = $('#pertanyaan_4');
+      var pertanyaan5Div = $('#pertanyaan_5');
+  
+      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
+      if (value === "Other") {
+        pertanyaan1Div.show();
       } else {
-        pertanyaan2_3Div.hide();
+        pertanyaan1Div.hide();
+      }
+  
+      if (value === "Contact Center Astra Honda Motor") {
+        pertanyaan4Div.show();
+        pertanyaan5Div.show();
+      } else {
+        pertanyaan4Div.hide();
+        pertanyaan5Div.hide();
+      }
+
+      // Perlihatkan pertanyaan2_3Div jika jawaban pertanyaan 1 bukan "Contact Center Astra Honda Motor"
+      if (value !== "Contact Center Astra Honda Motor") {
+        pertanyaan2Div.show();
+        pertanyaan3Div.show();
+      } else {
+        pertanyaan2Div.hide();
+        pertanyaan3Div.hide();
       }
     }
-
-    // Panggil fungsi pada saat halaman dimuat
-    handleJawaban1Change();
-
+  
     // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
     $('#jawaban_1').change(handleJawaban1Change);
+  
+    // Fungsi untuk menangani perubahan pada jawaban pertanyaan 3
+    function handleJawaban3Change() {
+      var value = $('#jawaban_3').val();
+      var pertanyaan3Div = $('#pertanyaan_3');
+      var pertanyaan4Div = $('#pertanyaan_4'); // Perubahan ID
+      var pertanyaan5Div = $('#pertanyaan_5');
+  
+      // Sembunyikan pertanyaan4_5Div jika jawaban pertanyaan 3 adalah "Tidak"
+      if (value === "Tidak") {
+        pertanyaan4Div.hide();
+        pertanyaan5Div.hide();
 
-          // Tangkap submit form
-          $('#myForm').submit(function(e) {
-              e.preventDefault(); // Mencegah formulir dikirim dengan cara biasa
-              // Lakukan pengiriman formulir dengan Ajax
-              $.ajax({
-                  type: 'POST',
-                  url: '/formsubmit/data', // Ganti dengan URL yang benar
-                  data: $(this).serialize(),
-                  success: function(response) {
-                      // Tampilkan SweetAlert2 setelah formulir dikirim
-                      Swal.fire({
-                          title: 'Jawaban Terkirim',
-                          text: 'Terima Kasih telah mengisi survey untuk terus meningkatkan pelayanan kami',
-                          icon: 'success',
-                          showConfirmButton: false,
-                      });
-                      var table = $('#myTable').DataTable(); // Ganti 'yourDataTableId' dengan ID sesuai dengan tabel datatables Anda
-                      var row = table.row('#row_' + {{ $data->id }});
-
-                        // Perbarui status di kolom 'status'
-                        if (row) {
-                            var statusColumn = row.cell('.status');
-                            statusColumn.data('<span class="badge badge-success">Terisi</span>');
-                            row.draw();
-                        }
-                  },
-                  error: function(error) {
-                      console.log(error);
-                      // Handle error jika ada
-                  }
-              });
-          }); 
+        // Tampilkan SweetAlert2 jika jawaban pertanyaan 3 adalah "Tidak"
+        Swal.fire({
+          text: 'Anda telah memilih untuk tidak menyampaikan keluhan. Apakah Anda yakin ingin melanjutkan?',
+          iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
+          showCancelButton: false,
         });
+      } else {
+        pertanyaan4Div.show();
+        pertanyaan5Div.show();
+      }
+    }
+  
+    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 3
+    $('#jawaban_3').change(handleJawaban3Change);
+
+      // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
+      function handleJawaban5Change() {
+      var value = $('#jawaban_5').val();
+      var pertanyaan5aDiv = $('#pertanyaan_5a');
+  
+      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
+      if (value === "Lainnya, sebutkan") {
+        pertanyaan5aDiv.show();
+      } else {
+        pertanyaan5aDiv.hide();
+      }
+    }
+  
+    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
+    $('#jawaban_5').change(handleJawaban5Change);
+  
+      // Tangkap submit form
+      $('#myForm').submit(function(e) {
+        e.preventDefault(); // Mencegah formulir dikirim dengan cara biasa
+        // Lakukan pengiriman formulir dengan Ajax
+        $.ajax({
+          type: 'POST',
+          url: '/formsubmit/data', // Ganti dengan URL yang benar
+          data: $(this).serialize(),
+          success: function(response) {
+            // Tampilkan SweetAlert2 setelah formulir dikirim
+            Swal.fire({
+              title: 'Jawaban Terkirim',
+              text: 'Terima Kasih telah mengisi survey untuk terus meningkatkan pelayanan kami',
+              icon: 'success',
+              showConfirmButton: false,
+            });
+            var table = $('#myTable').DataTable(); // Ganti 'yourDataTableId' dengan ID sesuai dengan tabel datatables Anda
+            var row = table.row('#row_' + {{ $data->id }});
+  
+            // Perbarui status di kolom 'status'
+            if (row) {
+              var statusColumn = row.cell('.status');
+              statusColumn.data('<span class="badge badge-success">Terisi</span>');
+              row.draw();
+            }
+          },
+          error: function(error) {
+            console.log(error);
+            // Handle error jika ada
+          }
+        });
+      });
+    });
   </script>
-
-  <!-- General JS Scripts -->
-  <script src="{{ asset('assets/modules/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/modules/popper.js') }}"></script>
-  <script src="{{ asset('assets/modules/tooltip.js') }}"></script>
-  <script src="{{ asset('assets/modules/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('assets/modules/nicescroll/jquery.nicescroll.min.js') }}"></script>
-  <script src="{{ asset('assets/modules/moment.min.js') }}"></script>
-  <script src="{{ asset('assets/js/stisla.js') }}"></script>
-  
-  <!-- JS Libraies -->
-  <script src="{{ asset('assets/modules/jquery-pwstrength/jquery.pwstrength.min.js') }}"></script>
-  <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="{{ asset('assets/js/page/auth-register.js') }}"></script>
-  
-  <!-- Template JS File -->
-  <script src="{{ asset('assets/js/scripts.js') }}"></script>
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
-</body>
-</html>
+@endsection
