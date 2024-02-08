@@ -84,6 +84,7 @@
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">AHM</a>
           </div>
+          
           <ul class="sidebar-menu">
             <li class="menu-header">Main Menu</li>
             <li class="dropdown active">
@@ -101,8 +102,14 @@
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Report</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ url('/export-awareness') }}">Report Awareness CC</a></li>
-                <li><a class="nav-link" href="components-hero.html">Report Awareness HC</a></li>                
+                <li><a class="nav-link" href="{{ url('/export-awarenesshc') }}">Report Awareness HC</a></li>                
                 <li><a class="nav-link" href="components-hero.html">Report CSAT CC</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Data User</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="auth-forgot-password.html">User</a></li>
               </ul>
             </li>
             <li class="dropdown">

@@ -17,7 +17,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h4>Detail Data Contact Center</h4>
+                <h4>Detail Data Honda Care</h4>
               </div>
               <div class="card-body">
                 <div class="row mt-4">

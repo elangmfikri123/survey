@@ -7,17 +7,17 @@
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
             <div class="card card-primary">
-              <div class="card-header"><h4>Survey Awareness Contact Center</h4></div>
+              <div class="card-header"><h4>Survey Awareness Honda Care</h4></div>
 
               <div class="card-body">
                   <div class="form-group">
-                    <form action="{{ url('/formsubmit/data') }}" method="post" enctype="multipart/form-data" id="myForm">
+                    <form action="{{ url('/formsubmithc/data') }}" method="post" enctype="multipart/form-data" id="myForm">
                       @csrf
                       <div class="form-group">
                           <label for="nama">Nama Konsumen</label>
                           <input type="text" class="form-control" value="{{ $data->name }}" type="hidden" name="nama" disabled>
                       </div>
-                      <input type="hidden" name="customer_id" value="{{ $data->id }}"> <!-- Tambah untuk menyertakan customer_id -->
+                      <input type="hidden" name="customer_id" value="{{ $data->id }}"> <!-- Tambahkan ini untuk menyertakan customer_id -->
 
                     <div class="form-group">
                     <label for="jawaban_1">1. Jika ada keluhan mengenai produk/layanan motor honda, kemana dan bagaimana Anda menyampaikan keluhan tersebut ?</label>
@@ -155,7 +155,6 @@
         pertanyaan1Div.show();
       } else {
         pertanyaan1Div.hide();
-        $('#jawaban_1a').val('');
       }
 
             // Perlihatkan pertanyaan2_3Div jika jawaban pertanyaan 1 bukan "Contact Center Astra Honda Motor"
@@ -165,8 +164,6 @@
       } else {
         pertanyaan2Div.hide();
         pertanyaan3Div.hide();
-        $('#jawaban_2').val('');
-        $('#jawaban_3').val('');
       }
   
       if (value === "Contact Center Astra Honda Motor") {
@@ -175,9 +172,6 @@
       } else {
         pertanyaan4Div.hide();
         pertanyaan5Div.hide();
-        $('#jawaban_4').val([]);
-        $('#jawaban_5').val('');
-        $('#jawaban_6').val('');
       }
     }
   
@@ -196,12 +190,10 @@
       if (value === "Tidak") {
         pertanyaan4Div.hide();
         pertanyaan5Div.hide();
-        $('#jawaban_4').val([]);
-        $('#jawaban_5').val('');
-        $('#jawaban_6').val('');
+
         // Tampilkan SweetAlert2 jika jawaban pertanyaan 3 adalah "Tidak"
         Swal.fire({
-          text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kamu di 1-500-989',
+          text: 'Anda telah memilih untuk tidak menyampaikan keluhan. Apakah Anda yakin ingin melanjutkan?',
           iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
           showCancelButton: false,
         });
@@ -224,7 +216,6 @@
         pertanyaan5aDiv.show();
       } else {
         pertanyaan5aDiv.hide();
-        $('#jawaban_6').val('');
       }
     }
   
@@ -234,7 +225,6 @@
       // Tangkap submit form
       $('#myForm').submit(function(e) {
         e.preventDefault(); // Mencegah formulir dikirim dengan cara biasa
-        
         // Lakukan pengiriman formulir dengan Ajax
         $.ajax({
           type: 'POST',

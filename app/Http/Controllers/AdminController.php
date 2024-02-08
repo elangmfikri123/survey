@@ -41,12 +41,12 @@ class AdminController extends Controller
             })
             ->addColumn('action', function ($row) {
                 $action = '<a href="' . url('/survey-awareness/data/' . $row->id) . '" class="btn btn-sm btn-primary">Detail</a>';
+                $edit = '<a href="' . url('/survey-awareness/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
                 // Tambahkan tombol aksi lainnya sesuai kebutuhan
-                return $action;
+                return $action.'  '.$edit;
             })
             ->rawColumns(['status','action'])
             ->toJson();
-    
         return $result;
     }
 

@@ -30,17 +30,17 @@
                 </form>
 
                 <div class="table-responsive">
-                    <table class="display table table-striped" id="myTable" cellspacing="0" width="100%">
+                    <table class="display table table-striped table-bordered" id="myTable" cellspacing="0" width="100%">
                     <thead>                                 
                       <tr>
                         <th class="text-center">No</th>
-                        <th>Customer</th>
-                        <th>No Handphone</th>
-                        <th>Motor</th>
-                        <th>MD</th>
-                        <th>Sales Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th class="text-center">Customer</th>
+                        <th class="text-center">No Handphone</th>
+                        <th class="text-center">Motor</th>
+                        <th class="text-center">MD</th>
+                        <th class="text-center">Sales Date</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Action</th>
                       </tr>
                     </thead>
                     <tbody> 

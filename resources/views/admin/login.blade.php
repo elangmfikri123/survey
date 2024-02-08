@@ -43,7 +43,7 @@
                     <label for="username">Username</label>
                     <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
                     <div class="invalid-feedback">
-                        Please fill in your username or email
+                        Mohon Diisi
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
-                      please fill in your password
+                      Mohon Diisi
                     </div>
                   </div>
 

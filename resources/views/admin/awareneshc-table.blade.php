@@ -21,7 +21,7 @@
               </div>
               <div class="card-body">
 
-                <form action="{{ url('/import') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/import-hc') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                 <div class="form-group">
                   <input type="file" name="file" class="form-control-sm" accept=".xlsx, .csv">
@@ -54,7 +54,7 @@
                   $('#myTable').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{{ url("survey-awareness/data") }}',
+                    ajax: '{{ url("/survey-awarenesshc/data") }}',
                     searching: true, // Menampilkan fitur pencarian
                     lengthChange: true, // Menampilkan fitur pengaturan jumlah data per halaman
                     columns: [

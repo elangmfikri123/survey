@@ -39,6 +39,13 @@ Route::middleware('admin')->group(function () {
 
     //ROUTE ADMIN SURVEY AWARENESS HONDA CARE
     Route::get('/survey-awarenesshc', [AwarenessHondaCareController::class, 'indexhc']);
+    Route::get('/survey-awarenesshc/data', [AwarenessHondaCareController::class, 'surveytableHc']);
+    Route::get('/survey-awarenesshc/data/{id}', [AwarenessHondaCareController::class, 'detaildataHc']);
+
+    Route::get('/export-awarenesshc', [ExportController::class, 'exporthc']);
+    Route::get('/export-urlhc', [ExportController::class, 'exportExcelhc']);
+    Route::get('/export-awarenesshasilhc', [ExportController::class, 'exporthasilhc']);
+    Route::post('/import-hc', [ImportController::class, 'importhc']);
 });
 
 
@@ -47,5 +54,7 @@ Route::get('/form/{uuid}', [FormKonsumenController::class, 'formkonsumen']);
 Route::post('/formsubmit/data', [FormKonsumenController::class, 'postform']);
 
 //ROUTE FORM SURVEY AWARENESS HONDA CARE
+Route::get('/fhc/{uuid}', [FormKonsumenController::class, 'formhc']);
+Route::post('/formsubmithc/data', [FormKonsumenController::class, 'postform']);
 
 //ROUTE FORM SURVEY SATISFACTION HONDA CARE

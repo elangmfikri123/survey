@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formhc', function (Blueprint $table) {
+        Schema::create('formchc', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customerhc')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignId('customer_id')->constrained('customerchc')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->string('jawaban_1')->nullable();
-            $table->string('jawaban_1a')->nullable();
             $table->string('jawaban_2')->nullable();
             $table->string('jawaban_3')->nullable();
             $table->string('jawaban_4')->nullable();
@@ -41,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formhc');
+        Schema::dropIfExists('formchc');
     }
 };

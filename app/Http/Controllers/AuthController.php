@@ -20,7 +20,7 @@ class AuthController extends Controller
         $user = User::where($credentials)->first();
     
         if ($user) {
-            if (md5(request()->password) === $user->password) {
+            if (Hash::check(request()->password, $user->password)) {
                 if ($user->roles == 'admin') {
                     Auth::login($user);
                     return redirect('admin')->with('status', 'Berhasil Login.');
