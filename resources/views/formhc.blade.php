@@ -6,7 +6,7 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-            <div class="card card-primary">
+            <div class="card card-danger">
               <div class="card-header"><h4>Survey Awareness Honda Care</h4></div>
 
               <div class="card-body">
@@ -228,7 +228,7 @@
         // Lakukan pengiriman formulir dengan Ajax
         $.ajax({
           type: 'POST',
-          url: '/formsubmit/data', // Ganti dengan URL yang benar
+          url: '/formsubmithc/data', // Ganti dengan URL yang benar
           data: $(this).serialize(),
           success: function(response) {
             // Tampilkan SweetAlert2 setelah formulir dikirim

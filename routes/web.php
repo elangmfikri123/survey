@@ -7,6 +7,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\FormKonsumenController;
 use App\Http\Controllers\AwarenessHondaCareController;
+use App\Http\Controllers\SatisfactionHondaCareController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::middleware('admin')->group(function () {
     Route::get('/export-urlhc', [ExportController::class, 'exportExcelhc']);
     Route::get('/export-awarenesshasilhc', [ExportController::class, 'exporthasilhc']);
     Route::post('/import-hc', [ImportController::class, 'importhc']);
+
+    //ROUTE ADMIN SURVEY CSAT HONDA CARE
+    Route::get('/survey-csathc', [SatisfactionHondaCareController::class, 'indexcsat']);
 });
 
 
@@ -58,3 +62,5 @@ Route::get('/fhc/{uuid}', [FormKonsumenController::class, 'formhc']);
 Route::post('/formsubmithc/data', [FormKonsumenController::class, 'postform']);
 
 //ROUTE FORM SURVEY SATISFACTION HONDA CARE
+Route::get('/fchc/{uuid}', [FormKonsumenController::class, 'formcsathc']);
+Route::post('/formsubmicthc/data', [FormKonsumenController::class, 'postcsatform']);

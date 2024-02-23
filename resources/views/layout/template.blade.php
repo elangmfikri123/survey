@@ -95,7 +95,7 @@
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ url('/survey-awareness') }}">Survey Awareness CC</a></li>
                 <li><a class="nav-link" href="{{ url('/survey-awarenesshc') }}">Survey Awareness HC</a></li>
-                <li><a class="nav-link" href="bootstrap-badge.html">Survey CSAT HC</a></li>
+                <li><a class="nav-link" href="{{ url('/survey-csathc') }}">Survey CSAT HC</a></li>
               </ul>
             </li>
             <li class="dropdown">
