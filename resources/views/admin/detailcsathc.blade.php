@@ -17,7 +17,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h4>Detail Data Contact Center</h4>
+                <h4>Detail Data CSAT Honda Care</h4>
               </div>
               <div class="card-body">
                 <div class="row mt-4">
@@ -26,8 +26,8 @@
                     <div class="table-responsive">
                       <table class="table table-striped table-hover table-md">
                         <tr>
-                          <th data-width="15%">ID Konsumen</th>
-                      <td data-width="30%">: {{ $item->nik }}</td>
+                          <th data-width="15%">No Tiket</th>
+                      <td data-width="30%">: {{ $item->tiketicc }}</td>
                           <th data-width="15%">Frame Number</th>
                           <td data-width="30%">: {{ $item->frame_no }}</td>
                         </tr>
@@ -40,20 +40,20 @@
                         <tr>
                           <th>No Handphone</th>
                           <td>: {{ $item->phone }}</td>
-                          <th>Sales Date</th>
-                          <td>: {{ $item->sales_date }}</td>
+                          <th>Waktu Input</th>
+                          <td>: {{ $item->waktu }}</td>
                         </tr>
                         <tr>
                           <th>Alamat Konsumen</th>
-                          <td>: {{ $item->alamat }} , {{ $item->kelurahan }}, {{ $item->kecamatan }} </td>
+                          <td>: {{ $item->alamat }}</td>
                           <th>Main Dealer</th>
                           <td>: {{ $item->main_dealer }}</td>
                         </tr>
                         <tr>
                           <th>Provinsi</th>
                           <td>: {{ $item->provinsi }}</td>
-                          <th>Dealer Code</th>
-                          <td>: {{ $item->dealer_code }}</td>
+                          <th>Nama AHASS</th>
+                          <td>: {{ $item->nama_ahass }}</td>
                         </tr>
                       </table>
                     </div>
@@ -71,48 +71,58 @@
                         </tr>
                         <tr>
                           <td>1</td>
-                          <td>Jika ada keluhan mengenai produk/layanan motor honda, kemana dan bagaimana Anda menyampaikan keluhan tersebut ?</td>
+                          <td>Apakah sudah pernah menggunakan fasilitas HONDA CARE atau pertolongan darurat di jalan ?</td>
                           <td>{{ $form->jawaban_1 }}</td>
                         </tr>
                         <tr>
-                          <td>1.A</td>
-                          <td>Jawaban Lainnya</td>
-                          <td>{{ $form->jawaban_1a }}</td>
-                        </tr>
-                        <tr>
                           <td>2</td>
-                          <td>Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ? </td>
+                          <td>Darimana Bapak/Ibu mengetahui adanya fasilitas HONDA CARE atau pertolongan motor di jalan ?</td>
                           <td>{{ $form->jawaban_2 }}</td>
                         </tr>
                         <tr>
                           <td>3</td>
-                          <td>Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?</td>
+                          <td>Berapa kali Anda harus menghubungi nomer telp.layanan HONDA CARE untuk mendapatkan respon ?</td>
                           <td>{{ $form->jawaban_3 }}</td>
                         </tr>
                         <tr>
                           <td>4</td>
-                          <td>Layanan Contact Center Astra Honda Motor yang Anda ketahui ?(bisa pilih lebih dari 1)</td>
+                          <td>Berapa lama armada/mekanik Honda CARE tiba di lokasi Bapak/Ibu ?</td>
                           <td>{{ $form->jawaban_4 }}</td>
                         </tr>
                         <tr>
                           <td>5</td>
-                          <td>Dari mana anda mengetahui layanan contact center ?</td>
+                          <td>Sudah puaskah dg waktu tunggu mekanik sampai di lokasi Bapak/Ibu ?</td>
                           <td>{{ $form->jawaban_5 }}</td>
                         </tr>
                         <tr>
                           <td>5.A</td>
-                          <td>Jawaban Lainnya</td>
+                          <td>Jika dirasa TIDAK PUAS, idealnya berapa lama waktu tunggu bagi Bapak/Ibu ?</td>
                           <td>{{ $form->jawaban_5a }}</td>
                         </tr>
                         <tr>
                           <td>6</td>
-                          <td>Promosi mengenai contact center</td>
+                          <td>Apakah tindakan sementara dari mekanik Honda CARE sudah membantu Bapak/Ibu saat membutuhkan pertolongan darurat di jalan ?</td>
                           <td>{{ $form->jawaban_6 }}</td>
                         </tr>
                         <tr>
                           <td>7</td>
-                          <td>Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?</td>
+                          <td>Apakah mekanik HONDA CARE menawarkan pembelian suku cadang lain ?</td>
                           <td>{{ $form->jawaban_7 }}</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Apakah mekanik HONDA CARE menawarkan/menginfokan/promosi produk Honda ?</td>
+                          <td>{{ $form->jawaban_8 }}</td>
+                        </tr>
+                        <tr>
+                          <td>9</td>
+                          <td>Secara keseluruhan sudah puaskah dengan pelayanan dari HONDA CARE ?</td>
+                          <td>{{ $form->jawaban_9 }}</td>
+                        </tr>
+                        <tr>
+                          <td>9.A</td>
+                          <td>Jika dirasa TIDAK PUAS, mengapa dan alasannya ?</td>
+                          <td>{{ $form->jawaban_10 }}</td>
                         </tr>
                       </table>
                     </div>

@@ -55,7 +55,7 @@
           <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+            <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
@@ -103,7 +103,7 @@
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ url('/export-awareness') }}">Report Awareness CC</a></li>
                 <li><a class="nav-link" href="{{ url('/export-awarenesshc') }}">Report Awareness HC</a></li>                
-                <li><a class="nav-link" href="components-hero.html">Report CSAT CC</a></li>
+                <li><a class="nav-link" href="{{ url('/export-csathc') }}">Report CSAT HC</a></li>
               </ul>
             </li>
             <li class="dropdown">

@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('status_penyelesaian')->nullable();
             $table->string('main_dealer')->nullable();
             $table->string('nama_ahass')->nullable();
-            $table->string('waktu')->nullable();
+            $table->datetime('waktu')->nullable();
             $table->enum('status', ['Terisi', 'Belum Terisi'])->default('Belum Terisi');
             $table->timestamps();
         });

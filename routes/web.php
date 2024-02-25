@@ -50,6 +50,13 @@ Route::middleware('admin')->group(function () {
 
     //ROUTE ADMIN SURVEY CSAT HONDA CARE
     Route::get('/survey-csathc', [SatisfactionHondaCareController::class, 'indexcsat']);
+    Route::get('/survey-csathc/data', [SatisfactionHondaCareController::class, 'surveytablecHc']);
+    Route::get('/survey-csathc/data/{id}', [SatisfactionHondaCareController::class, 'detaildatacHc']);
+
+    Route::get('/export-csathc', [ExportController::class, 'exportcsathc']);
+    Route::get('/export-urlcsathc', [ExportController::class, 'exportExcelchc']);
+    Route::get('/export-csathasilhc', [ExportController::class, 'exporthasilchc']);
+    Route::post('/import-csathc', [ImportController::class, 'importchc']);
 });
 
 
@@ -63,4 +70,4 @@ Route::post('/formsubmithc/data', [FormKonsumenController::class, 'postform']);
 
 //ROUTE FORM SURVEY SATISFACTION HONDA CARE
 Route::get('/fchc/{uuid}', [FormKonsumenController::class, 'formcsathc']);
-Route::post('/formsubmicthc/data', [FormKonsumenController::class, 'postcsatform']);
+Route::post('/formsubmitchc/data', [FormKonsumenController::class, 'postformcsat']);

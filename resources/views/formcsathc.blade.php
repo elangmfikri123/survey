@@ -7,14 +7,14 @@
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
             <div class="card mb-3" style="margin-top: -30px;">
-                <img src="{{ asset('assets/img/edit.png') }}" class="card-img-top img-fluid" alt="gambar">
+                <img src="{{ asset('assets/img/formcsat.png') }}" class="card-img-top img-fluid" alt="gambar">
             </div>
             <div class="card card-danger">
               <div class="card-header"><h4>Survey Customer Satisfaction Honda Care</h4></div>
 
               <div class="card-body">
                   <div class="form-group">
-                    <form action="{{ url('/formsubmithc/data') }}" method="post" enctype="multipart/form-data" id="myForm">
+                    <form action="{{ url('/formsubmitchc/data') }}" method="post" enctype="multipart/form-data" id="myForm">
                       @csrf
                       <div class="form-group">
                           <label for="nama">Nama Konsumen</label>
@@ -274,7 +274,7 @@
         // Lakukan pengiriman formulir dengan Ajax
         $.ajax({
           type: 'POST',
-          url: '/formsubmit/data', // Ganti dengan URL yang benar
+          url: '/formsubmitchc/data', // Ganti dengan URL yang benar
           data: $(this).serialize(),
           success: function(response) {
             // Tampilkan SweetAlert2 setelah formulir dikirim
