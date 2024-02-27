@@ -182,7 +182,7 @@ class ExportController extends Controller
             $startDate = Carbon::createFromFormat('Y-m-d', $request->input('start_date_result'))->startOfDay();
             $endDate = Carbon::createFromFormat('Y-m-d', $request->input('end_date_result'))->endOfDay();
 
-            $data = CustomerHc::leftJoin('formhc', 'customerhc.id', '=', 'formhc.customer_id')
+            $data = CustomerHc::leftJoin('formhc', 'customerhc.id', '=', 'formhc.customer_hc_id')
                 ->select('customerhc.*',
                 'formhc.jawaban_1',
                 'formhc.jawaban_1a',
@@ -334,7 +334,7 @@ class ExportController extends Controller
             $startDate = Carbon::createFromFormat('Y-m-d', $request->input('start_date_result'))->startOfDay();
             $endDate = Carbon::createFromFormat('Y-m-d', $request->input('end_date_result'))->endOfDay();
 
-            $data = CustomercHc::leftJoin('formchc', 'customerchc.id', '=', 'formchc.customer_id')
+            $data = CustomercHc::leftJoin('formchc', 'customerchc.id', '=', 'formchc.customerc_hc_id')
                 ->select('customerchc.*',
                 'formchc.jawaban_1',
                 'formchc.jawaban_2',
@@ -358,29 +358,35 @@ class ExportController extends Controller
 
             // Header
             $sheet->setCellValue('A1', 'No');
-            $sheet->setCellValue('B1', 'Customer ID (NIK)');
+            $sheet->setCellValue('B1', 'Tiket ICC');
             $sheet->setCellValue('C1', 'Nama');
             $sheet->setCellValue('D1', 'No Handphone');
             $sheet->setCellValue('E1', 'Alamat');
-            $sheet->setCellValue('F1', 'Kelurahan');
-            $sheet->setCellValue('G1', 'Kecamatan');
-            $sheet->setCellValue('H1', 'Kab/Kota');
-            $sheet->setCellValue('I1', 'Provinsi');
-            $sheet->setCellValue('J1', 'Motorcycle');
-            $sheet->setCellValue('K1', 'Frame Number');
-            $sheet->setCellValue('L1', 'Main Dealer');
-            $sheet->setCellValue('M1', 'Dealer Code');
-            $sheet->setCellValue('N1', 'Sales Date');
-            $sheet->setCellValue('O1', 'Status');
-            $sheet->setCellValue('P1', '1. Jika ada keluhan mengenai produk/layanan motor honda, kemana dan bagaimana Anda menyampaikan keluhan tersebut ?');
-            $sheet->setCellValue('Q1', 'Jawaban Lainnya');
-            $sheet->setCellValue('R1', '2. Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ?');
-            $sheet->setCellValue('S1', '3. Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?');
-            $sheet->setCellValue('T1', '4. Layanan Contact Center Astra Honda Motor yang Anda ketahui ? (Bisa pilih lebih dari 1)');
-            $sheet->setCellValue('U1', '5. Dari mana anda mengetahui layanan contact center ?');
-            $sheet->setCellValue('V1', 'Jawaban Lainnya');
-            $sheet->setCellValue('W1', '7. Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?');
-            $sheet->setCellValue('X1', 'Waktu Submit');
+            $sheet->setCellValue('F1', 'Kab/Kota');
+            $sheet->setCellValue('G1', 'Provinsi');
+            $sheet->setCellValue('H1', 'Motorcycle');
+            $sheet->setCellValue('I1', 'Frame Number');
+            $sheet->setCellValue('J1', 'Tahun Motor');
+            $sheet->setCellValue('K1', 'Masalah');
+            $sheet->setCellValue('L1', 'Tipe Servis');
+            $sheet->setCellValue('M1', 'Status Penyelesaian');
+            $sheet->setCellValue('N1', 'Main Dealer');
+            $sheet->setCellValue('O1', 'Nama Ahass');
+            $sheet->setCellValue('P1', 'Waktu');
+            $sheet->setCellValue('Q1', 'Status');
+            $sheet->setCellValue('R1', '1. Apakah sudah pernah menggunakan fasilitas Honda CARE atau pertolongan darurat di jalan ?');
+            $sheet->setCellValue('S1', '2. Darimana Bapak/Ibu mengetahui adanya fasilitas Honda CARE atau pertolongan motor di jalan ?');
+            $sheet->setCellValue('T1', '3. Berapa kali Anda harus menghubungi nomer telp.layanan Honda CARE untuk mendapatkan respon ?');
+            $sheet->setCellValue('U1', '4. Berapa lama armada/mekanik Honda CARE tiba di lokasi Bapak/Ibu ?');
+            $sheet->setCellValue('V1', '5. Sudah puaskah dg waktu tunggu mekanik sampai di lokasi Bapak/Ibu ?');
+            $sheet->setCellValue('W1', 'Jika dirasa TIDAK PUAS, idealnya berapa lama waktu tunggu bagi Bapak/Ibu ?');
+            $sheet->setCellValue('X1', '6. Apakah tindakan sementara dari mekanik Honda CARE sudah membantu Bapak/Ibu saat membutuhkan pertolongan darurat di jalan ?');
+            $sheet->setCellValue('Y1', '7. Apakah mekanik Honda CARE menawarkan pembelian suku cadang lain ?');
+            $sheet->setCellValue('Z1', '8. Apakah mekanik Honda CARE menawarkan/menginfokan/promosi produk Honda ?');
+            $sheet->setCellValue('AA1', '9. Secara keseluruhan sudah puaskah dengan pelayanan dari Honda CARE ?');
+            $sheet->setCellValue('AB1', 'Jika dirasa TIDAK PUAS, mengapa dan alasannya ?');
+            $sheet->setCellValue('AC1', 'Lainnya, sebutkan...');
+            $sheet->setCellValue('AD1', 'Waktu Submit');
 
             // Mengatur Format Header
             $headerStyle = [
@@ -388,36 +394,42 @@ class ExportController extends Controller
                 'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
             ];
 
-            $sheet->getStyle('A1:X1')->applyFromArray($headerStyle);
+            $sheet->getStyle('A1:AD1')->applyFromArray($headerStyle);
 
             // Data
         $row = 2; // Mulai dari baris kedua setelah header
         $no = 1; // Inisialisasi nomor urutan
         foreach ($data as $item) {
             $sheet->setCellValue('A' . $row, $no);
-            $sheet->setCellValue('B' . $row, $item->nik); // Atur format sel sebagai teks
+            $sheet->setCellValue('B' . $row, $item->tiketicc); // Atur format sel sebagai teks
             $sheet->setCellValue('C' . $row, $item->name);
             $sheet->setCellValue('D' . $row, $item->phone);
             $sheet->setCellValue('E' . $row, $item->alamat);
-            $sheet->setCellValue('F' . $row, $item->kelurahan);
-            $sheet->setCellValue('G' . $row, $item->kecamatan);
-            $sheet->setCellValue('H' . $row, $item->kota);
-            $sheet->setCellValue('I' . $row, $item->provinsi);
-            $sheet->setCellValue('J' . $row, $item->motor);
-            $sheet->setCellValue('K' . $row, $item->frame_no);
-            $sheet->setCellValue('L' . $row, $item->main_dealer);
-            $sheet->setCellValue('M' . $row, $item->dealer_code);
-            $sheet->setCellValue('N' . $row, $item->sales_date);
-            $sheet->setCellValue('O' . $row, $item->status);
-            $sheet->setCellValue('P' . $row, $item->jawaban_1);
-            $sheet->setCellValue('Q' . $row, $item->jawaban_1a);
-            $sheet->setCellValue('R' . $row, $item->jawaban_2);
-            $sheet->setCellValue('S' . $row, $item->jawaban_3);
-            $sheet->setCellValue('T' . $row, $item->jawaban_4);
-            $sheet->setCellValue('U' . $row, $item->jawaban_5);
-            $sheet->setCellValue('V' . $row, $item->jawaban_6);
-            $sheet->setCellValue('W' . $row, $item->jawaban_7);
-            $sheet->setCellValue('X' . $row, $item->created_at);
+            $sheet->setCellValue('F' . $row, $item->kota);
+            $sheet->setCellValue('G' . $row, $item->provinsi);
+            $sheet->setCellValue('H' . $row, $item->motor);
+            $sheet->setCellValue('I' . $row, $item->frame_no);
+            $sheet->setCellValue('J' . $row, $item->tahun_motor);
+            $sheet->setCellValue('K' . $row, $item->masalah);
+            $sheet->setCellValue('L' . $row, $item->tipeservis);
+            $sheet->setCellValue('M' . $row, $item->status_penyelesaian);
+            $sheet->setCellValue('N' . $row, $item->main_dealer);
+            $sheet->setCellValue('O' . $row, $item->nama_ahass);
+            $sheet->setCellValue('P' . $row, $item->waktu);
+            $sheet->setCellValue('Q' . $row, $item->status);
+            $sheet->setCellValue('R' . $row, $item->jawaban_1);
+            $sheet->setCellValue('S' . $row, $item->jawaban_2);
+            $sheet->setCellValue('T' . $row, $item->jawaban_3);
+            $sheet->setCellValue('U' . $row, $item->jawaban_4);
+            $sheet->setCellValue('V' . $row, $item->jawaban_5);
+            $sheet->setCellValue('W' . $row, $item->jawaban_5a);
+            $sheet->setCellValue('X' . $row, $item->jawaban_6);
+            $sheet->setCellValue('Y' . $row, $item->jawaban_7);
+            $sheet->setCellValue('Z' . $row, $item->jawaban_8);
+            $sheet->setCellValue('AA' . $row, $item->jawaban_9);
+            $sheet->setCellValue('AB' . $row, $item->jawaban_10);
+            $sheet->setCellValue('AC' . $row, $item->jawaban_11);
+            $sheet->setCellValue('AD' . $row, $item->created_at);
             $row++;
             $no++;
         }
@@ -431,7 +443,7 @@ class ExportController extends Controller
                 ],
             ],
         ];
-        $sheet->getStyle('A1:X' . ($row - 1))->applyFromArray($styleArray);
+        $sheet->getStyle('A1:AD' . ($row - 1))->applyFromArray($styleArray);
 
             $filename = 'Report-Hasil CSAT.xlsx';
             $path = storage_path('app/' . $filename);

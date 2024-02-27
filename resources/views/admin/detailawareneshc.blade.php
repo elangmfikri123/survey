@@ -106,13 +106,38 @@
                         </tr>
                         <tr>
                           <td>6</td>
-                          <td>Promosi mengenai contact center</td>
+                          <td>Apakah anda mengetahui/pernah mendengar Honda memiliki layanan pertolongan darurat di jalan ?</td>
                           <td>{{ $form->jawaban_6 }}</td>
                         </tr>
                         <tr>
                           <td>7</td>
-                          <td>Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?</td>
+                          <td>Apakah anda mengetahui/pernah mendengar layanan Honda Care ?</td>
                           <td>{{ $form->jawaban_7 }}</td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Anda mengetahui layanan honda care/pertolongan darurat dijalan dari mana ?</td>
+                          <td>{{ $form->jawaban_8 }}</td>
+                        </tr>
+                        <tr>
+                          <td>9</td>
+                          <td>Jika anda memerlukan bantuan darurat dijalan mengenai motor honda, apakah tau harus menghubungi kemana ?</td>
+                          <td>{{ $form->jawaban_9 }}</td>
+                        </tr>
+                        <tr>
+                          <td>10</td>
+                          <td>Apakah tau cara menghubungi layanan honda care ?</td>
+                          <td>{{ $form->jawaban_10 }}</td>
+                        </tr>
+                        <tr>
+                          <td>11</td>
+                          <td>Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center</td>
+                          <td>{{ $form->jawaban_11 }}</td>
+                        </tr>
+                        <tr>
+                          <td>12 </td>
+                          <td>Jika suatu saat anda membutuhkan layanan darurat dijalan apakah mau menggunkan layana Honda Care ?</td>
+                          <td>{{ $form->jawaban_12 }}</td>
                         </tr>
                       </table>
                     </div>

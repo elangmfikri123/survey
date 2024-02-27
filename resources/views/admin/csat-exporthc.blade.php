@@ -90,7 +90,7 @@
         if (startDate && endDate) {
             // Lakukan permintaan AJAX ke rute ekspor
             $.ajax({
-                url: '/export-csathc',
+                url: '/export-csathasilhc',
                 type: 'GET',
                 data: {
                     start_date: startDate,

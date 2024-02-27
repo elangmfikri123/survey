@@ -6,6 +6,9 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+            <div class="card mb-3" style="margin-top: -30px;">
+              <img src="{{ asset('assets/img/formcsat.png') }}" class="card-img-top img-fluid" alt="gambar">
+          </div>
             <div class="card card-danger">
               <div class="card-header"><h4>Survey Awareness Honda Care</h4></div>
 
@@ -35,17 +38,13 @@
                       <option value="Other">Other</option>
                     </select>
                   </div>
-
-                  <div id="pertanyaan_1" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_1a">Jawaban Lainnya</label>
                     <input id="jawaban_1a" type="text" class="form-control" name="jawaban_1a">
                     <div class="invalid-feedback">
                     </div>
                   </div>
-                  </div>
-
-                  <div id="pertanyaan_2" style="display: none;">
+                  
                   <div class="form-group">
                     <label for="jawaban_2">2. Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ?</label>
                     <select name="jawaban_2" id="jawaban_2" class="form-control selectric" required>
@@ -54,9 +53,7 @@
                       <option value="Tidak">Tidak</option>
                     </select>
                   </div>
-                </div>
-
-                <div id="pertanyaan_3" style="display: none;">
+                
                   <div class="form-group">
                     <label for="jawaban_3">3. Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?</label>
                     <select name="jawaban_3" id="jawaban_3" class="form-control selectric" required>
@@ -65,9 +62,7 @@
                       <option value="Tidak">Tidak</option>
                     </select>
                   </div>
-                  </div>
-
-                  <div id="pertanyaan_4" style="display: none;">
+                  
                   <div class="form-group">
                     <label for="jawaban_4">4. Layanan Contact Center Astra Honda Motor yang Anda ketahui ? (Bisa pilih lebih dari 1)</label>
                     <select name="jawaban_4[]" id="jawaban_4" class="form-control selectric" multiple>
@@ -82,9 +77,7 @@
                       <option value="Web Astra-Honda.com">Web Astra-Honda.com</option>
                     </select>
                   </div>
-                  </div>
-
-                  <div id="pertanyaan_5" style="display: none;">
+                  
                   <div class="form-group">
                     <label for="jawaban_5">5. Dari mana anda mengetahui layanan contact center ?</label>
                     <select name="jawaban_5" id="jawaban_5" class="form-control selectric">
@@ -96,19 +89,21 @@
                       <option value="Lainnya, sebutkan">Lainnya, sebutkan...</option>
                     </select>
                   </div>
-                  </div>
-
-                  <div id="pertanyaan_5a" style="display: none;">
+                 
+                    <div class="form-group" >
+                      <label for="jawaban_5a">Jawaban Lainnya</label>
+                      <input id="jawaban_5a" type="text" class="form-control" name="jawaban_5a">
+                    </div>
                     <div class="form-group">
-                      <label for="jawaban_6">Jawaban Lainnya</label>
-                      <input id="jawaban_6" type="text" class="form-control" name="jawaban_6">
-                      <div class="invalid-feedback">
-                      </div>
+                      <label for="jawaban_6">6. Apakah anda mengetahui/pernah mendengar Honda memiliki layanan pertolongan darurat di jalan ?</label>
+                      <select name="jawaban_6" id="jawaban_6" class="form-control selectric">
+                        <option disabled selected>-- Pilih --</option>
+                        <option value="Ya">Ya</option>
+                        <option value="Tidak">Tidak</option>
+                      </select>
                     </div>
-                    </div>
-
                   <div class="form-group">
-                    <label for="jawaban_7">7. Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?</label>
+                    <label for="jawaban_7">7. Apakah anda mengetahui/pernah mendengan layanan Honda Care ?</label>
                     <select name="jawaban_7" id="jawaban_7" class="form-control selectric">
                       <option disabled selected>-- Pilih --</option>
                       <option value="Ya">Ya</option>
@@ -116,10 +111,47 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                      <label class="custom-control-label" for="agree">Mengizinkan PT Astra Honda Motor untuk menggunakan informasi di atas dan menghubungi Saya melalui email dan/atau telepon atau sarana komunikasi pribadi lainnya untuk kegiatan pelayanan kepada customer.</label>
-                    </div>
+                    <label for="jawaban_8">8. Anda mengetahui layanan honda care/pertolongan darurat dijalan dari mana ?</label>
+                    <select name="jawaban_8" id="jawaban_8" class="form-control selectric">
+                      <option disabled selected>-- Pilih --</option>
+                      <option value="Petugas Dealer">Petugas Dealer</option>
+                      <option value="Social Media">Social Media</option>
+                      <option value="Buku Servis dan Garansi">Buku Servis dan Garansi</option>
+                      <option value="Teman / Keluarga">Teman / Keluarga</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="jawaban_9">9. Jika anda memerlukan bantuan darurat dijalan mengenai motor honda, apakah tau harus menghubungi kemana ?</label>
+                    <select name="jawaban_9" id="jawaban_9" class="form-control selectric">
+                      <option disabled selected>-- Pilih --</option>
+                      <option value="Layanan Honda Care">Layanan Honda Care</option>
+                      <option value="Bengkel terdekat">Bengkel terdekat</option>
+                      <option value="Keluarga">Keluarga</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="jawaban_10">10. Apakah tau cara menghubungi layanan honda care ?</label>
+                    <select name="jawaban_10" id="jawaban_10" class="form-control selectric">
+                      <option disabled selected>-- Pilih --</option>
+                      <option value="Ya (melalui Call,WA,Apps)">Ya (melalui Call,WA,Apps)</option>
+                      <option value="Tidak">Tidak</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="jawaban_11">11. Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?</label>
+                    <select name="jawaban_11" id="jawaban_11" class="form-control selectric">
+                      <option disabled selected>-- Pilih --</option>
+                      <option value="Ya">Ya</option>
+                      <option value="Tidak">Tidak</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="jawaban_12">12. Jika suatu saat anda membutuhkan layanan darurat dijalan apakah mau menggunkan layana Honda Care ?</label>
+                    <select name="jawaban_12" id="jawaban_12" class="form-control selectric">
+                      <option disabled selected>-- Pilih --</option>
+                      <option value="Ya">Ya</option>
+                      <option value="Tidak">Tidak</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-success btn-lg btn-block">
@@ -141,86 +173,86 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script>
   $(document).ready(function() {
-    // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
-    function handleJawaban1Change() {
-      var value = $('#jawaban_1').val();
-      var pertanyaan1Div = $('#pertanyaan_1');
-      var pertanyaan2Div = $('#pertanyaan_2');
-      var pertanyaan3Div = $('#pertanyaan_3');
-      var pertanyaan4Div = $('#pertanyaan_4');
-      var pertanyaan5Div = $('#pertanyaan_5');
+    // // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
+    // function handleJawaban1Change() {
+    //   var value = $('#jawaban_1').val();
+    //   var pertanyaan1Div = $('#pertanyaan_1');
+    //   var pertanyaan2Div = $('#pertanyaan_2');
+    //   var pertanyaan3Div = $('#pertanyaan_3');
+    //   var pertanyaan4Div = $('#pertanyaan_4');
+    //   var pertanyaan5Div = $('#pertanyaan_5');
   
-      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
-      if (value === "Other") {
-        pertanyaan1Div.show();
-      } else {
-        pertanyaan1Div.hide();
-      }
+    //   // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
+    //   if (value === "Other") {
+    //     pertanyaan1Div.show();
+    //   } else {
+    //     pertanyaan1Div.hide();
+    //   }
 
-            // Perlihatkan pertanyaan2_3Div jika jawaban pertanyaan 1 bukan "Contact Center Astra Honda Motor"
-      if (value !== "Contact Center Astra Honda Motor") {
-        pertanyaan2Div.show();
-        pertanyaan3Div.show();
-      } else {
-        pertanyaan2Div.hide();
-        pertanyaan3Div.hide();
-      }
+    //         // Perlihatkan pertanyaan2_3Div jika jawaban pertanyaan 1 bukan "Contact Center Astra Honda Motor"
+    //   if (value !== "Contact Center Astra Honda Motor") {
+    //     pertanyaan2Div.show();
+    //     pertanyaan3Div.show();
+    //   } else {
+    //     pertanyaan2Div.hide();
+    //     pertanyaan3Div.hide();
+    //   }
   
-      if (value === "Contact Center Astra Honda Motor") {
-        pertanyaan4Div.show();
-        pertanyaan5Div.show();
-      } else {
-        pertanyaan4Div.hide();
-        pertanyaan5Div.hide();
-      }
-    }
+    //   if (value === "Contact Center Astra Honda Motor") {
+    //     pertanyaan4Div.show();
+    //     pertanyaan5Div.show();
+    //   } else {
+    //     pertanyaan4Div.hide();
+    //     pertanyaan5Div.hide();
+    //   }
+    // }
   
   
-    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
-    $('#jawaban_1').change(handleJawaban1Change);
+    // // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
+    // $('#jawaban_1').change(handleJawaban1Change);
   
-    // Fungsi untuk menangani perubahan pada jawaban pertanyaan 3
-    function handleJawaban3Change() {
-      var value = $('#jawaban_3').val();
-      var pertanyaan3Div = $('#pertanyaan_3');
-      var pertanyaan4Div = $('#pertanyaan_4'); // Perubahan ID
-      var pertanyaan5Div = $('#pertanyaan_5');
+    // // Fungsi untuk menangani perubahan pada jawaban pertanyaan 3
+    // function handleJawaban3Change() {
+    //   var value = $('#jawaban_3').val();
+    //   var pertanyaan3Div = $('#pertanyaan_3');
+    //   var pertanyaan4Div = $('#pertanyaan_4'); // Perubahan ID
+    //   var pertanyaan5Div = $('#pertanyaan_5');
   
-      // Sembunyikan pertanyaan4_5Div jika jawaban pertanyaan 3 adalah "Tidak"
-      if (value === "Tidak") {
-        pertanyaan4Div.hide();
-        pertanyaan5Div.hide();
+    //   // Sembunyikan pertanyaan4_5Div jika jawaban pertanyaan 3 adalah "Tidak"
+    //   if (value === "Tidak") {
+    //     pertanyaan4Div.hide();
+    //     pertanyaan5Div.hide();
 
-        // Tampilkan SweetAlert2 jika jawaban pertanyaan 3 adalah "Tidak"
-        Swal.fire({
-          text: 'Anda telah memilih untuk tidak menyampaikan keluhan. Apakah Anda yakin ingin melanjutkan?',
-          iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
-          showCancelButton: false,
-        });
-      } else {
-        pertanyaan4Div.show();
-        pertanyaan5Div.show();
-      }
-    }
+    //     // Tampilkan SweetAlert2 jika jawaban pertanyaan 3 adalah "Tidak"
+    //     Swal.fire({
+    //       text: 'Anda telah memilih untuk tidak menyampaikan keluhan. Apakah Anda yakin ingin melanjutkan?',
+    //       iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
+    //       showCancelButton: false,
+    //     });
+    //   } else {
+    //     pertanyaan4Div.show();
+    //     pertanyaan5Div.show();
+    //   }
+    // }
   
-    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 3
-    $('#jawaban_3').change(handleJawaban3Change);
+    // // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 3
+    // $('#jawaban_3').change(handleJawaban3Change);
 
-      // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
-      function handleJawaban5Change() {
-      var value = $('#jawaban_5').val();
-      var pertanyaan5aDiv = $('#pertanyaan_5a');
+    //   // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
+    //   function handleJawaban5Change() {
+    //   var value = $('#jawaban_5').val();
+    //   var pertanyaan5aDiv = $('#pertanyaan_5a');
   
-      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
-      if (value === "Lainnya, sebutkan") {
-        pertanyaan5aDiv.show();
-      } else {
-        pertanyaan5aDiv.hide();
-      }
-    }
+    //   // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
+    //   if (value === "Lainnya, sebutkan") {
+    //     pertanyaan5aDiv.show();
+    //   } else {
+    //     pertanyaan5aDiv.hide();
+    //   }
+    // }
   
-    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
-    $('#jawaban_5').change(handleJawaban5Change);
+    // // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
+    // $('#jawaban_5').change(handleJawaban5Change);
   
       // Tangkap submit form
       $('#myForm').submit(function(e) {

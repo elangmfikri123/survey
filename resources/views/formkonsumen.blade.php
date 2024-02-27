@@ -6,7 +6,10 @@
       <div class="container mt-5">
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-            <div class="card card-primary">
+            <div class="card mb-3" style="margin-top: -30px;">
+              <img src="{{ asset('assets/img/formcsat.png') }}" class="card-img-top img-fluid" alt="gambar">
+          </div>
+            <div class="card card-danger">
               <div class="card-header"><h4>Survey Awareness Contact Center</h4></div>
 
               <div class="card-body">
@@ -48,7 +51,7 @@
                   <div id="pertanyaan_2" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_2">2. Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ?</label>
-                    <select name="jawaban_2" id="jawaban_2" class="form-control selectric" required>
+                    <select name="jawaban_2" id="jawaban_2" class="form-control selectric">
                       <option disabled selected>-- Pilih --</option>
                       <option value="Ya">Ya</option>
                       <option value="Tidak">Tidak</option>
@@ -59,7 +62,7 @@
                 <div id="pertanyaan_3" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_3">3. Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?</label>
-                    <select name="jawaban_3" id="jawaban_3" class="form-control selectric" required>
+                    <select name="jawaban_3" id="jawaban_3" class="form-control selectric">
                       <option disabled selected>-- Pilih --</option>
                       <option value="Ya">Ya</option>
                       <option value="Tidak">Tidak</option>
@@ -114,12 +117,6 @@
                       <option value="Ya">Ya</option>
                       <option value="Tidak">Tidak</option>
                     </select>
-                  </div>
-                  <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                      <label class="custom-control-label" for="agree">Mengizinkan PT Astra Honda Motor untuk menggunakan informasi di atas dan menghubungi Saya melalui email dan/atau telepon atau sarana komunikasi pribadi lainnya untuk kegiatan pelayanan kepada customer.</label>
-                    </div>
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-success btn-lg btn-block">
@@ -201,7 +198,7 @@
         $('#jawaban_6').val('');
         // Tampilkan SweetAlert2 jika jawaban pertanyaan 3 adalah "Tidak"
         Swal.fire({
-          text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kamu di 1-500-989',
+          text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kami di 1-500-989',
           iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
           showCancelButton: false,
         });

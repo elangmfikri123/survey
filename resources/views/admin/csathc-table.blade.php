@@ -34,6 +34,7 @@
                     <thead>                                 
                       <tr>
                         <th class="text-center">No</th>
+                        <th class="text-center">Uuid</th>
                         <th class="text-center">Tiket ICC</th>
                         <th class="text-center">Customer</th>
                         <th class="text-center">No Handphone</th>
@@ -60,6 +61,7 @@
                     lengthChange: true, // Menampilkan fitur pengaturan jumlah data per halaman
                     columns: [
                     { data: 'id', name: 'id' },
+                    { data: 'uuid', name: 'uuid' },
                     { data: 'tiketicc', name: 'tiketicc' },
                     { data: 'name', name: 'name' },
                     { data: 'phone', name: 'phone' },

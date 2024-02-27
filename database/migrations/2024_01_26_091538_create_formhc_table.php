@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('formhc', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customerhc')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignId('customer_hc_id')->constrained('customerhc')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->string('jawaban_1')->nullable();
             $table->string('jawaban_1a')->nullable();
             $table->string('jawaban_2')->nullable();

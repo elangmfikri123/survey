@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Customer;
 use App\Models\CustomerHc;
 use Illuminate\Http\Request;
 
@@ -19,6 +21,7 @@ class AwarenessHondaCareController extends Controller
             $search = $request->search['value'];
             $data->where(function ($query) use ($search) {
                 $query->where('id', 'like', '%' . $search . '%')
+                    ->orWhere('uuid', 'like', '%' . $search . '%')
                     ->orWhere('name', 'like', '%' . $search . '%')
                     ->orWhere('phone', 'like', '%' . $search . '%')
                     ->orWhere('motor', 'like', '%' . $search . '%')
@@ -46,7 +49,7 @@ class AwarenessHondaCareController extends Controller
     {
         $item = CustomerHc::findOrFail($id);
         // Menggunakan optional untuk mengatasi jika form null
-        $form = optional($item->formhc);
+        $form = optional($item->form);
         return view('admin.detailawareneshc', compact('item', 'form'));
     }
 }

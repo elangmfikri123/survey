@@ -19,6 +19,7 @@ class SatisfactionHondaCareController extends Controller
             $search = $request->search['value'];
             $data->where(function ($query) use ($search) {
                 $query->where('id', 'like', '%' . $search . '%')
+                    ->orWhere('uuid', 'like', '%' . $search . '%')
                     ->orWhere('tiketicc', 'like', '%' . $search . '%')
                     ->orWhere('name', 'like', '%' . $search . '%')
                     ->orWhere('phone', 'like', '%' . $search . '%')
@@ -47,7 +48,7 @@ class SatisfactionHondaCareController extends Controller
     {
         $item = CustomercHc::findOrFail($id);
         // Menggunakan optional untuk mengatasi jika form null
-        $form = optional($item->formchc);
+        $form = optional($item->form);
         return view('admin.detailcsathc', compact('item', 'form'));
     }
 }

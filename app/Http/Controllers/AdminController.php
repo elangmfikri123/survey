@@ -26,6 +26,7 @@ class AdminController extends Controller
             $search = $request->search['value'];
             $data->where(function ($query) use ($search) {
                 $query->where('id', 'like', '%' . $search . '%')
+                    ->orWhere('uuid', 'like', '%' . $search . '%')
                     ->orWhere('name', 'like', '%' . $search . '%')
                     ->orWhere('phone', 'like', '%' . $search . '%')
                     ->orWhere('motor', 'like', '%' . $search . '%')

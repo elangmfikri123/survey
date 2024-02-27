@@ -34,6 +34,7 @@
                     <thead>                                 
                       <tr>
                         <th class="text-center">No</th>
+                        <th class="text-center">UUID</th>
                         <th class="text-center">Customer</th>
                         <th class="text-center">No Handphone</th>
                         <th class="text-center">Motor</th>
@@ -59,6 +60,7 @@
                     lengthChange: true, // Menampilkan fitur pengaturan jumlah data per halaman
                     columns: [
                     { data: 'id', name: 'id' },
+                    { data: 'uuid', name: 'uuid' },
                     { data: 'name', name: 'name' },
                     { data: 'phone', name: 'phone' },
                     { data: 'motor', name: 'motor' },

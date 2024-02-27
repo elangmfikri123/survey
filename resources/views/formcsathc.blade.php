@@ -155,13 +155,6 @@
                       </div>
                     </div>
                   </div>
-
-                  {{-- <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" name="agree" class="custom-control-input" id="agree">
-                      <label class="custom-control-label" for="agree">Mengizinkan PT Astra Honda Motor untuk menggunakan informasi di atas dan menghubungi Saya melalui email dan/atau telepon atau sarana komunikasi pribadi lainnya untuk kegiatan pelayanan kepada customer.</label>
-                    </div>
-                  </div> --}}
                   <div class="form-group">
                     <button type="submit" class="btn btn-success btn-lg btn-block">
                       SUBMIT
