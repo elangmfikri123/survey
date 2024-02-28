@@ -21,6 +21,10 @@ class FormKonsumenController extends Controller
         }
         return view('formkonsumen', compact('data'));
     }
+    public function formkonsumen2()
+    {
+        return view('formkonsumen2');
+    }
     public function postform(Request $request)
     {
         $customer = Customer::findOrFail($request->customer_id);
@@ -70,6 +74,14 @@ class FormKonsumenController extends Controller
             return view('erorr.404');
         }
         return view('formhc', compact('data'));
+    }
+    public function formhc2($uuid)
+    {
+        $data = CustomerHc::where('uuid', $uuid)->first();
+        if (!$data) {
+            return view('erorr.404');
+        }
+        return view('formhc2', compact('data'));
     }
     public function postformhc(Request $request)
     {
@@ -171,5 +183,11 @@ class FormKonsumenController extends Controller
             $customer->save();
             return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
         }
+    }
+
+    //TERISI
+    public function formisi()
+    {
+        return view('formterisi');
     }
 }

@@ -1,5 +1,5 @@
 @extends('template')
-@section('title', 'Awareness Survey')
+@section('title', 'Awareness Survey Contact Center')
 @section('content')
   <div id="app">
     <section class="section">
@@ -43,8 +43,6 @@
                   <div class="form-group">
                     <label for="jawaban_1a">Jawaban Lainnya</label>
                     <input id="jawaban_1a" type="text" class="form-control" name="jawaban_1a">
-                    <div class="invalid-feedback">
-                    </div>
                   </div>
                   </div>
 
@@ -231,7 +229,7 @@
       // Tangkap submit form
       $('#myForm').submit(function(e) {
         e.preventDefault(); // Mencegah formulir dikirim dengan cara biasa
-        
+
         // Lakukan pengiriman formulir dengan Ajax
         $.ajax({
           type: 'POST',
@@ -240,11 +238,15 @@
           success: function(response) {
             // Tampilkan SweetAlert2 setelah formulir dikirim
             Swal.fire({
-              title: 'Jawaban Terkirim',
-              text: 'Terima Kasih telah mengisi survey untuk terus meningkatkan pelayanan kami',
+              title: 'Form Terkirim',
+              text: 'Terima Kasih telah mengisi survey untuk terus meningkatkan pelayanan kami.',
               icon: 'success',
               showConfirmButton: false,
             });
+                      // Arahkan ke view selanjutnya setelah 2 detik
+          setTimeout(function() {
+            window.location.href = '/form2'; // Ganti dengan URL yang benar
+          }, 3000);
             var table = $('#myTable').DataTable(); // Ganti 'yourDataTableId' dengan ID sesuai dengan tabel datatables Anda
             var row = table.row('#row_' + {{ $data->id }});
   
