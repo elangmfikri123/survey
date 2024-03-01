@@ -9,6 +9,7 @@ use App\Models\Customer;
 use App\Models\CustomerHc;
 use App\Models\CustomercHc;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FormKonsumenController extends Controller
 {
@@ -28,6 +29,10 @@ class FormKonsumenController extends Controller
     public function postform(Request $request)
     {
         $customer = Customer::findOrFail($request->customer_id);
+        if (Session::has('form_submitted')) {
+            // Jika formulir pertama sudah dikirim, redirect ke formulir kedua
+            return redirect('/form2');
+        }
         $existingForm = Form::where('customer_id', $customer->id)->first(); // Cek apakah formulir untuk customer tersebut sudah ada atau tidak
         if ($existingForm) {                                                // Formulir sudah ada, tidak perlu membuat baru, cukup perbarui jawaban
             $existingForm->update([
@@ -45,7 +50,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+            return redirect('/form2');;
         } else {
             Form::create([                                                      // Formulir belum ada, buat formulir baru
                 'customer_id' => $customer->id,
@@ -63,7 +68,8 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+            Session::put('form_submitted', true);
+            return redirect('/form2');;
         }
     }
     //FORMULIR AWARENESS HONDA CARE
