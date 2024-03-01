@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
             <div class="card mb-3" style="margin-top: -30px;">
-              <img src="{{ asset('assets/img/formcsat.png') }}" class="card-img-top img-fluid" alt="gambar">
+              <img src="{{ asset('assets/img/sacc.png') }}" class="card-img-top img-fluid" alt="gambar">
           </div>
             <div class="card card-danger">
               <div class="card-header"><h4>Survey Awareness Contact Center</h4></div>
