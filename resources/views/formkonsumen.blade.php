@@ -155,22 +155,22 @@ $(document).ready(function() {
 
     if (val === 'Contact Center Astra Honda Motor') {
       $('#pertanyaan_4, #pertanyaan_5, #pertanyaan_7').show();
-      $('#pertanyaan_2, #pertanyaan_3').hide();
+      $('#pertanyaan_2, #pertanyaan_3, #pertanyaan_5a').hide();
       $('#jawaban_2, #jawaban_3, #jawaban_5').val(null).prop('selectedIndex', 0).selectric('refresh');
       $('#jawaban_4').val(null).selectric('refresh');
-      $('#jawaban_1a').val(null);
+      $('#jawaban_1a, #jawaban_6').val(null);
       // Hilangkan atribut required dari pertanyaan 2 dan 3
       $('#jawaban_2, #jawaban_3').removeAttr('required');
       $('#error_jawaban_1,#error_jawaban_1a, #error_jawaban_4, #error_jawaban_5, #error_jawaban_7 ').hide();
     } else {
       $('#pertanyaan_2, #pertanyaan_3, #pertanyaan_7').show();
-      $('#pertanyaan_4, #pertanyaan_5,#pertanyaan_5a' ).hide();
+      $('#pertanyaan_4, #pertanyaan_5, #pertanyaan_5a' ).hide();
       // Tambahkan atribut required untuk pertanyaan 2 dan 3
       $('#jawaban_2, #jawaban_3').attr('required', 'required');
       $('#error_jawaban_1,#error_jawaban_1a,#error_jawaban_7').hide();
       $('#jawaban_2, #jawaban_3, #jawaban_5').val(null).prop('selectedIndex', 0).selectric('refresh');
       $('#jawaban_4').val(null).selectric('refresh');
-      $('#jawaban_1a').val(null);
+      $('#jawaban_1a, #jawaban_6').val(null);
     }
   });
 
@@ -201,13 +201,15 @@ $(document).ready(function() {
       $('#pertanyaan_4, #pertanyaan_5, #pertanyaan_7').show();
       // Hilangkan atribut required dari pertanyaan 2 dan 3
       $('#jawaban_3').removeAttr('required');
-      $('#error_jawaban_3').hide();
+      $('#error_jawaban_3, #error_jawaban_4, #error_jawaban_5').hide();
       $('#jawaban_4, #jawaban_5').val(null).selectric('refresh');
+      $('#jawaban_1a, #jawaban_6').val(null);
     } else {
-      $('#pertanyaan_4, #pertanyaan_5').hide();
-      $('#jawaban_3,#jawaban_4,#jawaban_5 ').removeAttr('required');
+      $('#pertanyaan_4, #pertanyaan_5, #pertanyaan_5a').hide();
+      $('#jawaban_3,#jawaban_4,#jawaban_5, #pertanyaan_5a').removeAttr('required');
       $('#error_jawaban_3').hide();
       $('#jawaban_4, #jawaban_5').val(null).selectric('refresh');
+      $('#jawaban_1a, #jawaban_6').val(null);
       Swal.fire({
             text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kami di 1-500-989',
             iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
@@ -237,9 +239,11 @@ $(document).ready(function() {
     if (val === 'Lainnya, sebutkan') {
       $('#pertanyaan_5a').show();
       $('#error_jawaban_5').hide(); // Sembunyikan pesan kesalahan
+      $('#jawaban_1a, #jawaban_6').val(null);
     } else {
       $('#pertanyaan_5a').hide();
       $('#error_jawaban_5').hide();
+      $('#jawaban_1a, #jawaban_6').val(null);
       // Munculkan pesan kesalahan jika tidak ada opsi yang dipilih
       if (!val) {
         $('#error_jawaban_5').show();
