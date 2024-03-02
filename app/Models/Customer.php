@@ -16,4 +16,12 @@ class Customer extends Model
     {
         return $this->hasOne(Form::class);
     }
+    // public function isFormFilled()
+    // {
+    //     return $this->form()->exists() && $this->form->status === 'Terisi';
+    // }
+    public function hasFilledForm()
+    {
+        return $this->form()->exists();
+    }
 }

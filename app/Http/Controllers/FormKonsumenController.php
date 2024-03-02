@@ -20,6 +20,12 @@ class FormKonsumenController extends Controller
         if (!$data) {
             return view('erorr.404');
         }
+        if ($data->hasFilledForm()) {
+            return view('formkonsumen2', compact('data'));
+        }
+        // if ($data->isFormFilled()) {
+        //     return view('formkonsumen2', compact('customer'));
+        // }
         return view('formkonsumen', compact('data'));
     }
     public function formkonsumen2()
@@ -29,10 +35,6 @@ class FormKonsumenController extends Controller
     public function postform(Request $request)
     {
         $customer = Customer::findOrFail($request->customer_id);
-        if (Session::has('form_submitted')) {
-            // Jika formulir pertama sudah dikirim, redirect ke formulir kedua
-            return redirect('/form2');
-        }
         $existingForm = Form::where('customer_id', $customer->id)->first(); // Cek apakah formulir untuk customer tersebut sudah ada atau tidak
         if ($existingForm) {                                                // Formulir sudah ada, tidak perlu membuat baru, cukup perbarui jawaban
             $existingForm->update([
@@ -68,7 +70,6 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            Session::put('form_submitted', true);
             return redirect('/form2');;
         }
     }

@@ -156,6 +156,9 @@ $(document).ready(function() {
     if (val === 'Contact Center Astra Honda Motor') {
       $('#pertanyaan_4, #pertanyaan_5, #pertanyaan_7').show();
       $('#pertanyaan_2, #pertanyaan_3').hide();
+      $('#jawaban_2, #jawaban_3, #jawaban_5').val(null).prop('selectedIndex', 0).selectric('refresh');
+      $('#jawaban_4').val(null).selectric('refresh');
+      $('#jawaban_1a').val(null);
       // Hilangkan atribut required dari pertanyaan 2 dan 3
       $('#jawaban_2, #jawaban_3').removeAttr('required');
       $('#error_jawaban_1,#error_jawaban_1a, #error_jawaban_4, #error_jawaban_5, #error_jawaban_7 ').hide();
@@ -165,6 +168,9 @@ $(document).ready(function() {
       // Tambahkan atribut required untuk pertanyaan 2 dan 3
       $('#jawaban_2, #jawaban_3').attr('required', 'required');
       $('#error_jawaban_1,#error_jawaban_1a,#error_jawaban_7').hide();
+      $('#jawaban_2, #jawaban_3, #jawaban_5').val(null).prop('selectedIndex', 0).selectric('refresh');
+      $('#jawaban_4').val(null).selectric('refresh');
+      $('#jawaban_1a').val(null);
     }
   });
 
@@ -196,15 +202,19 @@ $(document).ready(function() {
       // Hilangkan atribut required dari pertanyaan 2 dan 3
       $('#jawaban_3').removeAttr('required');
       $('#error_jawaban_3').hide();
+      $('#jawaban_4, #jawaban_5').val(null).selectric('refresh');
     } else {
       $('#pertanyaan_4, #pertanyaan_5').hide();
       $('#jawaban_3,#jawaban_4,#jawaban_5 ').removeAttr('required');
       $('#error_jawaban_3').hide();
-      $(this).selectric('close');
+      $('#jawaban_4, #jawaban_5').val(null).selectric('refresh');
       Swal.fire({
-          text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kami di 1-500-989',
-          iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
-          showCancelButton: false,
+            text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kami di 1-500-989',
+            iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
+            showCancelButton: false,
+        }).then((result) => {
+            // Menutup dropdown setelah menampilkan Sweet Alert
+            $(this).selectric('close');
         });
     }
   });
