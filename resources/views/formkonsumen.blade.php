@@ -23,7 +23,7 @@
                     <input type="hidden" name="customer_id" value="{{ $data->id }}"> <!-- Tambah untuk menyertakan customer_id -->
 
                     <div class="form-group">
-                      <label for="jawaban_1">1. Jika ada keluhan mengenai produk/layanan motor honda, kemana dan bagaimana Anda menyampaikan keluhan tersebut ?</label>
+                      <label for="jawaban_1">1. Jika ada keluhan mengenai produk/layanan motor honda, kemana dan bagaimana Anda menyampaikan keluhan tersebut ?<span class="text-danger">*)</span></label>
                       <select name="jawaban_1" id="jawaban_1" class="form-control selectric" required>
                         <option disabled selected>-- Pilih --</option>
                         <option value="Contact Center Astra Honda Motor">Contact Center Astra Honda Motor</option>
@@ -50,7 +50,7 @@
 
                     <div id="pertanyaan_2" style="display: none;">
                       <div class="form-group">
-                        <label for="jawaban_2">2. Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ?</label>
+                        <label for="jawaban_2">2. Bapak/ibu jika ada keluhan mengenai motor honda ada gak keinginan menyampaikan ke AHM sebagai produsen ?<span class="text-danger">*)</span></label>
                         <select name="jawaban_2" id="jawaban_2" class="form-control selectric" required>
                           <option disabled selected>-- Pilih --</option>
                           <option value="Ya">Ya</option>
@@ -62,7 +62,7 @@
 
                     <div id="pertanyaan_3" style="display: none;">
                       <div class="form-group">
-                        <label for="jawaban_3">3. Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?</label>
+                        <label for="jawaban_3">3. Bapak/ibu apa mengetahui Astra Honda Motor memiliki layanan contact center untuk keluhan konsumen ?<span class="text-danger">*)</span></label>
                         <select name="jawaban_3" id="jawaban_3" class="form-control selectric" required>
                           <option disabled selected>-- Pilih --</option>
                           <option value="Ya">Ya</option>
@@ -74,7 +74,7 @@
 
                     <div id="pertanyaan_4" style="display: none;">
                       <div class="form-group">
-                        <label for="jawaban_4">4. Layanan Contact Center Astra Honda Motor yang Anda ketahui ? (Bisa pilih lebih dari 1)</label>
+                        <label for="jawaban_4">4. Layanan Contact Center Astra Honda Motor yang Anda ketahui ? (Bisa pilih lebih dari 1)<span class="text-danger">*)</span></label>
                         <select name="jawaban_4[]" id="jawaban_4" class="form-control selectric" multiple required>
                           <option disabled>-- Pilih --</option>
                           <option value="Call 1500-989">Call 1500-989</option>
@@ -92,7 +92,7 @@
 
                     <div id="pertanyaan_5" style="display: none;">
                       <div class="form-group">
-                        <label for="jawaban_5">5. Dari mana anda mengetahui layanan contact center ?</label>
+                        <label for="jawaban_5">5. Dari mana anda mengetahui layanan contact center ?<span class="text-danger">*)</span></label>
                         <select name="jawaban_5" id="jawaban_5" class="form-control selectric" required>
                           <option disabled selected>-- Pilih --</option>
                           <option value="Petugas dealer">Petugas dealer</option>
@@ -114,7 +114,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="jawaban_7">7. Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?</label>
+                    <label for="jawaban_7">7. Jika ada keluhan mengenai produk/layanan motor honda apakah berkenan menghubungi contact center ?<span class="text-danger">*)</span></label>
                     <select name="jawaban_7" id="jawaban_7" class="form-control selectric" required>
                       <option disabled selected>-- Pilih --</option>
                       <option value="Ya">Ya</option>
