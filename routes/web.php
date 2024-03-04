@@ -68,7 +68,9 @@ Route::get('/form2', [FormKonsumenController::class, 'formkonsumen2']);
 //ROUTE FORM SURVEY AWARENESS HONDA CARE
 Route::get('/fhc/{uuid}', [FormKonsumenController::class, 'formhc']);
 Route::post('/formsubmithc/data', [FormKonsumenController::class, 'postformhc']);
-Route::get('/fhc2/{uuid}', [FormKonsumenController::class, 'formhc2']);
+Route::get('/fhc2/{uuid}', [FormKonsumenController::class, 'formhc2'])->name('fhc2');
+Route::post('/formsubmithc2/data', [FormKonsumenController::class, 'postformhc2']);
+Route::get('/fhc3/{uuid}', [FormKonsumenController::class, 'formhc3'])->name('fhc3');
 
 //ROUTE FORM SURVEY SATISFACTION HONDA CARE
 Route::get('/fchc/{uuid}', [FormKonsumenController::class, 'formcsathc']);

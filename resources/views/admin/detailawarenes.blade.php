@@ -102,12 +102,12 @@
                         <tr>
                           <td>5.A</td>
                           <td>Jawaban Lainnya</td>
-                          <td>{{ $form->jawaban_5a }}</td>
+                          <td>{{ $form->jawaban_6 }}</td>
                         </tr>
                         <tr>
                           <td>6</td>
                           <td>Promosi mengenai contact center</td>
-                          <td>{{ $form->jawaban_6 }}</td>
+                          <td>{{ $form->kosong }}</td>
                         </tr>
                         <tr>
                           <td>7</td>

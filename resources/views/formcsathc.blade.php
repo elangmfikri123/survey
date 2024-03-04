@@ -30,6 +30,7 @@
                       <option value="Tidak">Tidak</option>
                       <option value="Tidak Tahu">Tidak Tahu</option>
                     </select>
+                    <div id="error_jawaban_1" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
 
                   <div id="pertanyaan_2" style="display: none;">
@@ -39,12 +40,13 @@
                       <option disabled selected>-- Pilih --</option>
                       <option value="BUKU SERVICE">BUKU SERVICE</option>
                       <option value="BROSUR / PRICELIST / KARTU">BROSUR / PRICELIST / KARTU</option>
-                      <option value="ANNER / SPANDUK">ANNER / SPANDUK</option>
+                      <option value="BANNER / SPANDUK">BANNER / SPANDUK</option>
                       <option value="SOSIAL MEDIA (FB, Twitter, Website Dealer/MD, Instagram, Blog)">SOSIAL MEDIA (FB, Twitter, Website Dealer/MD, Instagram, Blog)</option>
                       <option value="IKLAN SURAT KABAR (Koran, Majalah)">IKLAN SURAT KABAR (Koran, Majalah)</option>
                       <option value="REKOMENDASI ORANG (Teman, Keluarga)">REKOMENDASI ORANG (Teman, Keluarga)</option>
                       <option value="PETUGAS DEALER (Sales Counter, Salesman, Mekanik, SA, dll)">PETUGAS DEALER (Sales Counter, Salesman, Mekanik, SA, dll)</option>
                     </select>
+                    <div id="error_jawaban_2" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                 </div>
 
@@ -57,18 +59,20 @@
                       <option value="2">2</option>
                       <option value="3 atau lebih">3 atau lebih</option>
                     </select>
+                    <div id="error_jawaban_3" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
                   <div id="pertanyaan_4" style="display: none;">
                   <div class="form-group">
                     <label for="jawaban_4">4. Berapa lama armada/mekanik Honda CARE tiba di lokasi Bapak/Ibu ?</label>
-                    <select name="jawaban_4" id="jawaban_4" class="form-control selectric" multiple>
+                    <select name="jawaban_4" id="jawaban_4" class="form-control selectric">
                       <option disabled selected>-- Pilih --</option>
                       <option value="Kurang 30 menit"> Kurang 30 menit </option>
                       <option value="30-60 menit">30-60 menit</option>
                       <option value=">60 menit">Lebih 60 menit</option>
                     </select>
+                    <div id="error_jawaban_4" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
@@ -80,6 +84,7 @@
                       <option value="Puas">Puas</option>
                       <option value="Tidak Puas">Tidak Puas</option>
                     </select>
+                    <div id="error_jawaban_5" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
@@ -89,6 +94,7 @@
                       <input id="jawaban_5a" type="text" class="form-control" name="jawaban_5a">
                       <div class="invalid-feedback">
                       </div>
+                      <div id="error_jawaban_5a" class="text-danger" style="display:none;">Harap Diisi Keterangan.</div>
                     </div>
                   </div>
 
@@ -100,6 +106,7 @@
                       <option value="Ya">Ya</option>
                       <option value="Tidak, Harus Dibawa Kebengkel">Tidak, Harus Dibawa Kebengkel</option>
                     </select>
+                    <div id="error_jawaban_6" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
@@ -111,6 +118,7 @@
                       <option value="Ya">Ya</option>
                       <option value="Tidak">Tidak</option>
                     </select>
+                    <div id="error_jawaban_7" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
@@ -122,6 +130,7 @@
                       <option value="Ya">Ya</option>
                       <option value="Tidak">Tidak</option>
                     </select>
+                    <div id="error_jawaban_8" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
@@ -133,6 +142,7 @@
                       <option value="Puas">Puas</option>
                       <option value="Tidak Puas">Tidak Puas</option>
                     </select>
+                    <div id="error_jawaban_9" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
 
@@ -146,17 +156,19 @@
                       <option value="Waktu saat menunggu mekanik tiba di lokasi">Permasalahan motor tidak selesai di tempat</option>
                       <option value="Lainnya, sebutkan...">Lainnya, sebutkan...</option>
                     </select>
+                    <div id="error_jawaban_10" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                   </div>
                   </div>
+
                   <div id="pertanyaan_10a" style="display: none; margin-top: -25px;">
                     <div class="form-group">
                       <input id="jawaban_11" type="text" class="form-control" name="jawaban_11">
-                      <div class="invalid-feedback">
-                      </div>
+                      <div id="error_jawaban_5a" class="text-danger" style="display:none;">Harap Diisi Keterangan.</div>
                     </div>
                   </div>
+
                   <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-block">
+                    <button type="submit" class="btn btn-success btn-lg btn-block" id="submitBtn">
                       SUBMIT
                     </button>
                   </div>
@@ -174,125 +186,219 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script>
-  $(document).ready(function() {
-    // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
-    function handleJawaban1Change() {
-      var value = $('#jawaban_1').val();
-      var pertanyaan1Div = $('#pertanyaan_1');
-      var pertanyaan2Div = $('#pertanyaan_2');
-      var pertanyaan3Div = $('#pertanyaan_3');
-      var pertanyaan4Div = $('#pertanyaan_4');
-      var pertanyaan5Div = $('#pertanyaan_5');
-      var pertanyaan6Div = $('#pertanyaan_6');
-      var pertanyaan7Div = $('#pertanyaan_7');
-      var pertanyaan8Div = $('#pertanyaan_8');
-      var pertanyaan9Div = $('#pertanyaan_9');
+$(document).ready(function() {
+  $('#jawaban_1').change(function() {
+    var val = $(this).val();
 
-
-            // Perlihatkan pertanyaan2_3Div jika jawaban pertanyaan 1 bukan "Contact Center Astra Honda Motor"
-      if (value === "Ya") {
-        pertanyaan2Div.show();
-        pertanyaan3Div.show();
-        pertanyaan4Div.show();
-        pertanyaan5Div.show();
-        pertanyaan6Div.show();
-        pertanyaan7Div.show();
-        pertanyaan8Div.show();
-        pertanyaan9Div.show();
-      } else {
-        pertanyaan2Div.hide();
-        pertanyaan3Div.hide();
-        pertanyaan4Div.hide();
-        pertanyaan5Div.hide();
-        pertanyaan6Div.hide();
-        pertanyaan7Div.hide();
-        pertanyaan8Div.hide();
-        pertanyaan9Div.hide();
-      }
+    if (val === 'Ya') {
+      $('#pertanyaan_2, #pertanyaan_3, #pertanyaan_4, #pertanyaan_5, #pertanyaan_6, #pertanyaan_7, #pertanyaan_8, #pertanyaan_9').show();
+      $('#jawaban_2, #jawaban_3, #jawaban_4, #jawaban_5, #jawaban_6, #jawaban_7, #jawaban_8, #jawaban_9, #jawaban_10').val(null).prop('selectedIndex', 0).selectric('refresh');
+      $('#jawaban_5a, #jawaban_11').val(null);
+      // Hilangkan atribut required dari pertanyaan 2 dan 3
+      $('#jawaban_2, #jawaban_3').removeAttr('required');
+      $('#error_jawaban_1, #error_jawaban_2, #error_jawaban_3, #error_jawaban_4, #error_jawaban_5, #error_jawaban_6, #error_jawaban_7, #error_jawaban_8, #error_jawaban_9').hide();
+    } else {
+      $('#pertanyaan_2, #pertanyaan_3, #pertanyaan_4, #pertanyaan_5, #pertanyaan_6, #pertanyaan_7, #pertanyaan_8, #pertanyaan_9').hide();
+      $('#jawaban_2, #jawaban_3, #jawaban_4, #jawaban_5, #jawaban_6, #jawaban_7, #jawaban_8, #jawaban_9, #jawaban_10').val(null).prop('selectedIndex', 0).selectric('refresh');
+      // Tambahkan atribut required untuk pertanyaan 2 dan 3
+      $('#jawaban_2, #jawaban_3').attr('required', 'required');
+      $('#error_jawaban_1,#error_jawaban_1a,#error_jawaban_7').hide();
+      $('#jawaban_5a, #jawaban_11').val(null);
     }
-  
-    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
-    $('#jawaban_1').change(handleJawaban1Change);
+  });
 
-    // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
-      function handleJawaban5Change() {
-      var value = $('#jawaban_5').val();
-      var pertanyaan5aDiv = $('#pertanyaan_5a');
-  
-      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
-      if (value === "Tidak Puas") {
-        pertanyaan5aDiv.show();
-      } else {
-        pertanyaan5aDiv.hide();
-      }
-    }
-  
-    // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
-    $('#jawaban_5').change(handleJawaban5Change);
-
+  $('#jawaban_2').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
     
-    // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
-      function handleJawaban9Change() {
-      var value = $('#jawaban_9').val();
-      var pertanyaan10Div = $('#pertanyaan_10');
-  
-      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
-      if (value === "Tidak Puas") {
-        pertanyaan10Div.show();
-      } else {
-        pertanyaan10Div.hide();
-      }
-    }
-        // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
-        $('#jawaban_9').change(handleJawaban9Change);
+    $('#error_jawaban_2').toggle(isError);
+    $('#jawaban_2').prop('required', isError);
+  });
 
-            // Fungsi untuk menangani perubahan pada jawaban pertanyaan 1
-      function handleJawaban10Change() {
-      var value = $('#jawaban_10').val();
-      var pertanyaan10aDiv = $('#pertanyaan_10a');
-  
-      // Perlihatkan pertanyaan_1Div jika jawaban pertanyaan 1 adalah "Other"
-      if (value === "Lainnya, sebutkan...") {
-        pertanyaan10aDiv.show();
-      } else {
-        pertanyaan10aDiv.hide();
+  $('#jawaban_3').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
+    
+    $('#error_jawaban_3').toggle(isError);
+    $('#jawaban_3').prop('required', isError);
+  });
+
+  $('#jawaban_4').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
+    
+    $('#error_jawaban_4').toggle(isError);
+    $('#jawaban_4').prop('required', isError);
+  });
+
+  $('#jawaban_5').change(function() {
+    var val = $(this).val();
+    if (val === 'Tidak Puas') {
+      $('#pertanyaan_5a').show();
+      $('#error_jawaban_5').hide(); // Sembunyikan pesan kesalahan
+      $('#jawaban_5a').val(null);
+    } else {
+      $('#pertanyaan_5a').hide();
+      $('#error_jawaban_5').hide();
+      $('#jawaban_5a').val(null);
+      // Munculkan pesan kesalahan jika tidak ada opsi yang dipilih
+      if (!val) {
+        $('#error_jawaban_5').show();
       }
     }
-        // Panggil fungsi pada peristiwa perubahan pada jawaban pertanyaan 1
-        $('#jawaban_10').change(handleJawaban10Change);
-  
-      // Tangkap submit form
-      $('#myForm').submit(function(e) {
-        e.preventDefault(); // Mencegah formulir dikirim dengan cara biasa
-        // Lakukan pengiriman formulir dengan Ajax
-        $.ajax({
-          type: 'POST',
-          url: '/formsubmitchc/data', // Ganti dengan URL yang benar
-          data: $(this).serialize(),
-          success: function(response) {
-            // Tampilkan SweetAlert2 setelah formulir dikirim
-            Swal.fire({
-              title: 'Jawaban Terkirim',
-              text: 'Terima Kasih telah mengisi survey untuk terus meningkatkan pelayanan kami',
-              icon: 'success',
-              showConfirmButton: false,
-            });
-            var table = $('#myTable').DataTable(); // Ganti 'yourDataTableId' dengan ID sesuai dengan tabel datatables Anda
-            var row = table.row('#row_' + {{ $data->id }});
-  
-            // Perbarui status di kolom 'status'
-            if (row) {
-              var statusColumn = row.cell('.status');
-              statusColumn.data('<span class="badge badge-success">Terisi</span>');
-              row.draw();
-            }
-          },
-          error: function(error) {
-            console.log(error);
-            // Handle error jika ada
-          }
-        });
-      });
+  });
+
+  $('#jawaban_5a').on('input', function() {
+    var inputValue = $(this).val();
+    if (inputValue) {
+      $('#error_jawaban_5a').hide(); // Sembunyikan pesan kesalahan jika ada input
+    } else {
+      $('#error_jawaban_5a').show(); // Tampilkan pesan kesalahan jika input kosong
+    }
+  });
+
+  $('#jawaban_6').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
+    
+    $('#error_jawaban_6').toggle(isError);
+    $('#jawaban_6').prop('required', isError);
+  });
+
+  $('#jawaban_7').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
+    
+    $('#error_jawaban_7').toggle(isError);
+    $('#jawaban_7').prop('required', isError);
+  });
+
+  $('#jawaban_8').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
+    
+    $('#error_jawaban_8').toggle(isError);
+    $('#jawaban_8').prop('required', isError);
+});
+
+$('#jawaban_9').change(function() {
+    var val = $(this).val();
+    var isError = val === null || val === '-- Pilih --';
+    
+    $('#error_jawaban_9').toggle(isError);
+    $('#jawaban_9').prop('required', isError);
+});
+
+    $('#jawaban_10').change(function() {
+      var val = $(this).val();
+      var isError = val === null || val === '-- Pilih --';
+      
+      $('#error_jawaban_10').toggle(isError);
+      $('#jawaban_10').prop('required', isError);
     });
+
+    $('#jawaban_11').change(function() {
+      var val = $(this).val();
+      var isError = val === null || val === '-- Pilih --';
+      
+      $('#error_jawaban_11').toggle(isError);
+      $('#jawaban_11').prop('required', isError);
+    });
+
+  $('#submitBtn').click(function() {
+    var isValid = true;
+    // Validasi masing-masing elemen form yang tampil berdasarkan kondisi
+    if ($('#jawaban_1').is(':visible')) {
+      if (!$('#jawaban_1').val()) {
+        isValid = false;
+        $('#error_jawaban_1').show();
+      }
+    }
+    if ($('#pertanyaan_2').is(':visible')) {
+      if (!$('#jawaban_2').val()) {
+        isValid = false;
+        $('#error_jawaban_2').show();
+      }
+    }
+    if ($('#pertanyaan_3').is(':visible')) {
+      if (!$('#jawaban_3').val()) {
+        isValid = false;
+        $('#error_jawaban_3').show();
+      }
+    }
+    if ($('#pertanyaan_4').is(':visible')) {
+      if (!$('#jawaban_4').val()) {
+        isValid = false;
+        $('#error_jawaban_4').show();
+      }
+    }
+    if ($('#pertanyaan_5').is(':visible')) {
+      if (!$('#jawaban_5').val()) {
+        isValid = false;
+        $('#error_jawaban_5').show();
+      }
+    }
+    if ($('#pertanyaan_5a').is(':visible')) {
+      if (!$('#jawaban_5a').val()) {
+        isValid = false;
+        $('#error_jawaban_5a').show();
+      }
+    }
+    if ($('#pertanyaan_6').is(':visible')) {
+      if (!$('#jawaban_6').val()) {
+        isValid = false;
+        $('#error_jawaban_6').show();
+      }
+    }
+    if ($('#pertanyaan_7').is(':visible')) {
+      if (!$('#jawaban_7').val()) {
+        isValid = false;
+        $('#error_jawaban_7').show();
+      }
+    }
+    if ($('#pertanyaan_8').is(':visible')) {
+      if (!$('#jawaban_8').val()) {
+        isValid = false;
+        $('#error_jawaban_8').show();
+      }
+    }
+    if ($('#pertanyaan_9').is(':visible')) {
+      if (!$('#jawaban_9').val()) {
+        isValid = false;
+        $('#error_jawaban_9').show();
+      }
+    }
+    if ($('#pertanyaan_10').is(':visible')) {
+      if (!$('#jawaban_10').val()) {
+        isValid = false;
+        $('#error_jawaban_10').show();
+      }
+    }
+    if ($('#pertanyaan_11').is(':visible')) {
+      if (!$('#jawaban_11').val()) {
+        isValid = false;
+        $('#error_jawaban_11').show();
+      }
+    }
+
+    if (!isValid) {
+          return false;
+        } else {
+      // Jika form valid, tampilkan SweetAlert
+      // Swal.fire({
+      //   title: 'Form Terkirim',
+      //   text: 'Terima Kasih telah mengisi survey untuk terus meningkatkan pelayanan kami.',
+      //   icon: 'success',
+      //   showConfirmButton: false,
+      // });
+
+      // // Set timeout untuk mengarahkan ke halaman selanjutnya setelah 3 detik
+      // setTimeout(function() {
+      //   // Menggunakan fungsi submit() untuk mengirimkan formulir
+      //   $('#myForm').submit();
+      // }, 10000);
+    }
+  });
+});
   </script>
 @endsection

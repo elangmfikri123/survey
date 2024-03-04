@@ -52,7 +52,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect('/form2');;
+            return redirect('/form2');
         } else {
             Form::create([                                                      // Formulir belum ada, buat formulir baru
                 'customer_id' => $customer->id,
@@ -70,7 +70,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect('/form2');;
+            return redirect('/form2');
         }
     }
     //FORMULIR AWARENESS HONDA CARE
@@ -89,6 +89,14 @@ class FormKonsumenController extends Controller
             return view('erorr.404');
         }
         return view('formhc2', compact('data'));
+    }
+    public function formhc3($uuid)
+    {
+        $data = CustomerHc::where('uuid', $uuid)->first();
+        if (!$data) {
+            return view('erorr.404');
+        }
+        return view('formhc3', compact('data'));
     }
     public function postformhc(Request $request)
     {
@@ -113,7 +121,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+            return redirect()->route('fhc2', ['uuid' => $customer->uuid]);
         } else {
             FormHc::create([                                                      // Formulir belum ada, buat formulir baru
                 'customer_hc_id' => $customer->id,
@@ -134,7 +142,30 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+            return redirect()->route('fhc2', ['uuid' => $customer->uuid]);
+        }
+    }
+    public function postformhc2(Request $request)
+    {
+        $customer = CustomerHc::findOrFail($request->customer_id);
+        $existingForm = FormHc::where('customer_hc_id', $customer->id)->first(); // Cek apakah formulir untuk customer tersebut sudah ada atau tidak
+        if ($existingForm) {                                                // Formulir sudah ada, tidak perlu membuat baru, cukup perbarui jawaban
+            $existingForm->update([
+                'jawaban_11' => request('jawaban_11'),
+                'jawaban_12' => request('jawaban_12'),
+            ]);
+            $customer->status = true; // Ubah status menjadi Terisi
+            $customer->save();
+            return redirect()->route('fhc3', ['uuid' => $customer->uuid]);
+        } else {
+            FormHc::create([                                                      // Formulir belum ada, buat formulir baru
+                'customer_hc_id' => $customer->id,
+                'jawaban_11' => request('jawaban_11'),
+                'jawaban_12' => request('jawaban_12'),
+            ]);
+            $customer->status = true; // Ubah status menjadi Terisi
+            $customer->save();
+            return redirect()->route('fhc3', ['uuid' => $customer->uuid]);
         }
     }
     //FORMULIR CSAT HONDA CARE
@@ -190,11 +221,5 @@ class FormKonsumenController extends Controller
             $customer->save();
             return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
         }
-    }
-
-    //TERISI
-    public function formisi()
-    {
-        return view('formterisi');
     }
 }
