@@ -163,7 +163,7 @@
                   <div id="pertanyaan_10a" style="display: none; margin-top: -25px;">
                     <div class="form-group">
                       <input id="jawaban_11" type="text" class="form-control" name="jawaban_11">
-                      <div id="error_jawaban_5a" class="text-danger" style="display:none;">Harap Diisi Keterangan.</div>
+                      <div id="error_jawaban_11" class="text-danger" style="display:none;">Harap Diisi Keterangan.</div>
                     </div>
                   </div>
 
@@ -198,7 +198,7 @@ $(document).ready(function() {
       $('#jawaban_2, #jawaban_3').removeAttr('required');
       $('#error_jawaban_1, #error_jawaban_2, #error_jawaban_3, #error_jawaban_4, #error_jawaban_5, #error_jawaban_6, #error_jawaban_7, #error_jawaban_8, #error_jawaban_9').hide();
     } else {
-      $('#pertanyaan_2, #pertanyaan_3, #pertanyaan_4, #pertanyaan_5, #pertanyaan_6, #pertanyaan_7, #pertanyaan_8, #pertanyaan_9').hide();
+      $('#pertanyaan_2, #pertanyaan_3, #pertanyaan_4, #pertanyaan_5, #pertanyaan_6, #pertanyaan_7, #pertanyaan_8, #pertanyaan_9, #pertanyaan_10, #pertanyaan_10a').hide();
       $('#jawaban_2, #jawaban_3, #jawaban_4, #jawaban_5, #jawaban_6, #jawaban_7, #jawaban_8, #jawaban_9, #jawaban_10').val(null).prop('selectedIndex', 0).selectric('refresh');
       // Tambahkan atribut required untuk pertanyaan 2 dan 3
       $('#jawaban_2, #jawaban_3').attr('required', 'required');
@@ -281,29 +281,56 @@ $(document).ready(function() {
     $('#jawaban_8').prop('required', isError);
 });
 
+// $('#jawaban_9').change(function() {
+//     var val = $(this).val();
+//     var isError = val === null || val === '-- Pilih --';
+    
+//     $('#error_jawaban_9').toggle(isError);
+//     $('#jawaban_9').prop('required', isError);
+// });
 $('#jawaban_9').change(function() {
     var val = $(this).val();
-    var isError = val === null || val === '-- Pilih --';
-    
-    $('#error_jawaban_9').toggle(isError);
-    $('#jawaban_9').prop('required', isError);
+
+    if (val === 'Puas') {
+        $('#pertanyaan_10').hide();
+        $('#pertanyaan_10a').hide();
+        $('#error_jawaban_9').hide(); // Sembunyikan pesan kesalahan
+        $('#jawaban_10').val(null).prop('selectedIndex', 0).selectric('refresh');
+        $('#jawaban_11').val(null);
+    } else if (val === 'Tidak Puas') {
+        $('#pertanyaan_10').show();
+        $('#pertanyaan_10a').hide();
+        $('#error_jawaban_9').hide();
+    } else {
+        $('#pertanyaan_10').hide();
+        $('#pertanyaan_10a').hide();
+        $('#error_jawaban_9').show();
+    }
 });
 
-    $('#jawaban_10').change(function() {
-      var val = $(this).val();
-      var isError = val === null || val === '-- Pilih --';
-      
-      $('#error_jawaban_10').toggle(isError);
-      $('#jawaban_10').prop('required', isError);
-    });
+$('#jawaban_10').change(function() {
+    var val = $(this).val();
 
-    $('#jawaban_11').change(function() {
-      var val = $(this).val();
-      var isError = val === null || val === '-- Pilih --';
-      
-      $('#error_jawaban_11').toggle(isError);
-      $('#jawaban_11').prop('required', isError);
-    });
+    if (val === 'Lainnya, sebutkan...') {
+        $('#pertanyaan_10a').show();
+        $('#error_jawaban_10').hide();
+        $('#error_jawaban_11').show();
+    } else {
+        $('#pertanyaan_10a').hide();
+        $('#jawaban_11').val(null);
+        $('#error_jawaban_10').hide();
+    }
+});
+
+
+    $('#jawaban_11').on('input', function() {
+    var inputValue = $(this).val();
+    if (inputValue) {
+      $('#error_jawaban_11').hide(); // Sembunyikan pesan kesalahan jika ada input
+    } else {
+      $('#error_jawaban_11').show(); // Tampilkan pesan kesalahan jika input kosong
+    }
+  });
 
   $('#submitBtn').click(function() {
     var isValid = true;

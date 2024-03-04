@@ -177,9 +177,43 @@ class FormKonsumenController extends Controller
         }
         return view('formcsathc', compact('data'));
     }
+    public function formcsathc2($uuid)
+    {
+        $data = CustomercHc::where('uuid', $uuid)->first();
+        if (!$data) {
+            return view('error.404');
+        }
+        return view('formcsathc2', compact('data'));
+    }
+    public function formcsathc3($uuid)
+    {
+        $data = CustomercHc::where('uuid', $uuid)->first();
+        if (!$data) {
+            return view('error.404');
+        }
+        return view('formcsathc3', compact('data'));
+    }
     public function postformcsat(Request $request)
     {
         $customer = CustomercHc::findOrFail($request->customer_id);
+        if ($request->jawaban_1 === 'Tidak') {
+            FormcHc::create([                                                      // Formulir belum ada, buat formulir baru
+                'customerc_hc_id' => $customer->id,
+                'jawaban_1' => request('jawaban_1'),
+            ]);
+            $customer->status = true;
+            $customer->save();
+            return redirect()->route('fchc2', ['uuid' => $customer->uuid]);
+        }
+        if ($request->jawaban_1 === 'Tidak Tahu') {
+            FormcHc::create([                                                      // Formulir belum ada, buat formulir baru
+                'customerc_hc_id' => $customer->id,
+                'jawaban_1' => request('jawaban_1'),
+            ]);
+            $customer->status = true;
+            $customer->save();
+            return redirect()->route('fchc3', ['uuid' => $customer->uuid]);
+        }    
         $existingForm = FormcHc::where('customerc_hc_id', $customer->id)->first(); // Cek apakah formulir untuk customer tersebut sudah ada atau tidak
         if ($existingForm) {                                                // Formulir sudah ada, tidak perlu membuat baru, cukup perbarui jawaban
             $existingForm->update([
@@ -199,7 +233,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+            return redirect()->route('fchc2');
         } else {
             FormcHc::create([                                                      // Formulir belum ada, buat formulir baru
                 'customerc_hc_id' => $customer->id,
@@ -219,7 +253,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+            return redirect()->route('fchc2');
         }
     }
 }

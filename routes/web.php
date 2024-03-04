@@ -75,3 +75,5 @@ Route::get('/fhc3/{uuid}', [FormKonsumenController::class, 'formhc3'])->name('fh
 //ROUTE FORM SURVEY SATISFACTION HONDA CARE
 Route::get('/fchc/{uuid}', [FormKonsumenController::class, 'formcsathc']);
 Route::post('/formsubmitchc/data', [FormKonsumenController::class, 'postformcsat']);
+Route::get('/fchc2/{uuid}', [FormKonsumenController::class, 'formcsathc2'])->name('fchc2');
+Route::get('/fchc3/{uuid}', [FormKonsumenController::class, 'formcsathc3'])->name('fchc3');
