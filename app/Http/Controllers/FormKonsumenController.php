@@ -233,7 +233,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->route('fchc2');
+            return redirect()->route('fchc2', ['uuid' => $customer->uuid]);
         } else {
             FormcHc::create([                                                      // Formulir belum ada, buat formulir baru
                 'customerc_hc_id' => $customer->id,
@@ -253,7 +253,7 @@ class FormKonsumenController extends Controller
             ]);
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
-            return redirect()->route('fchc2');
+            return redirect()->route('fchc2', ['uuid' => $customer->uuid]);
         }
     }
 }
