@@ -208,7 +208,7 @@ $(document).ready(function() {
       $('#jawaban_1a, #jawaban_6').val(null);
       Swal.fire({
             text: 'Jika anda memiliki pertanyaan dan keluhan bisa hubungi kami di 1-500-989',
-            iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 270px; height: 150px;">',
+            iconHtml: '<img src="{{ asset('assets/img/Cc.png') }}" style="width: 300px; height: 200px;">',
             showCancelButton: false,
         }).then((result) => {
             // Menutup dropdown setelah menampilkan Sweet Alert
