@@ -16,10 +16,6 @@
                 <div class="form-group">
                   <form action="{{ url('/formsubmit/data') }}" method="post" enctype="multipart/form-data" id="myForm">
                     @csrf
-                    <div class="form-group">
-                      <label for="nama">Nama Konsumen</label>
-                      <input type="text" class="form-control" value="{{ $data->name }}" type="hidden" name="nama" disabled>
-                    </div>
                     <input type="hidden" name="customer_id" value="{{ $data->id }}"> <!-- Tambah untuk menyertakan customer_id -->
 
                     <div class="form-group">
