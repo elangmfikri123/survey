@@ -9,6 +9,7 @@ use App\Imports\CustomerHCImport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\CustomerCSATHCImport;
+use App\Imports\CustomerImportCA;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ImportController extends Controller
@@ -35,6 +36,14 @@ class ImportController extends Controller
             'file' => 'required|mimes:xlsx,csv',
         ]);
         Excel::import(new CustomerCSATHCImport, $request->file('file'));
+        return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
+    }
+    public function importca(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+        Excel::import(new CustomerImportCA, $request->file('file'));
         return redirect()->back()->with('success', 'Formulir berhasil disubmit.');
     }
 }

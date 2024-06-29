@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Customer;
+use App\Models\CustomerCA;
 use App\Models\CustomerHc;
 use App\Models\CustomercHc;
 use Illuminate\Http\Request;
 use App\Exports\CustomersExport;
 use App\Exports\CustomerHCExport;
+use App\Exports\CustomersExportCA;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -456,4 +458,168 @@ class ExportController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+        //EXPORT CONTROLLER CSAT CUSTOMER ASSISTANCE
+        public function exportca(Request $request)
+        {
+            return view('admin.csat-exportca');
+        }
+
+        public function exportExcelca(Request $request)
+        {
+            $startDate = $request->input('start_date');
+            $endDate = $request->input('end_date');
+    
+            // Ubah format tanggal dari dd/mm/yyyy ke yyyy-mm-dd
+            $startDate = Carbon::createFromFormat('Y-m-d', $startDate)->startOfDay();
+            $endDate = Carbon::createFromFormat('Y-m-d', $endDate)->endOfDay();
+    
+            $customerca = CustomerCA::whereBetween('created_at', [
+                $startDate,
+                $endDate,
+            ])->get();
+    
+            $fileName = 'CSAT-CA-BroadcastTemplate.xlsx';
+            return Excel::download(new CustomersExportCA($customerca), $fileName);
+        }
+
+        public function exporthasilca(Request $request)
+        {
+            try {
+                $startDate = Carbon::createFromFormat('Y-m-d', $request->input('start_date_result'))->startOfDay();
+                $endDate = Carbon::createFromFormat('Y-m-d', $request->input('end_date_result'))->endOfDay();
+    
+                $data = CustomerCA::leftJoin('formca', 'customerca.id', '=', 'formca.customer_c_a_id')
+                    ->select('customerca.*',
+                    'formca.jawaban_1',
+                    'formca.jawaban_1a',
+                    'formca.jawaban_2',
+                    'formca.jawaban_3',
+                    'formca.jawaban_3a',
+                    'formca.jawaban_4',
+                    'formca.jawaban_4a',
+                    'formca.jawaban_5',
+                    'formca.jawaban_5a',
+                    'formca.jawaban_6',
+                    'formca.jawaban_6a',
+                    'formca.jawaban_7',
+                    'formca.jawaban_7a',
+                    'formca.jawaban_8',
+                    'formca.jawaban_8a',
+                    'formca.jawaban_9',
+                    'formca.jawaban_10',
+                    'formca.jawaban_10a',
+                    'formca.jawaban_11',
+                    'formca.setuju',
+                    'formca.created_at')
+                    ->whereBetween('customerca.created_at', [$startDate, $endDate])
+                    ->get();
+    
+                $spreadsheet = new Spreadsheet();
+                $sheet = $spreadsheet->getActiveSheet();
+    
+                // Header
+                $sheet->setCellValue('A1', 'No');
+                $sheet->setCellValue('B1', 'Tiket ICC');
+                $sheet->setCellValue('C1', 'Nama');
+                $sheet->setCellValue('D1', 'No Handphone');
+                $sheet->setCellValue('E1', 'Alamat');
+                $sheet->setCellValue('F1', 'Kab/Kota');
+                $sheet->setCellValue('G1', 'Area');
+                $sheet->setCellValue('H1', 'Motorcycle');
+                $sheet->setCellValue('I1', 'Main Dealer');
+                $sheet->setCellValue('J1', 'Waktu');
+                $sheet->setCellValue('K1', 'Status');
+                $sheet->setCellValue('L1', '1. Bagaimana Bapak/Ibu menilai kemudahan menyampaikan keluhan?');
+                $sheet->setCellValue('M1', 'Jelaskan alasannya');
+                $sheet->setCellValue('N1', '2. Berapa lama Bapak/Ibu dihubungi oleh pihak kami (Dealer/AHASS) setelah menyampaikan keluhan?');
+                $sheet->setCellValue('O1', '3. Seberapa puas Bapak/Ibu dengan respon pertama dari pihak Dealer/AHASS?');
+                $sheet->setCellValue('P1', 'Mohon jelaskan kepada kami, apa alasan Bapak/Ibu menjawab cukup puas/kurang puas/tidak puas sama sekali dengan respon pertama dari pihak Dealer/AHASS?');
+                $sheet->setCellValue('Q1', '4. Bagaimana Bapak menilai keramahan staf yang menangani keluhan Bapak/Ibu?');
+                $sheet->setCellValue('R1', 'Jelaskan alasannya');
+                $sheet->setCellValue('S1', '5. Seberapa jelas informasi yang diberikan tentang proses penanganan keluhan Bapak/Ibu?');
+                $sheet->setCellValue('T1', 'Jelaskan alasannya');
+                $sheet->setCellValue('U1', '6. Seberapa efektif solusi yang diberikan dalam menyelesaikan keluhan Bapak/Ibu?');
+                $sheet->setCellValue('V1', 'Jelaskan alasannya');
+                $sheet->setCellValue('W1', '7. Apakah keluhan Bapak/Ibu ditangani dalam waktu yang wajar?');
+                $sheet->setCellValue('X1', 'Berapa lama waktu yang Bapak/Ibu inginkan (angka dalam hari)?');
+                $sheet->setCellValue('Y1', '8. Seberapa puas Bapak/Ibu dengan solusi yang diberikan maupun proses penyelesaian keluhan dari pihak Dealer/AHASS?');
+                $sheet->setCellValue('Z1', 'Mohon jelaskan kepada kami, apa alasan Bapak/Ibu menjawab cukup puas/kurang puas/tidak puas sama sekali dengan solusi yang diberikan maupun proses penyelesaian dari pihak Dealer/AHASS?');
+                $sheet->setCellValue('AA1', '9. Apakah Bapak/Ibu akan merekomendasikan Sepeda Motor Honda kepada orang lain? <br>1 Sangat tidak merekomendasikan - 10 Sangat merekomendasikan');
+                $sheet->setCellValue('AB1', '10. Apakah Bapak/Ibu berencana membeli Sepeda Motor Honda lagi?');
+                $sheet->setCellValue('AC1', 'Jika ya, maka dalam jangka waktu berapa lama?');
+                $sheet->setCellValue('AD1', '11. Tipe Motor apa yang Bapak/Ibu rencanakan untuk dibeli kembali?');
+                $sheet->setCellValue('AE1', 'Setuju');
+                $sheet->setCellValue('AF1', 'Waktu Submit');
+    
+                // Mengatur Format Header
+                $headerStyle = [
+                    'font' => ['bold' => true],
+                    'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+                ];
+    
+                $sheet->getStyle('A1:AF1')->applyFromArray($headerStyle);
+    
+                // Data
+            $row = 2; // Mulai dari baris kedua setelah header
+            $no = 1; // Inisialisasi nomor urutan
+            foreach ($data as $item) {
+                $sheet->setCellValue('A' . $row, $no);
+                $sheet->setCellValue('B' . $row, $item->tiketicc); // Atur format sel sebagai teks
+                $sheet->setCellValue('C' . $row, $item->name);
+                $sheet->setCellValue('D' . $row, $item->phone);
+                $sheet->setCellValue('E' . $row, $item->alamat);
+                $sheet->setCellValue('F' . $row, $item->kota);
+                $sheet->setCellValue('G' . $row, $item->area);
+                $sheet->setCellValue('H' . $row, $item->motor);
+                $sheet->setCellValue('I' . $row, $item->main_dealer);
+                $sheet->setCellValue('J' . $row, $item->waktu);
+                $sheet->setCellValue('K' . $row, $item->status);
+                $sheet->setCellValue('L' . $row, $item->jawaban_1);
+                $sheet->setCellValue('M' . $row, $item->jawaban_1a);
+                $sheet->setCellValue('N' . $row, $item->jawaban_2);
+                $sheet->setCellValue('O' . $row, $item->jawaban_3);
+                $sheet->setCellValue('P' . $row, $item->jawaban_3a);
+                $sheet->setCellValue('Q' . $row, $item->jawaban_4);
+                $sheet->setCellValue('R' . $row, $item->jawaban_4a);
+                $sheet->setCellValue('S' . $row, $item->jawaban_5);
+                $sheet->setCellValue('T' . $row, $item->jawaban_5a);
+                $sheet->setCellValue('U' . $row, $item->jawaban_6);
+                $sheet->setCellValue('V' . $row, $item->jawaban_6a);
+                $sheet->setCellValue('W' . $row, $item->jawaban_7);
+                $sheet->setCellValue('X' . $row, $item->jawaban_7a);
+                $sheet->setCellValue('Y' . $row, $item->jawaban_8);
+                $sheet->setCellValue('Z' . $row, $item->jawaban_8a);
+                $sheet->setCellValue('AA' . $row, $item->jawaban_9);
+                $sheet->setCellValue('AB' . $row, $item->jawaban_10);
+                $sheet->setCellValue('AC' . $row, $item->jawaban_10a);
+                $sheet->setCellValue('AD' . $row, $item->jawaban_11);
+                $sheet->setCellValue('AE' . $row, $item->setuju);
+                $sheet->setCellValue('AF' . $row, $item->created_at);
+                $row++;
+                $no++;
+            }
+    
+            // Menambahkan Border
+            $styleArray = [
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => Border::BORDER_THIN,
+                        'color' => ['argb' => '000000'],
+                    ],
+                ],
+            ];
+            $sheet->getStyle('A1:AF' . ($row - 1))->applyFromArray($styleArray);
+    
+                $filename = 'Report-Hasil CSAT CA.xlsx';
+                $path = storage_path('app/' . $filename);
+    
+                $writer = new Xlsx($spreadsheet);
+                $writer->save($path);
+    
+                return response()->download($path, $filename)->deleteFileAfterSend(true);
+            } catch (\Exception $e) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
+        }
 }

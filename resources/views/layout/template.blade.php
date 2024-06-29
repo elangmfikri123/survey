@@ -96,6 +96,7 @@
                 <li><a class="nav-link" href="{{ url('/survey-awareness') }}">Survey Awareness CC</a></li>
                 <li><a class="nav-link" href="{{ url('/survey-awarenesshc') }}">Survey Awareness HC</a></li>
                 <li><a class="nav-link" href="{{ url('/survey-csathc') }}">Survey CSAT HC</a></li>
+                <li><a class="nav-link" href="{{ url('/survey-csatca') }}">Survey CSAT CA</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -104,25 +105,26 @@
                 <li><a class="nav-link" href="{{ url('/export-awareness') }}">Report Awareness CC</a></li>
                 <li><a class="nav-link" href="{{ url('/export-awarenesshc') }}">Report Awareness HC</a></li>                
                 <li><a class="nav-link" href="{{ url('/export-csathc') }}">Report CSAT HC</a></li>
+                <li><a class="nav-link" href="{{ url('/export-csatca') }}">Report CSAT CA</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Data User</span></a>
               <ul class="dropdown-menu">
-                <li><a href="auth-forgot-password.html">User</a></li>
+                <li><a class="nav-link" href="{{ url('/get-user') }}">User</a></li>
               </ul>
             </li>
-            <li class="dropdown">
+            {{-- <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Forms</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="forms-advanced-form.html">Advanced Form</a></li>
                 <li><a class="nav-link" href="forms-editor.html">Editor</a></li>
                 <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
               </ul>
-            </li>
+            </li> --}}
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
               <i class="fas fa-rocket"></i> Documentation
             </a>
           </div>        </aside>

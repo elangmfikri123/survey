@@ -6,8 +6,10 @@ use App\Models\Form;
 use App\Models\FormHc;
 use App\Models\FormcHc;
 use App\Models\Customer;
+use App\Models\CustomerCA;
 use App\Models\CustomerHc;
 use App\Models\CustomercHc;
+use App\Models\FormCA;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -23,9 +25,6 @@ class FormKonsumenController extends Controller
         if ($data->hasFilledForm()) {
             return view('formkonsumen2', compact('data'));
         }
-        // if ($data->isFormFilled()) {
-        //     return view('formkonsumen2', compact('customer'));
-        // }
         return view('formkonsumen', compact('data'));
     }
     public function formkonsumen2()
@@ -193,6 +192,7 @@ class FormKonsumenController extends Controller
         }
         return view('formcsathc3', compact('data'));
     }
+    
     public function postformcsat(Request $request)
     {
         $customer = CustomercHc::findOrFail($request->customer_id);
@@ -254,6 +254,85 @@ class FormKonsumenController extends Controller
             $customer->status = true; // Ubah status menjadi Terisi
             $customer->save();
             return redirect()->route('fchc2', ['uuid' => $customer->uuid]);
+        }
+    }
+
+     //FORMULIR CSAT CUST ASSISTANCE
+     public function formcsatca($uuid)
+     {
+         $data = CustomerCA::where('uuid', $uuid)->first();
+         if (!$data) {
+             return view('erorr.404');
+         }
+         return view('formcsatca', compact('data'));
+     }
+
+     public function formcsatca2($uuid)
+     {
+         $data = CustomerCA::where('uuid', $uuid)->first();
+         if (!$data) {
+             return view('error.404');
+         }
+         return view('formcsatca2', compact('data'));
+     }
+
+     public function postformca(Request $request)
+    {
+        $customer = CustomerCA::findOrFail($request->customer_id);
+        $existingForm = FormCA::where('customer_c_a_id', $customer->id)->first(); // Cek apakah formulir untuk customer tersebut sudah ada atau tidak
+        if ($existingForm) {                                                // Formulir sudah ada, tidak perlu membuat baru, cukup perbarui jawaban
+            $existingForm->update([
+                'jawaban_1' => request('jawaban_1'),
+                'jawaban_1a' => request('jawaban_1a'),
+                'jawaban_2' => request('jawaban_2'),
+                'jawaban_3' => request('jawaban_3'),
+                'jawaban_3a' => request('jawaban_3a'),
+                'jawaban_4' => request('jawaban_4'),
+                'jawaban_4a' => request('jawaban_4a'),
+                'jawaban_5' => request('jawaban_5'),
+                'jawaban_5a' => request('jawaban_5a'),
+                'jawaban_6' => request('jawaban_6'),
+                'jawaban_6a' => request('jawaban_6a'),
+                'jawaban_7' => request('jawaban_7'),
+                'jawaban_7a' => request('jawaban_7a'),
+                'jawaban_8' => request('jawaban_8'),
+                'jawaban_8a' => request('jawaban_8a'),
+                'jawaban_9' => request('jawaban_9'),
+                'jawaban_10' => request('jawaban_10'),
+                'jawaban_10a' => request('jawaban_10a'),
+                'jawaban_11' => request('jawaban_11'),
+                'setuju' => request('setuju'),
+            ]);
+            $customer->status = true; // Ubah status menjadi Terisi
+            $customer->save();
+            return redirect()->route('fca2', ['uuid' => $customer->uuid]);
+        } else {
+            FormCA::create([                                                      // Formulir belum ada, buat formulir baru
+                'customer_c_a_id' => $customer->id,
+                'jawaban_1' => request('jawaban_1'),
+                'jawaban_1a' => request('jawaban_1a'),
+                'jawaban_2' => request('jawaban_2'),
+                'jawaban_3' => request('jawaban_3'),
+                'jawaban_3a' => request('jawaban_3a'),
+                'jawaban_4' => request('jawaban_4'),
+                'jawaban_4a' => request('jawaban_4a'),
+                'jawaban_5' => request('jawaban_5'),
+                'jawaban_5a' => request('jawaban_5a'),
+                'jawaban_6' => request('jawaban_6'),
+                'jawaban_6a' => request('jawaban_6a'),
+                'jawaban_7' => request('jawaban_7'),
+                'jawaban_7a' => request('jawaban_7a'),
+                'jawaban_8' => request('jawaban_8'),
+                'jawaban_8a' => request('jawaban_8a'),
+                'jawaban_9' => request('jawaban_9'),
+                'jawaban_10' => request('jawaban_10'),
+                'jawaban_10a' => request('jawaban_10a'),
+                'jawaban_11' => request('jawaban_11'),
+                'setuju' => request('setuju'),
+            ]);
+            $customer->status = true; // Ubah status menjadi Terisi
+            $customer->save();
+            return redirect()->route('fca2', ['uuid' => $customer->uuid]);
         }
     }
 }

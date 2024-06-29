@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\FormKonsumenController;
+use App\Http\Controllers\SatisfactionCAController;
 use App\Http\Controllers\AwarenessHondaCareController;
 use App\Http\Controllers\SatisfactionHondaCareController;
 
@@ -57,6 +58,23 @@ Route::middleware('admin')->group(function () {
     Route::get('/export-urlcsathc', [ExportController::class, 'exportExcelchc']);
     Route::get('/export-csathasilhc', [ExportController::class, 'exporthasilchc']);
     Route::post('/import-csathc', [ImportController::class, 'importchc']);
+
+
+    //ROUTE ADMIN SURVEY CSAT CUSTOMER ASISTEN
+    Route::get('/survey-csatca', [SatisfactionCAController::class, 'indexcsatca']);
+    Route::get('/survey-csatca/data', [SatisfactionCAController::class, 'surveytableca']);
+    Route::get('/survey-csatca/data/{id}', [SatisfactionCAController::class, 'detaildataca']);
+
+    Route::get('/export-csatca', [ExportController::class, 'exportca']);
+    Route::get('/export-urlcsatca', [ExportController::class, 'exportExcelca']);
+    Route::get('/export-csathasilca', [ExportController::class, 'exporthasilca']);
+    Route::post('/import-csatca', [ImportController::class, 'importca']);
+
+
+    //ROUTE DATA SUER
+    Route::get('/get-user', [AuthController::class, 'getuser']);
+    Route::get('/get-user/data', [AuthController::class, 'getusertable']);
+
 });
 
 
@@ -77,3 +95,9 @@ Route::get('/fchc/{uuid}', [FormKonsumenController::class, 'formcsathc']);
 Route::post('/formsubmitchc/data', [FormKonsumenController::class, 'postformcsat']);
 Route::get('/fchc2/{uuid}', [FormKonsumenController::class, 'formcsathc2'])->name('fchc2');
 Route::get('/fchc3/{uuid}', [FormKonsumenController::class, 'formcsathc3'])->name('fchc3');
+
+//ROUTE FORM SURVEY SATISFACTION CUST ASISTEN
+Route::get('/fca/{uuid}', [FormKonsumenController::class, 'formcsatca']);
+Route::post('/formsubmitca/data', [FormKonsumenController::class, 'postformca']);
+Route::get('/fca2/{uuid}', [FormKonsumenController::class, 'formcsatca2'])->name('fca2');
+Route::get('/fca3/{uuid}', [FormKonsumenController::class, 'formcsatca3'])->name('fca3');
