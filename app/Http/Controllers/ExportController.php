@@ -496,6 +496,7 @@ class ExportController extends Controller
                     'formca.jawaban_2',
                     'formca.jawaban_3',
                     'formca.jawaban_3a',
+                    'formca.jawaban_3b',
                     'formca.jawaban_4',
                     'formca.jawaban_4a',
                     'formca.jawaban_5',
@@ -506,6 +507,7 @@ class ExportController extends Controller
                     'formca.jawaban_7a',
                     'formca.jawaban_8',
                     'formca.jawaban_8a',
+                    'formca.jawaban_8b',
                     'formca.jawaban_9',
                     'formca.jawaban_10',
                     'formca.jawaban_10a',
@@ -535,22 +537,24 @@ class ExportController extends Controller
                 $sheet->setCellValue('N1', '2. Berapa lama Bapak/Ibu dihubungi oleh pihak kami (Dealer/AHASS) setelah menyampaikan keluhan?');
                 $sheet->setCellValue('O1', '3. Seberapa puas Bapak/Ibu dengan respon pertama dari pihak Dealer/AHASS?');
                 $sheet->setCellValue('P1', 'Mohon jelaskan kepada kami, apa alasan Bapak/Ibu menjawab cukup puas/kurang puas/tidak puas sama sekali dengan respon pertama dari pihak Dealer/AHASS?');
-                $sheet->setCellValue('Q1', '4. Bagaimana Bapak menilai keramahan staf yang menangani keluhan Bapak/Ibu?');
-                $sheet->setCellValue('R1', 'Jelaskan alasannya');
-                $sheet->setCellValue('S1', '5. Seberapa jelas informasi yang diberikan tentang proses penanganan keluhan Bapak/Ibu?');
-                $sheet->setCellValue('T1', 'Jelaskan alasannya');
-                $sheet->setCellValue('U1', '6. Seberapa efektif solusi yang diberikan dalam menyelesaikan keluhan Bapak/Ibu?');
-                $sheet->setCellValue('V1', 'Jelaskan alasannya');
-                $sheet->setCellValue('W1', '7. Apakah keluhan Bapak/Ibu ditangani dalam waktu yang wajar?');
-                $sheet->setCellValue('X1', 'Berapa lama waktu yang Bapak/Ibu inginkan (angka dalam hari)?');
-                $sheet->setCellValue('Y1', '8. Seberapa puas Bapak/Ibu dengan solusi yang diberikan maupun proses penyelesaian keluhan dari pihak Dealer/AHASS?');
-                $sheet->setCellValue('Z1', 'Mohon jelaskan kepada kami, apa alasan Bapak/Ibu menjawab cukup puas/kurang puas/tidak puas sama sekali dengan solusi yang diberikan maupun proses penyelesaian dari pihak Dealer/AHASS?');
-                $sheet->setCellValue('AA1', '9. Apakah Bapak/Ibu akan merekomendasikan Sepeda Motor Honda kepada orang lain? <br>1 Sangat tidak merekomendasikan - 10 Sangat merekomendasikan');
-                $sheet->setCellValue('AB1', '10. Apakah Bapak/Ibu berencana membeli Sepeda Motor Honda lagi?');
-                $sheet->setCellValue('AC1', 'Jika ya, maka dalam jangka waktu berapa lama?');
-                $sheet->setCellValue('AD1', '11. Tipe Motor apa yang Bapak/Ibu rencanakan untuk dibeli kembali?');
-                $sheet->setCellValue('AE1', 'Setuju');
-                $sheet->setCellValue('AF1', 'Waktu Submit');
+                $sheet->setCellValue('Q1', 'Respon pertama lainnya');
+                $sheet->setCellValue('R1', '4. Bagaimana Bapak menilai keramahan staf yang menangani keluhan Bapak/Ibu?');
+                $sheet->setCellValue('S1', 'Jelaskan alasannya');
+                $sheet->setCellValue('T1', '5. Seberapa jelas informasi yang diberikan tentang proses penanganan keluhan Bapak/Ibu?');
+                $sheet->setCellValue('U1', 'Jelaskan alasannya');
+                $sheet->setCellValue('V1', '6. Seberapa efektif solusi yang diberikan dalam menyelesaikan keluhan Bapak/Ibu?');
+                $sheet->setCellValue('W1', 'Jelaskan alasannya');
+                $sheet->setCellValue('X1', '7. Apakah keluhan Bapak/Ibu ditangani dalam waktu yang wajar?');
+                $sheet->setCellValue('Y1', 'Berapa lama waktu yang Bapak/Ibu inginkan (angka dalam hari)?');
+                $sheet->setCellValue('Z1', '8. Seberapa puas Bapak/Ibu dengan solusi yang diberikan maupun proses penyelesaian keluhan dari pihak Dealer/AHASS?');
+                $sheet->setCellValue('AA1', 'Mohon jelaskan kepada kami, apa alasan Bapak/Ibu menjawab cukup puas/kurang puas/tidak puas sama sekali dengan solusi yang diberikan maupun proses penyelesaian dari pihak Dealer/AHASS?');
+                $sheet->setCellValue('AB1', 'Solusi dan penyelesaian lainnya');
+                $sheet->setCellValue('AC1', '9. Apakah Bapak/Ibu akan merekomendasikan Sepeda Motor Honda kepada orang lain? <br>1 Sangat tidak merekomendasikan - 10 Sangat merekomendasikan');
+                $sheet->setCellValue('AD1', '10. Apakah Bapak/Ibu berencana membeli Sepeda Motor Honda lagi?');
+                $sheet->setCellValue('AE1', 'Jika ya, maka dalam jangka waktu berapa lama?');
+                $sheet->setCellValue('AF1', '11. Tipe Motor apa yang Bapak/Ibu rencanakan untuk dibeli kembali?');
+                $sheet->setCellValue('AG1', 'Setuju');
+                $sheet->setCellValue('AH1', 'Waktu Submit');
     
                 // Mengatur Format Header
                 $headerStyle = [
@@ -558,7 +562,7 @@ class ExportController extends Controller
                     'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
                 ];
     
-                $sheet->getStyle('A1:AF1')->applyFromArray($headerStyle);
+                $sheet->getStyle('A1:AH1')->applyFromArray($headerStyle);
     
                 // Data
             $row = 2; // Mulai dari baris kedua setelah header
@@ -580,22 +584,24 @@ class ExportController extends Controller
                 $sheet->setCellValue('N' . $row, $item->jawaban_2);
                 $sheet->setCellValue('O' . $row, $item->jawaban_3);
                 $sheet->setCellValue('P' . $row, $item->jawaban_3a);
-                $sheet->setCellValue('Q' . $row, $item->jawaban_4);
-                $sheet->setCellValue('R' . $row, $item->jawaban_4a);
-                $sheet->setCellValue('S' . $row, $item->jawaban_5);
-                $sheet->setCellValue('T' . $row, $item->jawaban_5a);
-                $sheet->setCellValue('U' . $row, $item->jawaban_6);
-                $sheet->setCellValue('V' . $row, $item->jawaban_6a);
-                $sheet->setCellValue('W' . $row, $item->jawaban_7);
-                $sheet->setCellValue('X' . $row, $item->jawaban_7a);
-                $sheet->setCellValue('Y' . $row, $item->jawaban_8);
-                $sheet->setCellValue('Z' . $row, $item->jawaban_8a);
-                $sheet->setCellValue('AA' . $row, $item->jawaban_9);
-                $sheet->setCellValue('AB' . $row, $item->jawaban_10);
-                $sheet->setCellValue('AC' . $row, $item->jawaban_10a);
-                $sheet->setCellValue('AD' . $row, $item->jawaban_11);
-                $sheet->setCellValue('AE' . $row, $item->setuju);
-                $sheet->setCellValue('AF' . $row, $item->created_at);
+                $sheet->setCellValue('Q' . $row, $item->jawaban_3b);
+                $sheet->setCellValue('R' . $row, $item->jawaban_4);
+                $sheet->setCellValue('S' . $row, $item->jawaban_4a);
+                $sheet->setCellValue('T' . $row, $item->jawaban_5);
+                $sheet->setCellValue('U' . $row, $item->jawaban_5a);
+                $sheet->setCellValue('V' . $row, $item->jawaban_6);
+                $sheet->setCellValue('W' . $row, $item->jawaban_6a);
+                $sheet->setCellValue('X' . $row, $item->jawaban_7);
+                $sheet->setCellValue('Y' . $row, $item->jawaban_7a);
+                $sheet->setCellValue('Z' . $row, $item->jawaban_8);
+                $sheet->setCellValue('AA' . $row, $item->jawaban_8a);
+                $sheet->setCellValue('AB' . $row, $item->jawaban_8b);
+                $sheet->setCellValue('AC' . $row, $item->jawaban_9);
+                $sheet->setCellValue('AD' . $row, $item->jawaban_10);
+                $sheet->setCellValue('AE' . $row, $item->jawaban_10a);
+                $sheet->setCellValue('AF' . $row, $item->jawaban_11);
+                $sheet->setCellValue('AG' . $row, $item->setuju);
+                $sheet->setCellValue('AH' . $row, $item->created_at);
                 $row++;
                 $no++;
             }
@@ -609,7 +615,7 @@ class ExportController extends Controller
                     ],
                 ],
             ];
-            $sheet->getStyle('A1:AF' . ($row - 1))->applyFromArray($styleArray);
+            $sheet->getStyle('A1:AH' . ($row - 1))->applyFromArray($styleArray);
     
                 $filename = 'Report-Hasil CSAT CA.xlsx';
                 $path = storage_path('app/' . $filename);

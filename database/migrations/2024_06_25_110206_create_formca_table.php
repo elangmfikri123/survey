@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jawaban_2')->nullable();
             $table->string('jawaban_3')->nullable();
             $table->string('jawaban_3a')->nullable();
+            $table->string('jawaban_3b')->nullable();
             $table->string('jawaban_4')->nullable();
             $table->string('jawaban_4a')->nullable();
             $table->string('jawaban_5')->nullable();
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->string('jawaban_7a')->nullable();
             $table->string('jawaban_8')->nullable();
             $table->string('jawaban_8a')->nullable();
+            $table->string('jawaban_8b')->nullable();
             $table->string('jawaban_9')->nullable();
             $table->string('jawaban_10')->nullable();
             $table->string('jawaban_10a')->nullable();

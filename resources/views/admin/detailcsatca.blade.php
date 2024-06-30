@@ -87,6 +87,11 @@
                           <td>{{ $form->jawaban_3a }}</td>
                         </tr>
                         <tr>
+                          <td>3b</td>
+                          <td>Lainnya</td>
+                          <td>{{ $form->jawaban_3b }}</td>
+                        </tr>
+                        <tr>
                           <td>4</td>
                           <td>Bagaimana Bapak menilai keramahan staf yang menangani keluhan Bapak/Ibu?</td>
                           <td>{{ $form->jawaban_4 }}</td>
@@ -135,6 +140,11 @@
                           <td>8a</td>
                           <td>Mohon jelaskan kepada kami, apa alasan Bapak/Ibu menjawab cukup puas/kurang puas/tidak puas sama sekali dengan solusi yang diberikan maupun proses penyelesaian dari pihak Dealer/AHASS?</td>
                           <td>{{ $form->jawaban_8a }}</td>
+                        </tr>
+                        <tr>
+                          <td>8b</td>
+                          <td>Lainnya</td>
+                          <td>{{ $form->jawaban_8b }}</td>
                         </tr>
                         <tr>
                           <td>9</td>

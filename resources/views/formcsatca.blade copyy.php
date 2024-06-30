@@ -101,14 +101,14 @@
                               <option value="Nada atau sikap yang tidak profesional">Nada atau sikap yang tidak profesional</option>
                               <option value="Kurang empati atau perhatian staff">Kurang empati atau perhatian staff</option>
                               <option value="Tidak ada/salah dalam mengkonfirmasi keluhan yang disampaikan">Tidak ada/salah dalam mengkonfirmasi keluhan yang disampaikan</option>
-                              <option value="Lainnya">Lainnya, sebutkan:</option>
+                              <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                       </div>
 
                       <div id="pertanyaan_3b" style="display: none;">
                         <div class="form-group">
-                          <label for="jawaban_3b">Lainnya, sebutkan:</label>
+                          <label for="jawaban_3b">Lainnya</label>
                           <input id="jawaban_3b" type="text" class="form-control" name="jawaban_3b"></input>
                             <div class="invalid-feedback"></div>
                         </div>
@@ -242,14 +242,14 @@
                               <option value="Nada atau sikap yang tidak profesional">Nada atau sikap yang tidak profesional</option>
                               <option value="Kurang empati atau perhatian staff">Kurang empati atau perhatian staff</option>
                               <option value="Tidak ada/salah dalam mengkonfirmasi keluhan yang disampaikan">Tidak ada/salah dalam mengkonfirmasi keluhan yang disampaikan</option>
-                              <option value="Lainnya">Lainnya, sebutkan:</option>
+                              <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                       </div>
 
                       <div id="pertanyaan_8b" style="display: none;">
                         <div class="form-group">
-                          <label for="jawaban_8b">Lainnya, sebutkan:</label>
+                          <label for="jawaban_8b">Lainnya</label>
                           <input id="jawaban_8b" type="text" class="form-control" name="jawaban_8b"></input>
                             <div class="invalid-feedback"></div>
                         </div>
@@ -437,36 +437,6 @@
     $('#jawaban_2').prop('required', isError);
   });
 
-  $('#jawaban_3').change(function() {
-    var val = $(this).val();
-
-    if (val === 'Puas', 'Sangat Puas') {
-        $('#pertanyaan_3a').hide();
-        $('#pertanyaan_3b').hide();
-        $('#error_jawaban_3').hide(); // Sembunyikan pesan kesalahan
-        $('#jawaban_3a').val(null).prop('selectedIndex', 0).selectric('refresh');
-        $('#jawaban_3b').val(null);
-    } else if (val === 'Cukup Puas', 'Kurang Puas', 'Tidak Puas Sama Sekali') {
-        $('#pertanyaan_3a').show();
-        $('#pertanyaan_3b').hide();
-        $('#error_jawaban_3').hide();
-    }
-});
-
-  // $('#jawaban_3a').change(function() {
-  //     var val = $(this).val();
-
-  //     if (val === 'Lainnya') {
-  //         $('#pertanyaan_3b').show();
-  //         $('#error_jawaban_10').hide();
-  //         $('#error_jawaban_11').show();
-  //     } else {
-  //         $('#pertanyaan_3b').hide();
-  //         $('#jawaban_11').val(null);
-  //         $('#error_jawaban_10').hide();
-  //     }
-  // });
-
     $('#jawaban_3').change(function() {
     var selectedValue = $(this).val();
     if (selectedValue === 'Cukup Puas' || selectedValue === 'Kurang Puas' || selectedValue === 'Tidak Puas Sama Sekali') {
@@ -570,22 +540,6 @@
   });
 
   $('#jawaban_8').change(function() {
-    var val = $(this).val();
-
-    if (val === 'Puas', 'Sangat Puas') {
-        $('#pertanyaan_8a').hide();
-        $('#pertanyaan_8b').hide();
-        $('#error_jawaban_8').hide(); // Sembunyikan pesan kesalahan
-        $('#jawaban_8a').val(null).prop('selectedIndex', 0).selectric('refresh');
-        $('#jawaban_8b').val(null);
-    } else if (val === 'Cukup Puas', 'Kurang Puas', 'Tidak Puas Sama Sekali') {
-        $('#pertanyaan_8a').show();
-        $('#pertanyaan_8b').hide();
-        $('#error_jawaban_8').hide();
-    }
-});
-
-  $('#jawaban_8').change(function() {
     var selectedValue = $(this).val();
     if (selectedValue === 'Cukup Puas' || selectedValue === 'Kurang Puas' || selectedValue === 'Tidak Puas Sama Sekali') {
       $('#pertanyaan_8a').show();
@@ -629,23 +583,6 @@
   $('input[name="jawaban_9"]').on('change', function() {
         $('#error_jawaban_9').hide(); // Sembunyikan pesan kesalahan jika ada input
     });
-
-
-  $('#jawaban_10').change(function() {
-    var val = $(this).val();
-
-    if (val === 'Tidak') {
-        $('#pertanyaan_10a').hide();
-        $('#pertanyaan_11').hide();
-        $('#error_jawaban_10').hide(); // Sembunyikan pesan kesalahan
-        $('#jawaban_10a').val(null).prop('selectedIndex', 0).selectric('refresh');
-        $('#jawaban_11').val(null).prop('selectedIndex', 0).selectric('refresh');
-    } else if (val === 'Ya') {
-        $('#pertanyaan_10a').show();
-        $('#pertanyaan_10b').hide();
-        $('#error_jawaban_10').hide();
-    }
-});
 
     $('#jawaban_10').change(function() {
     var selectedValue = $(this).val();
@@ -700,12 +637,12 @@
       }
     }
 
-    // if ($('#pertanyaan_1a').is(':visible')) {
-    //   if (!$('#jawaban_1a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_1a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_1a').is(':visible')) {
+      if (!$('#jawaban_1a').val()) {
+        isValid = false;
+        $('#error_jawaban_1a').show();
+      }
+    }
 
     if ($('#pertanyaan_2').is(':visible')) {
       if (!$('#jawaban_2').val()) {
@@ -719,12 +656,12 @@
         $('#error_jawaban_3').show();
       }
     }
-    // if ($('#pertanyaan_3a').is(':visible')) {
-    //   if (!$('#jawaban_3a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_3a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_3a').is(':visible')) {
+      if (!$('#jawaban_3a').val()) {
+        isValid = false;
+        $('#error_jawaban_3a').show();
+      }
+    }
 
     if ($('#pertanyaan_4').is(':visible')) {
       if (!$('#jawaban_4').val()) {
@@ -732,12 +669,12 @@
         $('#error_jawaban_4').show();
       }
     }
-    // if ($('#pertanyaan_4a').is(':visible')) {
-    //   if (!$('#jawaban_4a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_4a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_4a').is(':visible')) {
+      if (!$('#jawaban_4a').val()) {
+        isValid = false;
+        $('#error_jawaban_4a').show();
+      }
+    }
     
     if ($('#pertanyaan_5').is(':visible')) {
       if (!$('#jawaban_5').val()) {
@@ -746,12 +683,12 @@
       }
     }
 
-    // if ($('#pertanyaan_5a').is(':visible')) {
-    //   if (!$('#jawaban_5a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_5a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_5a').is(':visible')) {
+      if (!$('#jawaban_5a').val()) {
+        isValid = false;
+        $('#error_jawaban_5a').show();
+      }
+    }
 
     if ($('#pertanyaan_6').is(':visible')) {
       if (!$('#jawaban_6').val()) {
@@ -760,12 +697,12 @@
       }
     }
 
-    // if ($('#pertanyaan_6a').is(':visible')) {
-    //   if (!$('#jawaban_6a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_6a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_6a').is(':visible')) {
+      if (!$('#jawaban_6a').val()) {
+        isValid = false;
+        $('#error_jawaban_6a').show();
+      }
+    }
 
     if ($('#pertanyaan_7').is(':visible')) {
       if (!$('#jawaban_7').val()) {
@@ -774,12 +711,12 @@
       }
     }
 
-    // if ($('#pertanyaan_7a').is(':visible')) {
-    //   if (!$('#jawaban_7a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_7a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_7a').is(':visible')) {
+      if (!$('#jawaban_7a').val()) {
+        isValid = false;
+        $('#error_jawaban_7a').show();
+      }
+    }
 
     if ($('#pertanyaan_8').is(':visible')) {
       if (!$('#jawaban_8').val()) {
@@ -788,12 +725,12 @@
       }
     }
 
-    // if ($('#pertanyaan_8a').is(':visible')) {
-    //   if (!$('#jawaban_8a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_8a').show();
-    //   }
-    // }
+    if ($('#pertanyaan_8a').is(':visible')) {
+      if (!$('#jawaban_8a').val()) {
+        isValid = false;
+        $('#error_jawaban_8a').show();
+      }
+    }
 
     if (!$('input[name="jawaban_9"]:checked').val()) {
             event.preventDefault();
