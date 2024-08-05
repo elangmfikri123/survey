@@ -25,7 +25,7 @@
                   <div class="form-group">
                     <form action="{{ url('/formsubmitca/data') }}" method="post" enctype="multipart/form-data" id="myForm">
                       @csrf
-
+                      <input type="hidden" name="customer_id" value="{{ $data->id }}"> <!-- Tambahkan ini untuk menyertakan customer_id -->
                       <div id="pertanyaan_1">
                         <div class="form-group">
                           <label for="jawaban_1"><br>1. Bagaimana Bapak/Ibu menilai kemudahan menyampaikan keluhan? *</label>
