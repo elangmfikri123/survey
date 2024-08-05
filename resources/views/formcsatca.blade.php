@@ -31,10 +31,6 @@
                       </div>
                       <input type="hidden" name="customer_id" value="{{ $data->id }}"> <!-- Tambahkan ini untuk menyertakan customer_id -->
                       <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <input type="text" class="form-control" value="{{ $data->alamat }}" type="hidden" name="alamat" disabled>
-                      </div>
-                      <div class="form-group">
                         <label for="phone">No Telepon</label>
                         <input type="text" class="form-control" value="{{ $data->phone }}" type="hidden" name="phone" disabled>
                       </div>
