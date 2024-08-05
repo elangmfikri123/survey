@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
             <div class="card mb-3" style="margin-top: -30px;">
-                <img src="{{ asset('assets/img/formcsat.png') }}" class="card-img-top img-fluid" alt="gambar">
+                <img src="{{ asset('assets/img/formcsatca.png') }}" class="card-img-top img-fluid" alt="gambar">
             </div>
             <div class="card card-danger">
               <div class="card-header">
@@ -372,7 +372,7 @@
                   <table class="table table-md">
                     <td><input class="form-check-input" name="setuju" type="checkbox" id="setuju" value="Ya">
                       <i>*Data-data pribadi Anda hanya akan digunakan untuk keperluan administrasi dan analisa internal PT Astra Honda Motor</i>
-                      <br><i>*Mengizinkan PT Astra Honda Motor untuk menggunakan informasi di atas dan menghubungi Saya melalui email dan/atau telepon atau sarana komunikasi pribadi lainnya untuk kegiatan pelayanan kepada customer</i>
+                      <br><i>*Mengizinkan PT Astra Honda Motor untuk menggunakan informasi di atas dan menghubungi Anda melalui email dan/atau telepon atau sarana komunikasi pribadi lainnya untuk kegiatan pelayanan kepada customer</i>
                       <br><i>*Kerahasiaan data-data pribadi Anda adalah prioritas kami</i>
                       </input>
                     </td>
