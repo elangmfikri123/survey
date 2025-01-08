@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
                 'nama' => 'Admin',
                 'username' => 'admin.ahm',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('Scoopy2024!'),
+                'password' => Hash::make('admincoba'),
                 'roles' => 'admin',
             ],
             [
