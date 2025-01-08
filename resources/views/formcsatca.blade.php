@@ -368,6 +368,9 @@
                         <option value="Honda CRF1100L Africa Twin Adventure Sports">Honda CRF1100L Africa Twin Adventure Sports</option>
                         <option value="Honda Rebel">Honda Rebel</option> 
                         <option value="Honda Gold Wing 1800">Honda Gold Wing 1800</option>
+                        <option value="ICON e:">ICON e:</option>
+                        <option value="CUV e:">CUV e:</option>
+                        <option value="CUV e: RoadSync Duo">CUV e: RoadSync Duo</option>
                       </select>
                       <div id="error_jawaban_11" class="text-danger" style="display:none;">Harap pilih opsi.</div>
                     </div>
