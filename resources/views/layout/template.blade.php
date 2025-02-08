@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="{{ asset('assets/modules/fontawesome/css/all.min.css') }}">
 
   <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/jquery-selectric/selectric.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/modules/chocolat/dist/css/chocolat.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/modules/jqvmap/dist/jqvmap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/modules/owlcarousel2/dist/assets/owl.carousel.min.css') }}">
@@ -91,7 +94,14 @@
               <a href="{{ url('/admin') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Data Tabel</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Honda Care</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{ url('get-era') }}">Data Honda Care</a></li>
+                <li><a class="nav-link" href="{{ url('/#') }}">Proses Mekanik</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Data Survey</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ url('/survey-awareness') }}">Survey Awareness CC</a></li>
                 <li><a class="nav-link" href="{{ url('/survey-awarenesshc') }}">Survey Awareness HC</a></li>
@@ -100,7 +110,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Report</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Report Survey</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ url('/export-awareness') }}">Report Awareness CC</a></li>
                 <li><a class="nav-link" href="{{ url('/export-awarenesshc') }}">Report Awareness HC</a></li>                
@@ -111,17 +121,10 @@
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Data User</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="{{ url('/get-user') }}">User</a></li>
+                <li><a class="nav-link" href="{{ url('/get-user') }}">User Survey</a></li>
+                <li><a class="nav-link" href="{{ url('/get-userera') }}">User Honda Care</a></li>
               </ul>
             </li>
-            {{-- <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Forms</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="forms-advanced-form.html">Advanced Form</a></li>
-                <li><a class="nav-link" href="forms-editor.html">Editor</a></li>
-                <li><a class="nav-link" href="forms-validation.html">Validation</a></li>
-              </ul>
-            </li> --}}
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
@@ -152,6 +155,8 @@
   <script src="{{ asset('assets/modules/owlcarousel2/dist/owl.carousel.min.js') }}"></script>
   <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
   <script src="{{ asset('assets/modules/chocolat/dist/js/jquery.chocolat.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+  <script src="{{ asset('assets/modules/jquery-selectric/jquery.selectric.min.js') }}"></script>
 
     <!-- JS Libraies DataTable -->
     <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
@@ -162,6 +167,7 @@
   <!-- Page Specific JS File -->
   <script src="{{ asset('assets/js/page/index.js') }}"></script>
   <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+  <script src="{{ asset('assets/js/page/forms-advanced-forms.js') }}"></script>
   
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>

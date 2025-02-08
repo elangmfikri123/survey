@@ -8,6 +8,7 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\FormKonsumenController;
 use App\Http\Controllers\SatisfactionCAController;
 use App\Http\Controllers\AwarenessHondaCareController;
+use App\Http\Controllers\HondaCareController;
 use App\Http\Controllers\SatisfactionHondaCareController;
 
 /*
@@ -28,6 +29,11 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard']);
+
+    //ROUTE ERA
+    Route::get('/get-era', [HondaCareController::class, 'getera']);
+    Route::get('/get-era/data', [HondaCareController::class, 'geteradata']);
+    Route::get('/era/update', [HondaCareController::class, 'eraupdate']);
 
     //ROUTE ADMIN SURVEY AWARENESS CONTACT CENTER
     Route::get('/survey-awareness', [AdminController::class, 'index']);
@@ -75,6 +81,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/get-user', [AuthController::class, 'getuser']);
     Route::get('/get-user/data', [AuthController::class, 'getusertable']);
 
+    Route::get('/get-userera', [AuthController::class, 'getuserera']);
+    Route::get('/get-userera/data', [AuthController::class, 'usereratable']);
 });
 
 

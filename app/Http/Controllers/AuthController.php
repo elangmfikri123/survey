@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserEra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -63,6 +64,39 @@ class AuthController extends Controller
         $result = DataTables()->of($data)
             ->addColumn('status', function ($row) {
                 $badgeClass = $row->status == 'Belum Terisi' ? 'badge-warning' : 'badge-success';
+                return '<span class="badge ' . $badgeClass . '">' . $row->status . '</span>';
+            })
+            ->addColumn('action', function ($row) {
+                $action = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-primary">Detail</a>';
+                $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
+                // Tambahkan tombol aksi lainnya sesuai kebutuhan
+                return $action.'  '.$edit;
+            })
+            ->rawColumns(['status','action'])
+            ->toJson();
+        return $result;
+    }
+    public function getuserera()
+    {
+        return view('admin.getuserera');
+    }
+    public function usereratable(Request $request)
+    {
+        $data = UserEra::query();
+        // Filter berdasarkan pencarian
+        if ($request->has('search') && !empty($request->search['value'])) {
+            $search = $request->search['value'];
+            $data->where(function ($query) use ($search) {
+                $query->where('id_user', 'like', '%' . $search . '%')
+                    ->orWhere('nama', 'like', '%' . $search . '%')
+                    ->orWhere('username', 'like', '%' . $search . '%')
+                    ->orWhere('level', 'like', '%' . $search . '%')
+                    ->orWhere('kode', 'like', '%' . $search . '%');
+            });
+        }
+        $result = DataTables()->of($data)
+            ->addColumn('status', function ($row) {
+                $badgeClass = $row->status == 'Tidak Aktif' ? 'badge-warning' : 'badge-success';
                 return '<span class="badge ' . $badgeClass . '">' . $row->status . '</span>';
             })
             ->addColumn('action', function ($row) {
