@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Honda Survey &mdash; @yield('title')</title>
 
@@ -48,5 +49,40 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+  <script>
+    // Mencegah klik kanan
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+    });
+
+    // Mencegah penggunaan shortcut Inspect Element
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && (event.key === "u" || event.key === "U")) {
+            event.preventDefault(); // Ctrl + U (View Source)
+        }
+        if (event.ctrlKey && event.shiftKey && (event.key === "i" || event.key === "I")) {
+            event.preventDefault(); // Ctrl + Shift + I (DevTools)
+        }
+        if (event.ctrlKey && event.shiftKey && (event.key === "c" || event.key === "C")) {
+            event.preventDefault(); // Ctrl + Shift + C (Inspect)
+        }
+        if (event.ctrlKey && event.shiftKey && (event.key === "j" || event.key === "J")) {
+            event.preventDefault(); // Ctrl + Shift + J (Console)
+        }
+        if (event.key === "F12") {
+            event.preventDefault();
+        }
+    });
+
+    (function() {
+        var devtools = /./;
+        devtools.toString = function() {
+            throw new Error("Inspect Element is disabled!");
+        };
+        console.log("%cStop! Inspecting is not allowed!", "color: red; font-size: 20px; font-weight: bold;");
+    })();
+</script>
+
 </body>
 </html>

@@ -33,7 +33,9 @@ Route::middleware('admin')->group(function () {
     //ROUTE ERA
     Route::get('/get-era', [HondaCareController::class, 'getera']);
     Route::get('/get-era/data', [HondaCareController::class, 'geteradata']);
-    Route::get('/era/update', [HondaCareController::class, 'eraupdate']);
+    Route::get('/era/update/{id_form}', [HondaCareController::class, 'eraupdate']);
+    Route::get('/era/update/data/{id_form}', [HondaCareController::class, 'getera_update']);
+
 
     //ROUTE ADMIN SURVEY AWARENESS CONTACT CENTER
     Route::get('/survey-awareness', [AdminController::class, 'index']);

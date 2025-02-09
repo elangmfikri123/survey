@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Astra Honda Motor Survey&mdash; @yield('title')</title>
 
@@ -38,7 +39,8 @@
 <body>
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
+      <div class="navbar-bg" style="background-color: #e61b33;"></div>
+      {{-- <div class="navbar-bg bg-danger"></div> --}}
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -90,7 +92,7 @@
           
           <ul class="sidebar-menu">
             <li class="menu-header">Main Menu</li>
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="{{ url('/admin') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
@@ -127,7 +129,7 @@
             </li>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-            <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
+            <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split">
               <i class="fas fa-rocket"></i> Documentation
             </a>
           </div>        </aside>
@@ -172,5 +174,13 @@
   <!-- Template JS File -->
   <script src="{{ asset('assets/js/scripts.js') }}"></script>
   <script src="{{ asset('assets/js/custom.js') }}"></script>
+  <script>
+    $(document).ready(function () {
+      $(".sidebar-menu .dropdown").click(function () {
+        $(".sidebar-menu .dropdown").removeClass("active"); // Menghapus 'active' dari semua menu
+        $(this).addClass("active"); // Menambahkan 'active' ke menu yang diklik
+      });
+    });
+  </script>
 </body>
 </html>

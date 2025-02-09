@@ -31,17 +31,23 @@ class HondaCareController extends Controller
         }
         $result = DataTables()->of($data)
             ->addColumn('action', function ($row) {
-                $action = '<a href="' . url('/era/update' . $row->id) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
+                $action = '<a href="' . url('/era/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
                 $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
                 // Tambahkan tombol aksi lainnya sesuai kebutuhan
-                return $action.'  '.$edit;
+                return $action . '  ' . $edit;
             })
             ->rawColumns(['action'])
             ->toJson();
         return $result;
     }
-    public function eraupdate()
+    public function eraupdate($id_form)
     {
-        return view('admin.adminera-update');
+        $data = FormEra::where('id_form', $id_form)->firstOrFail();
+        return view('admin.adminera-update', compact('data'));
     }
+    // public function getera_update($id_form)
+    // {
+    //     $data = FormEra::where('id_form', $id_form)->firstOrFail();
+    //     return response()->json($data);
+    // }
 }

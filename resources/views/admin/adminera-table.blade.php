@@ -48,8 +48,8 @@
                     processing: true,
                     serverSide: true,
                     ajax: '{{ url("get-era/data") }}',
-                    searching: true, // Menampilkan fitur pencarian
-                    lengthChange: true, // Menampilkan fitur pengaturan jumlah data per halaman
+                    searching: true, 
+                    lengthChange: true,
                     columns: [
                     { data: 'id_form', name: 'id_form' },
                     { data: 'tiketich', name: 'tiketich' },
