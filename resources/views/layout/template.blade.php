@@ -61,7 +61,7 @@
           </li>
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->nama }}</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, {{ $nama ?? Auth::user()->nama }}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -122,11 +122,11 @@
               </ul>
             </li>
 
-            @if (Auth::user()->level == 'korlap')
+           
             <li class="dropdown">
               <a href="{{ url('/korlapmd') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
-        @endif
+
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split">

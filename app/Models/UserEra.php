@@ -11,9 +11,9 @@ class UserEra extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $connection = 'era'; // Koneksi ke database 'era'
-    protected $table = 'user'; // Nama tabel
-    protected $primaryKey = 'id_user'; // Primary key tabel
+    protected $connection = 'era'; 
+    protected $table = 'user'; 
+    protected $primaryKey = 'id_user'; 
 
     protected $fillable = [
         'kode',

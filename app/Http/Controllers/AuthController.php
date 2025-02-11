@@ -39,7 +39,6 @@ class AuthController extends Controller
             }
         }
 
-        // Cek di database era
         $userEra = UserEra::where('username', $username)->first();
         if ($userEra) {
             Log::info('User ditemukan di era:', ['username' => $userEra->username]);
@@ -51,8 +50,7 @@ class AuthController extends Controller
             if ($hashedPassword === $userEra->password) {
                 Log::info('Password cocok untuk user di era');
 
-                Auth::guard('era')->login($userEra); // <-- Perbaikan di sini
-                // dd(Auth::guard('era')->user()); // Debugging
+                Auth::guard('era')->login($userEra);
 
                 if ($userEra->level == 'korlap') {
                     return redirect('korlapmd')->with('status', 'Berhasil Login.');
@@ -85,7 +83,6 @@ class AuthController extends Controller
     public function getusertable(Request $request)
     {
         $data = User::query();
-        // Filter berdasarkan pencarian
         if ($request->has('search') && !empty($request->search['value'])) {
             $search = $request->search['value'];
             $data->where(function ($query) use ($search) {
@@ -103,7 +100,6 @@ class AuthController extends Controller
             ->addColumn('action', function ($row) {
                 $action = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-primary">Detail</a>';
                 $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
-                // Tambahkan tombol aksi lainnya sesuai kebutuhan
                 return $action . '  ' . $edit;
             })
             ->rawColumns(['status', 'action'])
