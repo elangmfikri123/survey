@@ -67,12 +67,6 @@
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
-              <a href="features-activities.html" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-              </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Settings
-              </a>
               <div class="dropdown-divider"></div>
               <a href="{{ url('/logout') }}" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
@@ -127,6 +121,12 @@
                 <li><a class="nav-link" href="{{ url('/get-userera') }}">User Honda Care</a></li>
               </ul>
             </li>
+
+            @if (Auth::user()->level == 'korlap')
+            <li class="dropdown">
+              <a href="{{ url('/korlapmd') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            </li>
+        @endif
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split">

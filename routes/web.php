@@ -9,6 +9,7 @@ use App\Http\Controllers\FormKonsumenController;
 use App\Http\Controllers\SatisfactionCAController;
 use App\Http\Controllers\AwarenessHondaCareController;
 use App\Http\Controllers\HondaCareController;
+use App\Http\Controllers\MainDealerController;
 use App\Http\Controllers\SatisfactionHondaCareController;
 
 /*
@@ -85,6 +86,11 @@ Route::middleware('admin')->group(function () {
 
     Route::get('/get-userera', [AuthController::class, 'getuserera']);
     Route::get('/get-userera/data', [AuthController::class, 'usereratable']);
+});
+
+Route::middleware('korlapmd')->group(function () {
+    Route::get('/korlapmd', [MainDealerController::class, 'dashboard']);
+
 });
 
 

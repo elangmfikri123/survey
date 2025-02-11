@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserEra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -15,26 +17,58 @@ class AuthController extends Controller
         return view('admin.login');
     }
 
-    public function storeLogin()
+    public function storeLogin(Request $request)
     {
-        $credentials = request()->only('email', 'username');
-        $user = User::where($credentials)->first();
-    
-        if ($user) {
-            if (Hash::check(request()->password, $user->password)) {
-                if ($user->roles == 'admin') {
-                    Auth::login($user);
-                    return redirect('admin')->with('status', 'Berhasil Login.');
-                } else {
-                    Auth::login($user);
-                    return redirect('user')->with('status', 'Berhasil Login.');
-                }
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        // Log input username
+        Log::info('Mencoba login dengan username:', ['username' => $username]);
+
+        // Cek di database survey_cc
+        $userSurvey = User::where('username', $username)->first();
+        if ($userSurvey) {
+            Log::info('User ditemukan di survey_cc:', ['username' => $userSurvey->username]);
+
+            if (Hash::check($password, $userSurvey->password)) {
+                Log::info('Password cocok untuk survey_cc');
+                Auth::login($userSurvey);
+                return redirect($userSurvey->roles == 'admin' ? 'admin' : 'user')->with('status', 'Berhasil Login.');
             } else {
-                return redirect('/')->with('message', 'Password salah');
+                Log::warning('Password salah untuk survey_cc');
             }
         }
-    
-        return redirect('/')->with('message', 'Akun tidak ditemukan');
+
+        // Cek di database era
+        $userEra = UserEra::where('username', $username)->first();
+        if ($userEra) {
+            Log::info('User ditemukan di era:', ['username' => $userEra->username]);
+
+            $hashedPassword = md5($password);
+            Log::info('Password input (MD5):', ['input' => $hashedPassword]);
+            Log::info('Password database:', ['stored' => $userEra->password]);
+
+            if ($hashedPassword === $userEra->password) {
+                Log::info('Password cocok untuk user di era');
+
+                Auth::guard('era')->login($userEra); // <-- Perbaikan di sini
+                // dd(Auth::guard('era')->user()); // Debugging
+
+                if ($userEra->level == 'korlap') {
+                    return redirect('korlapmd')->with('status', 'Berhasil Login.');
+                } elseif ($userEra->level == 'mekanik') {
+                    return redirect('mekanik')->with('status', 'Berhasil Login.');
+                }
+
+                Log::warning('Level user tidak dikenali:', ['level' => $userEra->level]);
+                return redirect('/')->with('message', 'Level tidak dikenali.');
+            } else {
+                Log::warning('Password salah untuk era');
+            }
+        }
+
+        Log::warning('Akun tidak ditemukan atau password salah.');
+        return redirect('/')->with('message', 'Akun tidak ditemukan atau password salah.');
     }
 
     public function logout()
@@ -70,9 +104,9 @@ class AuthController extends Controller
                 $action = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-primary">Detail</a>';
                 $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
                 // Tambahkan tombol aksi lainnya sesuai kebutuhan
-                return $action.'  '.$edit;
+                return $action . '  ' . $edit;
             })
-            ->rawColumns(['status','action'])
+            ->rawColumns(['status', 'action'])
             ->toJson();
         return $result;
     }
@@ -103,9 +137,9 @@ class AuthController extends Controller
                 $action = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-primary">Detail</a>';
                 $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
                 // Tambahkan tombol aksi lainnya sesuai kebutuhan
-                return $action.'  '.$edit;
+                return $action . '  ' . $edit;
             })
-            ->rawColumns(['status','action'])
+            ->rawColumns(['status', 'action'])
             ->toJson();
         return $result;
     }
