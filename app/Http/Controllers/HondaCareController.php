@@ -2,15 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\FormEra;
+use App\Models\UserEra;
 use Illuminate\Http\Request;
 
 class HondaCareController extends Controller
 {
+    // public function getera()
+    // {
+    //     return view('admin.adminera-table');
+    // }
     public function getera()
-    {
+{
+    $user = auth()->user();
+
+    if ($user instanceof User) {
         return view('admin.adminera-table');
+    } elseif ($user instanceof UserEra) {
+        return view('maindealer.hondacare-table');
+    } else {
+        return abort(403, 'Unauthorized access');
     }
+}
     public function geteradata(Request $request)
     {
         $data = FormEra::query()->orderBy('id_form', 'desc');

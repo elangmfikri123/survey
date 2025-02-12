@@ -40,7 +40,6 @@
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg" style="background-color: #e61b33;"></div>
-      {{-- <div class="navbar-bg bg-danger"></div> --}}
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -86,6 +85,7 @@
           
           <ul class="sidebar-menu">
             <li class="menu-header">Main Menu</li>
+            @if (Auth::check() && Auth::user()->roles == 'admin')
             <li class="dropdown">
               <a href="{{ url('/admin') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
@@ -121,12 +121,21 @@
                 <li><a class="nav-link" href="{{ url('/get-userera') }}">User Honda Care</a></li>
               </ul>
             </li>
+            @endif
 
-           
+            @if (Auth::guard('era')->user() && Auth::guard('era')->user()->level == 'korlap')
+           {{-- KORLAP LOGIN --}}
             <li class="dropdown">
-              <a href="{{ url('/korlapmd') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="{{ url('/korlapmd') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard MD</span></a>
             </li>
-
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Honda Care MD</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="{{ url('/get-eramd') }}">Data Honda Care</a></li>
+                <li><a class="nav-link" href="{{ url('/#') }}">Proses Mekanik</a></li>
+              </ul>
+            </li>
+            @endif
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split">

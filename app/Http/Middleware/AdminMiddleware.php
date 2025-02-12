@@ -11,9 +11,14 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        Log::info('Middleware admin, User:', ['user' => Auth::user()]);
-        if (Auth::check() && Auth::user()->roles == 'admin') {
+        $user = Auth::user();
+        Log::info('Middleware admin, User:', ['user' => $user]);
+
+        if ($user && $user->roles == 'admin') {
             return $next($request);
+        }
+        if (session('guard') === 'era') {
+            return redirect('korlapmd');
         }
 
         Log::warning('Middleware admin gagal: Level tidak sesuai atau user tidak ditemukan');

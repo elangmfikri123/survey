@@ -22,10 +22,9 @@ class AuthController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        // Log input username
+
         Log::info('Mencoba login dengan username:', ['username' => $username]);
 
-        // Cek di database survey_cc
         $userSurvey = User::where('username', $username)->first();
         if ($userSurvey) {
             Log::info('User ditemukan di survey_cc:', ['username' => $userSurvey->username]);
@@ -71,8 +70,9 @@ class AuthController extends Controller
 
     public function logout()
     {
-        $user = request()->user();
-        Auth::logout($user);
+        Auth::logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
         return redirect('/');
     }
 

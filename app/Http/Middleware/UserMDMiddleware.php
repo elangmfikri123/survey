@@ -9,25 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserMDMiddleware
 {
-    // public function handle($request, Closure $next)
-    // {
-    //     $user = Auth::guard('era')->user();
-    //     Log::info('Middleware korlapmd, User:', ['user' => $user]);
-
-    //     if ($user && $user->level == 'korlap') {
-    //         return $next($request);
-    //     }
-
-    //     Log::warning('Middleware korlapmd gagal: Level tidak sesuai atau user tidak ditemukan');
-    //     return redirect('/');
-    // }
     public function handle($request, Closure $next)
     {
         $user = Auth::guard('era')->user();
         Log::info('Middleware korlapmd, User:', ['user' => $user]);
 
         if ($user && $user->level == 'korlap') {
-            // Share nama user agar bisa dipakai di Blade
             view()->share('nama', $user->nama);
             return $next($request);
         }

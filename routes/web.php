@@ -91,6 +91,9 @@ Route::middleware('admin')->group(function () {
 Route::middleware('korlapmd')->group(function () {
     Route::get('/korlapmd', [MainDealerController::class, 'dashboard']);
 
+    Route::get('/get-eramd', [HondaCareController::class, 'getera']);
+    Route::get('/get-eramd/data', [HondaCareController::class, 'geteradata']);
+
 });
 
 
