@@ -22,6 +22,10 @@ class AuthController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
+        Auth::logout();
+        Auth::guard('era')->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
 
         Log::info('Mencoba login dengan username:', ['username' => $username]);
 
@@ -32,6 +36,7 @@ class AuthController extends Controller
             if (Hash::check($password, $userSurvey->password)) {
                 Log::info('Password cocok untuk survey_cc');
                 Auth::login($userSurvey);
+                session(['guard' => 'web']);
                 return redirect($userSurvey->roles == 'admin' ? 'admin' : 'user')->with('status', 'Berhasil Login.');
             } else {
                 Log::warning('Password salah untuk survey_cc');
@@ -50,6 +55,7 @@ class AuthController extends Controller
                 Log::info('Password cocok untuk user di era');
 
                 Auth::guard('era')->login($userEra);
+                session(['guard' => 'era']);
 
                 if ($userEra->level == 'korlap') {
                     return redirect('korlapmd')->with('status', 'Berhasil Login.');
@@ -70,9 +76,16 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        if (session('guard') === 'era') {
+            Auth::guard('era')->logout();
+        } else {
+            Auth::logout();
+        }
+    
+        session()->flush();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+
         return redirect('/');
     }
 

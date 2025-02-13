@@ -11,15 +11,16 @@ class UserMDMiddleware
 {
     public function handle($request, Closure $next)
     {
-        $user = Auth::guard('era')->user();
-        Log::info('Middleware korlapmd, User:', ['user' => $user]);
+        if (session('guard') !== 'era') {
+            return redirect('/');
+        }
 
+        $user = Auth::guard('era')->user();
         if ($user && $user->level == 'korlap') {
             view()->share('nama', $user->nama);
             return $next($request);
         }
 
-        Log::warning('Middleware korlapmd gagal: Level tidak sesuai atau user tidak ditemukan');
         return redirect('/');
     }
 }

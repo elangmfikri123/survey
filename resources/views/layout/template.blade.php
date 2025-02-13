@@ -126,10 +126,10 @@
             @if (Auth::guard('era')->user() && Auth::guard('era')->user()->level == 'korlap')
            {{-- KORLAP LOGIN --}}
             <li class="dropdown">
-              <a href="{{ url('/korlapmd') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard MD</span></a>
+              <a href="{{ url('/korlapmd') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Honda Care MD</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Honda Care</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ url('/get-eramd') }}">Data Honda Care</a></li>
                 <li><a class="nav-link" href="{{ url('/#') }}">Proses Mekanik</a></li>
