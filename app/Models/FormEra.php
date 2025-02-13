@@ -19,4 +19,8 @@ class FormEra extends Model
     {
         return $this->belongsTo(UserEra::class, 'id_mekanik', 'id_user')->where('level', 'mekanik');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

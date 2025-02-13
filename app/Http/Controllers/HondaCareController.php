@@ -27,8 +27,16 @@ class HondaCareController extends Controller
     
     public function geteradata(Request $request)
     {
+        $userSurvey = Auth::guard('web')->user();
+        $userEra = Auth::guard('era')->user();
+
         $data = FormEra::query()->orderBy('id_form', 'desc');
-        // Filter berdasarkan pencarian
+        if ($userSurvey instanceof User && $userSurvey->roles === 'admin'){
+        }
+        if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
+            $data->where('kode', $userEra->kode);
+        }
+
         if ($request->has('search') && !empty($request->search['value'])) {
             $search = $request->search['value'];
             $data->where(function ($query) use ($search) {
@@ -47,7 +55,6 @@ class HondaCareController extends Controller
             ->addColumn('action', function ($row) {
                 $action = '<a href="' . url('/era/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
                 $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
-                // Tambahkan tombol aksi lainnya sesuai kebutuhan
                 return $action . '  ' . $edit;
             })
             ->rawColumns(['action'])

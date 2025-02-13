@@ -21,7 +21,6 @@ class AdminController extends Controller
     public function surveytable(Request $request)
     {
         $data = Customer::query();
-        // Filter berdasarkan pencarian
         if ($request->has('search') && !empty($request->search['value'])) {
             $search = $request->search['value'];
             $data->where(function ($query) use ($search) {
@@ -43,7 +42,6 @@ class AdminController extends Controller
             ->addColumn('action', function ($row) {
                 $action = '<a href="' . url('/survey-awareness/data/' . $row->id) . '" class="btn btn-sm btn-primary">Detail</a>';
                 $edit = '<a href="' . url('/survey-awareness/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
-                // Tambahkan tombol aksi lainnya sesuai kebutuhan
                 return $action.'  '.$edit;
             })
             ->rawColumns(['status','action'])
@@ -54,7 +52,6 @@ class AdminController extends Controller
     public function detaildata($id)
     {
         $item = Customer::findOrFail($id);
-        // Menggunakan optional untuk mengatasi jika form null
         $form = optional($item->form);
         return view('admin.detailawarenes', compact('item', 'form'));
     }

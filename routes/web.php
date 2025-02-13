@@ -93,6 +93,8 @@ Route::middleware('korlapmd')->group(function () {
 
     Route::get('/get-eramd', [HondaCareController::class, 'getera']);
     Route::get('/get-eramd/data', [HondaCareController::class, 'geteradata']);
+    Route::get('/era/update/{id_form}', [HondaCareController::class, 'eraupdate']);
+    Route::get('/era/update/data/{id_form}', [HondaCareController::class, 'getera_update']);
 
 });
 

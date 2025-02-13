@@ -28,4 +28,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function forms()
+    {
+        return $this->hasMany(FormEra::class, 'user_id');
+    }
 }

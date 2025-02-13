@@ -47,7 +47,7 @@
                   $('#myTable').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{{ url("get-era/data") }}',
+                    ajax: '{{ url("get-eramd/data") }}',
                     searching: true, 
                     lengthChange: true,
                     columns: [
