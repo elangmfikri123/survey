@@ -52,10 +52,18 @@ class HondaCareController extends Controller
             });
         }
         $result = DataTables()->of($data)
-            ->addColumn('action', function ($row) {
+            ->addColumn('action', function ($row) use ($userSurvey, $userEra) {
+                $action = '';
+                $edit = ''; 
+                if ($userSurvey instanceof User && $userSurvey->roles === 'admin') {
                 $action = '<a href="' . url('/era/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
                 $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
-                return $action . '  ' . $edit;
+                }
+                if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
+                    $action = '<a href="' . url('/eramd/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
+                $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
+                }
+                return $action . ' ' . $edit;
             })
             ->rawColumns(['action'])
             ->toJson();
@@ -63,12 +71,17 @@ class HondaCareController extends Controller
     }
     public function eraupdate($id_form)
     {
+        $userSurvey = Auth::guard('web')->user();
+        $userEra = Auth::guard('era')->user();
         $data = FormEra::where('id_form', $id_form)->firstOrFail();
-        return view('admin.adminera-update', compact('data'));
+        if ($userSurvey instanceof User && $userSurvey->roles === 'admin') {
+            return view('admin.adminera-update', compact('data'));
+        }
+        if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
+            if ($data->kode !== $userEra->kode) {
+                return redirect()->back();
+            }    
+            return view('maindealer.hondacare-update', compact('data'));
+        }
     }
-    // public function getera_update($id_form)
-    // {
-    //     $data = FormEra::where('id_form', $id_form)->firstOrFail();
-    //     return response()->json($data);
-    // }
 }

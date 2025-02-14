@@ -272,9 +272,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer text-right">
-                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                    <button class="btn btn-secondary" type="reset">Reset</button>
+                <div class="card-footer d-flex justify-content-between">
+                    <div>
+                        <button class="btn btn-danger" type="submit"><i class="fas fa-times"></i> Batal Era</button>
+                        <button class="btn btn-warning" type="reset"><i class="fas fa-exclamation-triangle"></i> Not Approve</button>
+                    </div>
+                    <div>
+                         <button class="btn btn-success" type="reset"><i class="fas fa-check"></i> Approve</button>
+                    </div>
                 </div>
             </div>
             {{-- Form End --}}
