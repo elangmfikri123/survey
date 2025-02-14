@@ -13,23 +13,19 @@ class HondaCareController extends Controller
 {
     public function getera()
     {
-        $userSurvey = Auth::guard('web')->user();
-        $userEra = Auth::guard('era')->user();
-    
-        if ($userSurvey instanceof User) {
+        if (Auth::guard('web')->check()) {
             return view('admin.adminera-table');
-        } elseif ($userEra instanceof UserEra) {
-            return view('maindealer.hondacare-table');
-        } else {
-            return abort(403, 'Unauthorized access');
         }
+        if (Auth::guard('era')->check()) {
+            return view('maindealer.hondacare-table');
+        }
+        return abort(403, 'Unauthorized access');
     }
     
     public function geteradata(Request $request)
     {
         $userSurvey = Auth::guard('web')->user();
         $userEra = Auth::guard('era')->user();
-
         $data = FormEra::query()->orderBy('id_form', 'desc');
         if ($userSurvey instanceof User && $userSurvey->roles === 'admin'){
         }
@@ -44,7 +40,6 @@ class HondaCareController extends Controller
                     ->orWhere('tiketich', 'like', '%' . $search . '%')
                     ->orWhere('nama', 'like', '%' . $search . '%')
                     ->orWhere('no_telp', 'like', '%' . $search . '%')
-                    ->orWhere('smh', 'like', '%' . $search . '%')
                     ->orWhere('tipeservis', 'like', '%' . $search . '%')
                     ->orWhere('statuspenyelesaian', 'like', '%' . $search . '%')
                     ->orWhere('kode', 'like', '%' . $search . '%')
@@ -52,19 +47,24 @@ class HondaCareController extends Controller
             });
         }
         $result = DataTables()->of($data)
-            ->addColumn('action', function ($row) use ($userSurvey, $userEra) {
-                $action = '';
-                $edit = ''; 
-                if ($userSurvey instanceof User && $userSurvey->roles === 'admin') {
-                $action = '<a href="' . url('/era/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
-                $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
-                }
-                if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
-                    $action = '<a href="' . url('/eramd/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-primary"><i class="far fa-edit"></i></a>';
-                $edit = '<a href="' . url('/survey-awarenesshc/data/' . $row->id) . '" class="btn btn-sm btn-warning">Edit</a>';
-                }
-                return $action . ' ' . $edit;
-            })
+        ->addColumn('action', function ($row) use ($userSurvey, $userEra) {
+            $buttons = '';
+            if ($userSurvey instanceof User && $userSurvey->roles === 'admin') {
+                $buttons .= '<a href="' . url('/era/detail/' . $row->id_form) . '" class="btn btn-sm btn-info"> <i class="fas fa-eye"></i> </a> ';
+                $buttons .= '<a href="' . url('/era/update/' . $row->id_form) . '" class="btn btn-sm btn-warning"> <i class="fas fa-edit"></i> </a> ';
+                $buttons .= '<form action="' . url('/era/delete/' . $row->id_form) . '" method="POST" style="display:inline;" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus data ini?\');">
+                                ' . csrf_field() . '
+                                ' . method_field('DELETE') . '
+                                <button type="submit" class="btn btn-sm btn-danger"> <i class="fas fa-trash-alt"></i> </button>
+                            </form>';
+            }
+            if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
+                $buttons .= '<a href="' . url('/era/detail/' . $row->id_form) . '" class="btn btn-sm btn-info"> <i class="fas fa-eye"></i> </a> ';
+                $buttons .= '<a href="' . url('/eramd/update/' . $row->id_form) . '" class="btn btn-sm btn-icon btn-warning"><i class="far fa-edit"></i></a>';
+            }
+
+            return $buttons;
+        })
             ->rawColumns(['action'])
             ->toJson();
         return $result;

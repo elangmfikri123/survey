@@ -29,7 +29,6 @@
                         <th class="text-center">Tiket ICC</th>
                         <th class="text-center">Nama</th>
                         <th class="text-center">No HP</th>
-                        <th class="text-center">Motor</th>
                         <th class="text-center">Type Servis</th>
                         <th class="text-center">Penyelesaian</th>
                         <th class="text-center">MD</th>
@@ -55,7 +54,6 @@
                     { data: 'tiketich', name: 'tiketich' },
                     { data: 'nama', name: 'nama' },
                     { data: 'no_telp', name: 'no_telp' },
-                    { data: 'smh', name: 'smh' },
                     { data: 'tipeservis', name: 'tipeservis' },
                     { data: 'statuspenyelesaian', name: 'statuspenyelesaian' },
                     { data: 'kode', name: 'kode' },
