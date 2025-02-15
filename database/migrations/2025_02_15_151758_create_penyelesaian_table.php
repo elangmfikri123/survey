@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('m_ikecamatan', function (Blueprint $table) {
-            $table->id('id_kecamatan');
-            $table->string('nama_kecamatan');
+        Schema::create('penyelesaian', function (Blueprint $table) {
+            $table->id();
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_ikecamatan');
+        Schema::dropIfExists('penyelesaian');
     }
 };

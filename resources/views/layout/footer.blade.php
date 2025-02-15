@@ -1,8 +1,8 @@
 <footer class="main-footer">
   <div class="footer-left">
-      Copyright &copy; 2024 <div class="bullet"></div> <a href="#">eagledev project</a>
+      Copyright &copy; 2024 <div class="bullet"></div> <a href="#">Eagledev Project</a>
   </div>
   <div class="footer-right">
-      2.3.0
+      V1.1
   </div>
 </footer>

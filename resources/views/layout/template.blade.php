@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Astra Honda Motor Survey&mdash; @yield('title')</title>
+    <title>Honda Care - @yield('title')</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -178,7 +178,7 @@
 
                         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                             <a href="#" class="btn btn-danger btn-lg btn-block btn-icon-split">
-                                <i class="fas fa-rocket"></i> Documentation
+                                <i class="fas fa-rocket"></i> Honda Care
                             </a>
                         </div>
                 </aside>
