@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('sukucadang', function (Blueprint $table) {
             $table->id();
+            $table->string('no_part');
+            $table->string('deskripsi');
+            $table->string('bahasa_konsumen');
             $table->timestamps();
         });
     }

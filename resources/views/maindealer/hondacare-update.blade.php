@@ -180,7 +180,10 @@
                                     <select class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
-                                            <option value="{{ $item->id }}">{{ $item->deskripsi }}</option>
+                                            <option value="{{ $item->deskripsi }}"
+                                                {{ $item->deskripsi == $data->tkp1 ? 'selected' : '' }}>
+                                                {{ $item->deskripsi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -189,7 +192,10 @@
                                     <select class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
-                                            <option value="{{ $item->id }}">{{ $item->deskripsi }}</option>
+                                            <option value="{{ $item->deskripsi }}"
+                                                {{ $item->deskripsi == $data->ahass1 ? 'selected' : '' }}>
+                                                {{ $item->deskripsi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -201,7 +207,10 @@
                                     <select class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
-                                            <option value="{{ $item->id }}">{{ $item->deskripsi }}</option>
+                                            <option value="{{ $item->deskripsi }}"
+                                                {{ $item->deskripsi == $data->tkp2 ? 'selected' : '' }}>
+                                                {{ $item->deskripsi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -210,7 +219,10 @@
                                     <select class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
-                                            <option value="{{ $item->id }}">{{ $item->deskripsi }}</option>
+                                            <option value="{{ $item->deskripsi }}"
+                                                {{ $item->deskripsi == $data->ahass2 ? 'selected' : '' }}>
+                                                {{ $item->deskripsi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -221,7 +233,10 @@
                                     <select class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
-                                            <option value="{{ $item->id }}">{{ $item->deskripsi }}</option>
+                                            <option value="{{ $item->deskripsi }}"
+                                                {{ $item->deskripsi == $data->tkp3 ? 'selected' : '' }}>
+                                                {{ $item->deskripsi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -230,7 +245,10 @@
                                     <select class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
-                                            <option value="{{ $item->id }}">{{ $item->deskripsi }}</option>
+                                            <option value="{{ $item->deskripsi }}"
+                                                {{ $item->deskripsi == $data->ahass3 ? 'selected' : '' }}>
+                                                {{ $item->deskripsi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -239,7 +257,7 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Part Diganti 1</label>
-                                    <select class="form-control col-md-7 select2">
+                                    <select class="form-control col-md-7 select2-part">
                                         <option disabled selected>-- Pilih --</option>
                                     </select>
                                 </div>
@@ -252,7 +270,7 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Part Diganti 2</label>
-                                    <select class="form-control col-md-7 select2">
+                                    <select class="form-control col-md-7 select2-part">
                                         <option disabled selected>-- Pilih --</option>
                                     </select>
                                 </div>
@@ -264,7 +282,7 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Part Diganti 3</label>
-                                    <select class="form-control col-md-7 select2">
+                                    <select class="form-control col-md-7 select2-part">
                                         <option disabled selected>-- Pilih --</option>
                                     </select>
                                 </div>
@@ -320,4 +338,37 @@
                 {{-- Form End --}}
         </section>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2-part').select2({
+                ajax: {
+                    url: '/suku-cadang/json',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            search: params.term,
+                        };
+                    },
+                    processResults: function(data) {
+                        console.log(data);
+                        return {
+                            results: data,
+                        };
+                    },
+                    cache: true
+                },
+                minimumInputLength: 1,
+                placeholder: 'Pilih suku cadang',
+                templateResult: function(item) {
+                    return item.text;
+                },
+                templateSelection: function(item) {
+                    return item.text;
+                }
+            });
+        });
+    </script>
 @endsection

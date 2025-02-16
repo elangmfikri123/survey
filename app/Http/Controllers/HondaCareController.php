@@ -7,6 +7,8 @@ use App\Models\FormEra;
 use App\Models\UserEra;
 use App\Models\Penyelesaian;
 use Illuminate\Http\Request;
+use App\Models\SukuCadangEra;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -75,14 +77,28 @@ class HondaCareController extends Controller
         $userEra = Auth::guard('era')->user();
         $data = FormEra::where('id_form', $id_form)->with('mekanik')->firstOrFail();
         $penyelesaian = Penyelesaian::all();
+        $sukucadang = SukuCadangEra::all();
         if ($userSurvey instanceof User && $userSurvey->roles === 'admin') {
-            return view('admin.adminera-update', compact('data', 'penyelesaian'));
+            return view('admin.adminera-update', compact('data', 'penyelesaian', 'sukucadang'));
         }
         if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
             if ($data->kode !== $userEra->kode) {
                 return redirect()->back();
             }    
-            return view('maindealer.hondacare-update', compact('data', 'penyelesaian'));
+            return view('maindealer.hondacare-update', compact('data', 'penyelesaian', 'sukucadang'));
         }
+    }
+    public function getSukuCadangJson(Request $request)
+    {
+        $search = $request->query('search', '');
+    
+        $sukucadang = DB::connection('era')
+            ->table('sukucadang')
+            ->select('id', 'deskripsi as text')
+            ->where('deskripsi', 'like', '%' . $search . '%')
+            ->limit(50)
+            ->get();
+    
+        return response()->json($sukucadang);
     }
 }
