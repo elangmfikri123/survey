@@ -12,7 +12,7 @@ class FormEra extends Model
     protected $connection = 'era';
     protected $table = 'form';
     protected $primaryKey = 'id_form';
-
+    public $timestamps = false;
     protected $guarded = ['id_form'];
 
     public function mekanik()

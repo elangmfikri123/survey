@@ -686,20 +686,12 @@
 
   $('#submitBtn').click(function() {
     var isValid = true;
-    // Validasi masing-masing elemen form yang tampil berdasarkan kondisi
     if ($('#pertanyaan_1').is(':visible')) {
       if (!$('#jawaban_1').val()) {
         isValid = false;
         $('#error_jawaban_1').show();
       }
     }
-
-    // if ($('#pertanyaan_1a').is(':visible')) {
-    //   if (!$('#jawaban_1a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_1a').show();
-    //   }
-    // }
 
     if ($('#pertanyaan_2').is(':visible')) {
       if (!$('#jawaban_2').val()) {
@@ -713,12 +705,6 @@
         $('#error_jawaban_3').show();
       }
     }
-    // if ($('#pertanyaan_3a').is(':visible')) {
-    //   if (!$('#jawaban_3a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_3a').show();
-    //   }
-    // }
 
     if ($('#pertanyaan_4').is(':visible')) {
       if (!$('#jawaban_4').val()) {
@@ -726,12 +712,7 @@
         $('#error_jawaban_4').show();
       }
     }
-    // if ($('#pertanyaan_4a').is(':visible')) {
-    //   if (!$('#jawaban_4a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_4a').show();
-    //   }
-    // }
+
     
     if ($('#pertanyaan_5').is(':visible')) {
       if (!$('#jawaban_5').val()) {
@@ -740,40 +721,18 @@
       }
     }
 
-    // if ($('#pertanyaan_5a').is(':visible')) {
-    //   if (!$('#jawaban_5a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_5a').show();
-    //   }
-    // }
-
     if ($('#pertanyaan_6').is(':visible')) {
       if (!$('#jawaban_6').val()) {
         isValid = false;
         $('#error_jawaban_6').show();
       }
     }
-
-    // if ($('#pertanyaan_6a').is(':visible')) {
-    //   if (!$('#jawaban_6a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_6a').show();
-    //   }
-    // }
-
     if ($('#pertanyaan_7').is(':visible')) {
       if (!$('#jawaban_7').val()) {
         isValid = false;
         $('#error_jawaban_7').show();
       }
     }
-
-    // if ($('#pertanyaan_7a').is(':visible')) {
-    //   if (!$('#jawaban_7a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_7a').show();
-    //   }
-    // }
 
     if ($('#pertanyaan_8').is(':visible')) {
       if (!$('#jawaban_8').val()) {
@@ -782,18 +741,11 @@
       }
     }
 
-    // if ($('#pertanyaan_8a').is(':visible')) {
-    //   if (!$('#jawaban_8a').val()) {
-    //     isValid = false;
-    //     $('#error_jawaban_8a').show();
-    //   }
-    // }
-
     if (!$('input[name="jawaban_9"]:checked').val()) {
             event.preventDefault();
-            $('#error_jawaban_9').show(); // Tampilkan pesan kesalahan jika tidak ada input yang dipilih
+            $('#error_jawaban_9').show();
         } else {
-            $('#error_jawaban_9').hide(); // Sembunyikan pesan kesalahan jika ada input yang dipilih
+            $('#error_jawaban_9').hide();
         }
 
 

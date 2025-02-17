@@ -23,27 +23,27 @@ return new class extends Migration
             $table->string('nama', 100);
             $table->string('email', 100)->nullable();
             $table->text('akunsosmed')->nullable();
-            $table->string('smh', 100);
+            $table->string('smh', 100)->nullable();
             $table->string('descmotor', 50);
             $table->text('nomerRangka')->nullable();
-            $table->string('jaraktempuh', 20);
-            $table->string('nopol', 15);
-            $table->string('masalah', 200);
-            $table->text('namalokasiahass');
-            $table->text('lokasiahass');
-            $table->text('alamat');
-            $table->string('kota', 100);
-            $table->string('provinsi', 100);
+            $table->string('jaraktempuh', 20)->nullable();
+            $table->string('nopol', 15)->nullable();
+            $table->string('masalah', 200)->nullable();
+            $table->text('namalokasiahass')->nullable();
+            $table->text('lokasiahass')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('kota', 100)->nullable();
+            $table->string('provinsi', 100)->nullable();
             $table->string('lat', 50);
             $table->string('lng', 50);
             $table->enum('status', ['N', 'W', 'C']);
-            $table->string('tipeservis', 200);
-            $table->dateTime('waktu');
-            $table->dateTime('waktuisian');
-            $table->dateTime('waktu_dikirimmekanik');
-            $table->dateTime('waktu_menujukonsumen');
-            $table->dateTime('waktu_menanganikonsumen');
-            $table->dateTime('waktuselesai');
+            $table->string('tipeservis', 200)->nullable();
+            $table->dateTime('waktu')->nullable();
+            $table->dateTime('waktuisian')->nullable();
+            $table->dateTime('waktu_dikirimmekanik')->nullable();
+            $table->dateTime('waktu_menujukonsumen')->nullable();
+            $table->dateTime('waktu_menanganikonsumen')->nullable();
+            $table->dateTime('waktuselesai')->nullable();
             $table->enum('statuspenyelesaian', ['Selesai di TKP', 'Dibawa ke AHASS'])->nullable();
             $table->string('tkp1', 200)->nullable();
             $table->string('tkp2', 200)->nullable();
@@ -61,7 +61,7 @@ return new class extends Migration
             $table->string('alasan3', 200);
             $table->string('alasan4', 200);
             $table->string('alasan5', 200);
-            $table->integer('tahunmotor');
+            $table->integer('tahunmotor')->nullable();
             $table->enum('proses', [
                 'Data konsumen dikirim ke korlap',
                 'Mekanik terima assignment dari korlap',
@@ -72,20 +72,20 @@ return new class extends Migration
             $table->text('foto')->nullable();
             $table->text('tiketich')->nullable();
             $table->string('approve', 50)->nullable();
-            $table->string('problem', 75);
-            $table->string('solving', 75);
-            $table->text('keteranganSolving');
-            $table->text('hasilMasalah');
+            $table->string('problem', 75)->nullable();
+            $table->string('solving', 75)->nullable();
+            $table->text('keteranganSolving')->nullable();
+            $table->text('hasilMasalah')->nullable();
             $table->string('agentcreator', 50);
             $table->text('rupiah');
-            $table->text('rupiah1');
-            $table->text('rupiah2');
-            $table->text('rupiah3');
-            $table->text('rupiah4');
-            $table->text('rupiah5');
+            $table->text('rupiah1')->nullable();
+            $table->text('rupiah2')->nullable();
+            $table->text('rupiah3')->nullable();
+            $table->text('rupiah4')->nullable();
+            $table->text('rupiah5')->nullable();
             $table->text('lat_lng_arrive')->nullable();
             $table->dateTime('waktu_mekanik_call_cust')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

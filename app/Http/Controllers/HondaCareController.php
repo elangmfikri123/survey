@@ -77,15 +77,14 @@ class HondaCareController extends Controller
         $userEra = Auth::guard('era')->user();
         $data = FormEra::where('id_form', $id_form)->with('mekanik')->firstOrFail();
         $penyelesaian = Penyelesaian::all();
-        $sukucadang = SukuCadangEra::all();
         if ($userSurvey instanceof User && $userSurvey->roles === 'admin') {
-            return view('admin.adminera-update', compact('data', 'penyelesaian', 'sukucadang'));
+            return view('admin.adminera-update', compact('data', 'penyelesaian'));
         }
         if ($userEra instanceof UserEra && $userEra->level === 'korlap') {
             if ($data->kode !== $userEra->kode) {
                 return redirect()->back();
             }    
-            return view('maindealer.hondacare-update', compact('data', 'penyelesaian', 'sukucadang'));
+            return view('maindealer.hondacare-update', compact('data', 'penyelesaian'));
         }
     }
     public function getSukuCadangJson(Request $request)
@@ -94,11 +93,28 @@ class HondaCareController extends Controller
     
         $sukucadang = DB::connection('era')
             ->table('sukucadang')
-            ->select('id', 'deskripsi as text')
-            ->where('deskripsi', 'like', '%' . $search . '%')
+            ->select('no_part', 'deskripsi')
+            ->where(function ($query) use ($search) {
+                $query->where('deskripsi', 'like', '%' . $search . '%')
+                      ->orWhere('no_part', 'like', '%' . $search . '%');
+            })
             ->limit(50)
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id' => $item->deskripsi, 
+                    'no_part' => $item->no_part,
+                    'deskripsi' => $item->deskripsi, 
+                    'text' => "{$item->no_part} | {$item->deskripsi}"
+                ];
+            });
     
         return response()->json($sukucadang);
+    } 
+    public function updateFormera(Request $request,$id_form)
+    {
+        $form = FormEra::findOrFail($id_form);
+        $form->fill($request->all())->save(['timestamps' => false]);
+        return redirect()->back();
     }
 }

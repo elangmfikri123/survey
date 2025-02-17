@@ -16,10 +16,8 @@
             <p class="section-lead">
                 Perbarui Data Penanganan Honda Care.
             </p>
-
-            <form id="update-form" action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
                 <div class="card">
                     <div class="card-header">
                         <h4>Header</h4>
@@ -38,11 +36,10 @@
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Mekanik By</label>
-                                    <input type="text" class="form-control col-md-7" value="{{ $data->mekanik->nama }}"
+                                    <input type="text" class="form-control col-md-7" value="{{ optional($data->mekanik)->nama }}"
                                         disabled>
                                 </div>
                             </div>
-
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Created Time</label>
@@ -58,8 +55,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="card">
                     <div class="card-header">
                         <h4>Customer & Motorcyle Data</h4>
@@ -82,18 +77,18 @@
                                         disabled>
                                 </div>
                             </div>
-
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Email</label>
-                                    <input type="text" class="form-control col-md-7" value="{{ $data->email }}">
+                                    <input name="email" type="text" class="form-control col-md-7"
+                                        value="{{ $data->email }}">
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Phone Alternatif</label>
-                                    <input type="number" class="form-control col-md-7" value="{{ $data->no_telp2 }}">
+                                    <input name="no_telp2" type="number" class="form-control col-md-7"
+                                        value="{{ $data->no_telp2 }}">
                                 </div>
                             </div>
-
                             <div class="form-row mt-3"> {{-- Row 3 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Provinsi</label>
@@ -126,24 +121,25 @@
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Nomer Polisi</label>
-                                    <input type="text" class="form-control col-md-7" value="{{ $data->nopol }}">
+                                    <input name="nopol" type="text" class="form-control col-md-7"
+                                        value="{{ $data->nopol }}">
                                 </div>
                             </div>
                             <div class="form-row mt-3"> {{-- Row 5 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Tahun Motor</label>
-                                    <input type="text" class="form-control col-md-7" value="{{ $data->tahunmotor }}">
+                                    <input name="tahunmotor" type="text" class="form-control col-md-7"
+                                        value="{{ $data->tahunmotor }}">
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Nomor Rangka</label>
-                                    <input type="text" class="form-control col-md-7"
+                                    <input name="nomerRangka" type="text" class="form-control col-md-7"
                                         value="{{ $data->nomerRangka }}">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card-header">
                         <h4>Work Activity</h4>
@@ -157,12 +153,12 @@
                             <div class="form-row"> {{-- Row 1 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Jarak Tempuh</label>
-                                    <input type="number" class="form-control col-md-7"
+                                    <input name="jaraktempuh" type="number" class="form-control col-md-7"
                                         value="{{ $data->jaraktempuh }}">
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Status Penyelesaian</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="statuspenyelesaian" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         <option
                                             value="Selesai di TKP"{{ $data->statuspenyelesaian == 'Selesai di TKP' ? 'selected' : '' }}>
@@ -177,7 +173,7 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Selesai TKP 1</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="tkp1" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
                                             <option value="{{ $item->deskripsi }}"
@@ -189,7 +185,7 @@
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Selesai AHASS 1</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="ahass1" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
                                             <option value="{{ $item->deskripsi }}"
@@ -204,7 +200,7 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Selesai TKP 2</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="tkp2" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
                                             <option value="{{ $item->deskripsi }}"
@@ -216,7 +212,7 @@
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Selesai AHASS 2</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="ahass2" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
                                             <option value="{{ $item->deskripsi }}"
@@ -230,7 +226,7 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Selesai TKP 3</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="tkp3" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
                                             <option value="{{ $item->deskripsi }}"
@@ -242,7 +238,7 @@
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Selesai AHASS 3</label>
-                                    <select class="form-control col-md-7">
+                                    <select name="ahass3" class="form-control col-md-7">
                                         <option disabled selected>-- Pilih --</option>
                                         @foreach ($penyelesaian as $item)
                                             <option value="{{ $item->deskripsi }}"
@@ -257,69 +253,89 @@
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Part Diganti 1</label>
-                                    <select class="form-control col-md-7 select2-part">
-                                        <option disabled selected>-- Pilih --</option>
+                                    <select name="part1" class="form-control col-md-7 select2-part">
+                                        @if ($data->part1)
+                                            <option value="{{ $data->part1 }}" selected>{{ $data->part1 }}</option>
+                                        @else
+                                            <option disabled selected>-- Pilih --</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Harga Part 1</label>
-                                    <input type="number" class="form-control col-md-7">
+                                    <input name="rupiah1" type="number" class="form-control col-md-7"
+                                        value="{{ $data->rupiah1 }}">
                                 </div>
                             </div>
 
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Part Diganti 2</label>
-                                    <select class="form-control col-md-7 select2-part">
-                                        <option disabled selected>-- Pilih --</option>
+                                    <select name="part2" class="form-control col-md-7 select2-part">
+                                        @if ($data->part2)
+                                            <option value="{{ $data->part2 }}" selected>{{ $data->part2 }}</option>
+                                        @else
+                                            <option disabled selected>-- Pilih --</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Harga Part 2</label>
-                                    <input type="number" class="form-control col-md-7">
+                                    <input name="rupiah2" type="number" class="form-control col-md-7"
+                                        value="{{ $data->rupiah2 }}">
                                 </div>
                             </div>
                             <div class="form-row mt-3"> {{-- Row 2 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Part Diganti 3</label>
-                                    <select class="form-control col-md-7 select2-part">
-                                        <option disabled selected>-- Pilih --</option>
+                                    <select name="part3" class="form-control col-md-7 select2-part">
+                                        @if ($data->part3)
+                                            <option value="{{ $data->part3 }}" selected>{{ $data->part3 }}</option>
+                                        @else
+                                            <option disabled selected>-- Pilih --</option>
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Harga Part 3</label>
-                                    <input type="number" class="form-control col-md-7">
+                                    <input name="rupiah3" type="number" class="form-control col-md-7"
+                                        value="{{ $data->rupiah3 }}">
                                 </div>
                             </div>
                             <div class="form-row mt-3"> {{-- Row 3 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Lokasi AHASS</label>
-                                    <input type="text" class="form-control col-md-7">
+                                    <input name="namalokasiahass" type="text" class="form-control col-md-7"
+                                        value="{{ $data->namalokasiahass }}">
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Alamat AHASS</label>
-                                    <input type="text" class="form-control col-md-7">
+                                    <input name="lokasiahass" type="text" class="form-control col-md-7"
+                                        value="{{ $data->lokasiahass }}">
                                 </div>
                             </div>
                             <div class="form-row mt-3"> {{-- Row 3 --}}
                                 <div class="col-md-5 d-flex align-items-center">
-                                    <label class="col-md-4">Waktu Ingin Ditangani</label>
-                                    <input type="datetime-local" class="form-control col-md-7">
+                                    <label class="col-md-4">Waktu FU Korlap/Mekanik</label>
+                                    <input name="waktu_mekanik_call_cust" type="datetime-local"
+                                        class="form-control col-md-7" value="{{ $data->waktu_mekanik_call_cust }}">
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
-                                    <label class="col-md-4">Waktu Penanganan</label>
-                                    <input type="datetime-local" class="form-control col-md-7">
+                                    <label class="col-md-4">Waktu Penyelesaian</label>
+                                    <input name="waktuselesai" type="datetime-local" class="form-control col-md-7"
+                                        value="{{ $data->waktuselesai }}">
                                 </div>
                             </div>
 
                             <div class="form-row mt-3"> {{-- Row 4 --}}
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Lainnya</label>
-                                    <input type="text" class="form-control col-md-7" value="{{ $data->problem }}">
+                                    <input name="problem" type="text" class="form-control col-md-7"
+                                        value="{{ $data->problem }}">
                                 </div>
                                 <div class="col-md-5 d-flex align-items-center">
                                     <label class="col-md-4">Keterangan</label>
-                                    <textarea class="form-control col-md-7" style="height: 38px;">{{ $data->keteranganSolving }}</textarea>
+                                    <textarea name="keteranganSolving" class="form-control col-md-7" style="height: 38px;">{{ $data->keteranganSolving }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -349,25 +365,20 @@
                     delay: 250,
                     data: function(params) {
                         return {
-                            search: params.term,
+                            search: params.term
                         };
                     },
                     processResults: function(data) {
-                        console.log(data);
+                        console.log("Data dari server:", data);
                         return {
-                            results: data,
+                            results: data.map(item => ({
+                                id: item.deskripsi,
+                                text: item.no_part + " | " + item.deskripsi
+                            }))
                         };
                     },
                     cache: true
                 },
-                minimumInputLength: 1,
-                placeholder: 'Pilih suku cadang',
-                templateResult: function(item) {
-                    return item.text;
-                },
-                templateSelection: function(item) {
-                    return item.text;
-                }
             });
         });
     </script>

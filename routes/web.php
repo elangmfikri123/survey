@@ -27,6 +27,7 @@ use App\Http\Controllers\SatisfactionHondaCareController;
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::post('/authlogin', [AuthController::class, 'storeLogin']);
 Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/suku-cadang/json', [HondaCareController::class, 'getSukuCadangJson']);
 
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard']);
@@ -36,6 +37,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/get-era/data', [HondaCareController::class, 'geteradata']);
     Route::get('/era/update/{id_form}', [HondaCareController::class, 'eraupdate']);
     Route::get('/era/update/data/{id_form}', [HondaCareController::class, 'getera_update']);
+    // Route::get('/suku-cadang/json', [HondaCareController::class, 'getSukuCadangJson']);
+    Route::post('/eramd/update/{id_form}', [HondaCareController::class, 'updateFormera']);
 
 
     //ROUTE ADMIN SURVEY AWARENESS CONTACT CENTER
@@ -94,8 +97,8 @@ Route::middleware('korlapmd')->group(function () {
     Route::get('/get-eramd', [HondaCareController::class, 'getera']);
     Route::get('/get-eramd/data', [HondaCareController::class, 'geteradata']);
     Route::get('/eramd/update/{id_form}', [HondaCareController::class, 'eraupdate']);
-    Route::get('/era/update/data/{id_form}', [HondaCareController::class, 'getera_update']);
-    Route::get('/suku-cadang/json', [HondaCareController::class, 'getSukuCadangJson']);
+    // Route::get('/suku-cadang/json', [HondaCareController::class, 'getSukuCadangJson']);
+    Route::post('/eramd/update/{id_form}', [HondaCareController::class, 'updateFormera']);
 
 });
 
